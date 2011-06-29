@@ -148,7 +148,7 @@ $.fn.navigation = function(contentJson, options)
 			$nextButton = $('.nav .buttons a.next',this),
 			$previousButton = $('.nav .buttons a.previous',this);
 			
-		content = YAHOO.lang.JSON.parse(contentJson) || ['No content'];
+		content = $.parseJSON(contentJson) || ['No content'];
 		current = options.current || 0;
 		url     = options.url || 'content/index/view/id/';
 		

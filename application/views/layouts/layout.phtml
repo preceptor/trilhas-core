@@ -6,25 +6,29 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $this->appCharset?>"/>
         <base href="<?php echo $this->serverUrl() . $this->baseUrl() ?>/" />
         <link rel="shortcut icon" href="favicon.ico" />
+        <?php 
+            $this->headLink()->appendStylesheet('css/grid.css')
+                             ->appendStylesheet('css/utils.css')
+                             ->appendStylesheet('css/jquery-ui.css')
+                             ->appendStylesheet('css/style.css')
+                             ->appendStylesheet('css/'. Tri_Config::get('tri_theme_style').'.css');
 
-        <?php echo $this->headMeta(); ?>
-        <?php echo $this->headLink()->appendStylesheet('css/grid.css')
-                                    ->appendStylesheet('css/utils.css')
-                                    ->appendStylesheet('css/jquery-ui.css')
-                                    ->appendStylesheet('css/style.css')
-                                    ->appendStylesheet('css/'. Tri_Config::get('tri_theme_style').'.css'); ?>
-
-		<?php $this->headScript()->appendFile('js/jquery/jquery.min.js')
-                                 ->appendFile('js/jquery/jquery-ui.min.js')
-                                 ->appendFile('js/jquery/jquery.maskedinput.js')
-                                 ->appendFile('js/ckeditor/ckeditor.js');
-              if ($locale != 'en') { $this->headScript()->appendFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js'); }
-              if ($locale != 'en') { $this->headScript()->appendFile('js/ckeditor/lang/' . strtolower($locale) . '.js'); }
-		      $this->headScript()->appendFile('js/jquery/jquery.other.js')
-                                 ->appendFile('js/yahoo/yahoo-dom-event.js')
-                                 ->appendFile('js/yahoo/json-min.js')
-                                 ->appendFile('js/navigation.js');
-              echo $this->headScript();?>
+            $this->headScript()->appendFile('js/jquery/jquery.min.js')
+                               ->appendFile('js/jquery/jquery-ui.min.js')
+                               ->appendFile('js/jquery/jquery.maskedinput.js')
+                               ->appendFile('js/jquery/jquery.other.js')
+                               ->appendFile('js/ckeditor/ckeditor.js')
+                               ->appendFile('js/navigation.js')
+                               ->appendFile('js/menu.js');
+            
+            if ($locale != 'en') { 
+                $this->headScript()->appendFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js')
+                                   ->appendFile('js/ckeditor/lang/' . strtolower($locale) . '.js'); 
+            }
+            
+            echo $this->headLink();
+            echo $this->headScript();
+         ?>
 	</head>
     <body>
         <script type="text/javascript">
@@ -71,7 +75,6 @@
             </div>
         </div>
         <?php echo $this->widget('fix_footer')?>
-
         <script type="text/javascript">
             $("#loading").bind("ajaxSend", function(){
                 $(this).show();
