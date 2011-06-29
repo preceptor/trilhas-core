@@ -41,12 +41,12 @@ Thumbs.db
 # Netbeans and Eclipse files #
 ###################
 nbproject/
-data/cache/*
-data/upload/*
-data/log/*
+#data/cache/*
+#data/upload/*
+#data/log/*
 #themes/*
 #plugins/*
-public/upload/*
+#public/upload/*
 .project
 .buildpath
 .settings
