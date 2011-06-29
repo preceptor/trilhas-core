@@ -44,8 +44,8 @@ nbproject/
 data/cache/*
 data/upload/*
 data/log/*
-themes/*
-plugins/*
+#themes/*
+#plugins/*
 public/upload/*
 .project
 .buildpath
