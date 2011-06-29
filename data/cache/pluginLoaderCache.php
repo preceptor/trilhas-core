@@ -69,3 +69,4 @@ include_once 'Zend/Captcha/Figlet.php';
 include_once 'Zend/Form/Decorator/Captcha.php';
 include_once 'Zend/Form/Decorator/Captcha/Word.php';
 include_once 'Zend/Captcha/Image.php';
+include_once 'Tri/Validate/PasswordConfirmation.php';

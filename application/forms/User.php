@@ -64,7 +64,7 @@ class Application_Form_User extends Zend_Form
                 ->addFilters($filters['email'])
                 ->setAllowEmpty(false);
 
-        $filters['password'][] = 'Md5';
+        $filters['password'][] = array('Md5', Tri_Config::get('tri_salt'));
         $validators['password'][] = 'PasswordConfirmation';
         $password = new Zend_Form_Element_Password('password');
         $password->setLabel('Password')
@@ -73,7 +73,7 @@ class Application_Form_User extends Zend_Form
 
         $passwordConfirmation = new Zend_Form_Element_Password('password_confirm');
         $passwordConfirmation->setLabel('Password confirmation')
-                             ->addFilter('Md5');
+                             ->addFilter('Md5', Tri_Config::get('tri_salt'));
 
         $sex = new Zend_Form_Element_Select('sex');
         $sex->setLabel('Sex')

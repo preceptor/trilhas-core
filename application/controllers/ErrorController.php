@@ -52,4 +52,8 @@ class ErrorController extends Zend_Controller_Action
         }
         exit;
 	}
+    
+    public function accessAction() {
+        $this->view->title = "Error";
+    }
 }

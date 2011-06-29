@@ -88,7 +88,7 @@ class UserController extends Tri_Controller_Action
 
         $adapter->setIdentity($username)
                 ->setCredential($password)
-                ->setCredentialTreatment('MD5(?)');
+                ->setCredentialTreatment("MD5(CONCAT('" . Tri_Config::get('tri_salt') . "',?))");
 
         return $auth->authenticate($adapter);
     }

@@ -36,6 +36,14 @@
                                       selectOtherMonths: true,
                                       buttonImageOnly: true});
         </script>
+        <div class="pages">
+            <ul>
+                <li><a href="index"><?php echo $this->translate('home')?></a></li>
+                <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+                    <li><a href="user/logout"><?php echo $this->translate('logout')?></a></li>
+                <?php endif;?>
+            </ul>
+        </div>
         <?php echo $this->widget('fix_header')?>
         <div id="loading"><?php echo $this->translate('Loading')?></div>
         <div class="row header">

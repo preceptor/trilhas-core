@@ -14,8 +14,7 @@ class Tri_Validate_PasswordConfirmation extends Zend_Validate_Abstract
 
         if (is_array($context)) {
             if (isset($context['password_confirm'])
-                && ($value == md5($context['password_confirm'])))
-            {
+                && ($value == md5(Tri_Config::get('tri_salt') . $context['password_confirm']))) {
                 return true;
             }
         } elseif (is_string($context) && ($value == $context)) {

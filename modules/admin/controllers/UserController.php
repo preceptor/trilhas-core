@@ -141,7 +141,7 @@ class Admin_UserController extends Tri_Controller_Action
 
             $this->_redirect('admin/user');
         }
-
+        
         $messages[] = 'Error';
         $this->view->messages = $messages;
         $this->view->form = $form;

@@ -41,14 +41,14 @@ class Tri_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         if ($identity) {
             $role = $identity->role;
         }
-
+        
         if (!$acl->isAllowed($role, $resource, $privilege)) {
             $session = new Zend_Session_Namespace('data');
             $session->url = $request->getPathInfo();
 
             $request->setModuleName('default')
-                    ->setControllerName('user')
-                    ->setActionName('login');
+                    ->setControllerName('error')
+                    ->setActionName('access');
         }
     }
 }

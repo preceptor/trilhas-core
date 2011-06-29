@@ -25,6 +25,11 @@
  */
 class Tri_Filter_Md5 implements Zend_Filter_Interface
 {
+    protected $_salt;
+    
+    public function __construct($salt = null) {
+        $this->_salt = $salt;
+    }
     /**
      * Filter string
      *
@@ -34,7 +39,7 @@ class Tri_Filter_Md5 implements Zend_Filter_Interface
     public function filter($value)
     {
         if ($value) {
-            return md5($value);
+            return md5($this->_salt . $value);
         }
         return null;
     }

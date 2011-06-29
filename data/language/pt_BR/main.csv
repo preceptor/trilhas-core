@@ -144,6 +144,9 @@
 "Failed to delete. Forum with dependents.";"Falha ao excluir. Fórum com dependentes."
 "Failed to save. Select an item.";"Falha ao salvar. Selecione um item."
 "There are no records for this type.";"Não existem registros para o tipo selecionado."
+"Retricted access.";"Acesso restrito."
+"To access";"Para acessar realize o"
+"Non-existent page.";"Página não existente."
 
 #timeline
 "saved a new file";"adicionou um novo arquivo"

@@ -37,11 +37,17 @@
                                       buttonImageOnly: true});
         </script>
         
-        <?php 
-            if (!$this->removePagePlugin) {
-                echo $this->widget('fix_header');
-            }
-        ?>
+        <?php if (!$this->removePagePlugin): ?>
+            <div class="pages">
+                <ul>
+                    <li><a href="index"><?php echo $this->translate('home')?></a></li>
+                    <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+                        <li><a href="user/logout"><?php echo $this->translate('logout')?></a></li>
+                    <?php endif;?>
+                </ul>
+            </div>
+            <?php echo $this->widget('fix_header'); ?>
+        <?php endif ?>
         <div id="loading"><?php echo $this->translate('Loading')?></div>
         <div class="row header">
             <div class="column">
