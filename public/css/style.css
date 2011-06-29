@@ -1,0 +1,200 @@
+/**
+ * Trilhas - Learning Management System
+ * Copyright (C) 2005-2010  Preceptor Educação a Distância Ltda. <http://www.preceptoead.com.br>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/**
+ * @copyright  Copyright (C) 2005-2010  Preceptor Educação a Distância Ltda. <http://www.preceptoead.com.br>
+ * @license    http://www.gnu.org/licenses/  GNU GPL
+*/
+*{font-size: 12px; font-family: 'Lucida Grande', Arial, Helvetica, sans-serif;}
+html, body{margin: 0; padding: 0;}
+a{color: #0052A3; text-decoration: none;}
+a:hover{text-decoration: underline;}
+img{border: none;}
+
+input[type=button], input[type=submit]{padding: 0.3em 0.6em; font-weight: normal; font-family: 'Lucida Grande', Arial, Helvetica, sans-serif;}
+
+#loading{display:none; position: absolute; background: #B6DBE8; padding: 5px; left: 50%; margin-left: -35px; width: 70px; text-align: center; font-size: 12px; z-index: 100; top:3px;}
+
+.header{margin-top: 5px; background: #fff;}
+.header h1{display: none;}
+
+.main{background: #fff; padding-top: 1px;}
+
+.box{ margin-bottom: 5px; border: 1px solid #CCC; }
+.box .header {background: url(../img/title-white.jpg) repeat-x; height: 19px; padding: 2px 10px 8px; overflow: hidden;}
+.box .blue{background: url(../img/title-blue.jpg); margin-top: 0; padding-top: 5px; height: 16px; color: white;}
+.box .header h3{line-height: 20px; margin: 0; font-size: 15px; font-weight: normal;}
+.box .content{ background: url(../img/content.jpg) repeat-x white;  font-size: 0.91em; padding: 20px 15px; overflow: hidden; }
+
+.logo .content{padding: 10px 0;}
+
+.login #email, .login #password{width: 180px;}
+.login .content{padding: 0px 15px 10px;}
+
+.courses a{text-decoration: none; color: #4480BC;}
+.courses a:hover{text-decoration: underline;}
+.courses .search{margin-bottom: 20px;}
+.courses .search a{margin-left: 20px;}
+.courses .item{clear: both; padding-bottom: 10px;}
+.courses .item a{font-weight: bold}
+.courses .item h2{margin: 0 0 10px 0; color: #4480BC; font-size: 16px;}
+.courses .item h2 a{margin: 0; color: #4480BC; font-size: 16px; font-weight: bold;}
+.courses .item img{float: left; margin: 0 10px 5px 0; border: 1px solid #ccc;}
+.courses .item p{margin-top: 2px;}
+.courses .item span{margin-left: 5px; font-size: 0.8em; color: #ccc;}
+.courses .certificate{float: none; margin: 0;}
+
+.course-image{float: left; margin: 0 10px 10px 0; border: 1px solid #ccc;}
+
+.menu ul{margin: 0; padding-top: 10px;}
+.menu .content{padding: 10px 0 0 10px;}
+.menu .content h3{font-size: 15px; font-weight: normal; margin:0 0 0 10px; padding: 0; color: #4480BC;}
+.menu .content ul{margin: 2px 0 10px;  padding: 5px 0;}
+.menu .content ul li{list-style: none; font-size: 0.8em; padding: 2px 0; margin-left: 15px;}
+.menu .content ul li a{text-decoration: none; color: #333;}
+.menu .content ul li a:hover{text-decoration: underline;}
+
+
+.footer{border: 1px solid #ccc; margin: 5px 0; padding: 10px;}
+.footer a{float: left; }
+.footer .info{ border-top: 1px solid #ccc; margin: 20px 0 0 90px; padding-top: 5px; text-align: right;}
+
+.reply ol li{margin-bottom: 30px;}
+.reply ul{margin: 10px 0; padding: 0; list-style: none;}
+.reply ul li{margin-bottom: 10px;}
+.reply li.right{color: green; float: none; font-weight: bold;}
+.reply li.wrong{color: red; font-weight: bold;}
+
+.classroom-list{margin: 0 0 5px 220px; background: #fff;}
+.classroom-list table{border-collapse: collapse;}
+.classroom-list table thead{background: #ddd;}
+.classroom-list table td, .classroom-list table th{padding: 5px; border: 1px solid #ddd;}
+
+.calendar .item{clear: left; margin-bottom: 15px;}
+.calendar ul{margin: 0 0 0 65px; padding: 0;}
+.calendar li{margin: 0 0 3px 0; padding: 0}
+.calendar .date{float: left; text-align: center; width: 23px; padding: 0 5px; border: 1px solid #ddd; margin: 0 5px 15px 0;}
+
+.zend_form dt{margin-top: 5px;}
+.zend_form dd{margin: 0;}
+
+.datatable{width: 99%; border-collapse: collapse;}
+.datatable tr{border-bottom: 1px solid #eee;}
+.datatable th{text-align: left;padding: 5px;}
+.datatable td{padding: 5px;}
+
+.message{padding: 5px; background: #FFF1A8; margin-bottom: 10px;}
+.message span{float: left; margin-right: 5px;;}
+.message ul{margin: 0; padding: 0; list-style: none;}
+
+.message-reply{text-align:right; font-size:80%; color:#BBB; margin-bottom:10px;}
+
+.forum .name{color: #ccc;}
+.forum .datatable tr{border: none;}
+.forum .datatable .margin{margin: 0; padding: 0;}
+.forum .datatable .image img{border: 1px solid #ccc;}
+.forum .datatable .description{border: none;}
+.forum .datatable .space{line-height: 1px; border-top: 1px solid #eee;}
+.forum .highlight{background: #F9F9F9;}
+.forum .highlight .name{color: #aaa;}
+.forum .datatable .current{background: #F4F4F4;}
+.forum .datatable .current .name{color: #aaa;}
+.forum .datatable .edit{font-size: 10px;}
+.forum dl{margin: 0;}
+.forum .partial-reply{border: 1px solid #ddd; margin-top: 2px;}
+
+.forgot{ padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px dotted #ccc; font-size: 0.8em;}
+
+.paginationControl{text-align: center; margin-top: 10px;}
+
+.list-user{float: right; width: 180px; border-left:dashed 1px; padding-left: 10px;}
+.list-user .list{overflow: auto; height: 140px;}
+.list-user .item{clear: both; margin-bottom: 15px;}
+.list-user .item img{float: left; margin-right: 5px;}
+
+.magnifier{float: left; margin: 4px 8px 0 0;}
+
+.nav .buttons{margin: 5px 0; text-align: right; border: 1px dotted #ddd; border-left: none; border-right: none; padding: 5px 0;}
+.nav .buttons a{ padding: 5px; margin: 0;}
+
+.panel .item{float: left; padding-right: 10px;}
+.panel .note input{border: 1px solid; padding: 5px; margin-top: 3px; width: 50px;}
+
+.organizer{list-style-type: none; margin: 0; padding: 0; width: 80%;}
+.organizer li {cursor: move; margin: 0 3px 3px 3px; padding: 10px 10px 10px 20px; background: none;}
+.organizer li span{position: absolute; margin-left: -20px;}
+
+.chat-room ul.messages{margin: 0; padding: 5px; height: 300px; overflow: auto; list-style: none; border: 1px solid #ddd;}
+.chat-room ul.messages li{margin-bottom: 5px; padding: 3px; border-bottom: 1px dotted #ccc;}
+.chat-room ul.messages li span{color: #ddd; font-size: 0.9em;}
+.chat-room ul.messages li img{border: 1px solid #ccc; float: left; margin-right: 5px;}
+.chat-room ul.user{height: 300px; overflow: auto; list-style: none; float: right; padding: 5px; margin: 0 0 0 20px; width: 200px; border: 1px solid #ddd;}
+.chat-room ul.user li{border-bottom: 1px dotted #ccc; margin-bottom: 5px; padding-bottom: 5px;}
+.chat-room ul.user li img{border: 1px solid #ccc; float: left; margin-right: 5px;}
+.chat-room ul.user li.blocked{color: red;}
+.chat-room .form{margin-right: 238px;}
+.chat-room .form textarea{width: 100%;}
+.chat-room .buttons{float: right; width: 200px;}
+
+.pages{background: url(../img/postbar.jpg) repeat-x; border-top: 3px solid #E71333;  border-bottom: 1px solid #ccc;  height: 31px;}
+.pages ul{margin: 0; padding: 0; list-style: none; margin-top: 7px; float: right;}
+.pages ul li{float: left; margin: 0; padding: 0;}
+.pages ul li a{color: #555; border: 1px solid #ddd; border-bottom: none; border-top: none; padding: 8px 10px 8px 10px; text-decoration: none; text-transform: uppercase; font-size: 10px;}
+.pages ul li a:hover{ background: url(../img/content.jpg) repeat-x top; color: #0052A3;}
+.accepts{background:#e4fee4;}
+.rejected{background:#fee4e4;}
+
+.no-margin .column{margin: 0 0 0 3px; height: 150px;}
+
+.profile .info{margin: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;}
+.profile .image{border: 1px solid #ccc;}
+.icon{background: url(../img/sprite.png) no-repeat; width: 16px; height: 16px; display: block; overflow: hidden; text-indent: -99999px; float: left;}
+.icon:hover{background-image: url(../img/sprite-red.png);}
+
+.icon-close{background-position: -80px -128px}
+.icon-pin{background-position: -144px -144px;}
+.icon-info{background-position: -16px -144px;}
+
+.zend_form .errors{color: red;}
+
+.main .grid_4{margin: 0 10px 0 10px;}
+.main .grid_12{margin: 0; width: 710px;}
+
+table.messages tr:hover{background: #eee;}
+table.messages div{cursor: pointer;}
+
+.messages .users{height: 95px; overflow: auto;}
+.messages .users .item{float: left; width: 140px; margin: 0 5px 5px 0; height: 40px; border: 1px solid #ccc; padding: 1px; overflow: hidden;}
+.messages .users .item img{float: left; margin-right: 5px; }
+.messages .users .item input{margin-bottom: 10px; }
+.messages .users .item span{font-size: 10px;}
+.messages .users .arrow{border: none; width: auto; font-size: 20px; padding: 10px 0 0 10px; margin: 0;}
+.messages .users .plus{border: none; width: auto; font-size: 20px; padding: 10px 10px 0 8px; margin: 0;}
+.messages .unread{font-weight: bold;}
+
+.photo{border: 1px solid #ccc;}
+.separator{border-bottom: 1px dotted #ccc;}
+
+.big-button{padding: 10px inherit; font-size: 15px; cursor: pointer; width: 200px;}
+.classroom-light{margin-left: 5px; font-size: 0.8em; color: #ccc;}
+
+.access-bar{width: 100px; border: 1px solid #aaa; float: left; margin-right: 5px;}
+.progress{width: 0px; background: #ddd;}
+
+#question-type div{ float: left; margin-right: 20px;}
+#question-type img{ border: 1px solid #ddd;}

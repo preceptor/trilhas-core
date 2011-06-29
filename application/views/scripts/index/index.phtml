@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="column grid_4">
+        <?php echo $this->widget('menu_index_top');?>
+        <div class="box logo">
+            <div class="content center">
+                <img alt="<?php echo Tri_Config::get('tri_title')?>" src="upload/<?php echo Tri_Config::get('tri_logo')?>" />
+            </div>
+        </div>
+        <div class="box login">
+            <div class="header blue">
+                <?php echo $this->translate('Access')?>
+            </div>
+            <div class="content">
+                <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+                    <div style="overflow: hidden">
+                        <img alt="<?php echo $this->user->name ?>" src="upload/<?php echo $this->thumbnail($this->user->image, 'medium') ?>" />
+                    </div>
+                <?php else: ?>
+                    <?php echo $this->form?>
+                    <div class="forgot">
+                        <a href="forgot/index"><?php echo $this->translate('Forgot password') ?></a>
+                    </div>
+                    <?php if ((bool) $this->newUserToGuest) :?>
+                        <a href="user/form"><?php echo $this->translate('New user') ?></a>
+                        <br />
+                    <?php endif ;?>
+                <?php endif;?>
+            </div>
+        </div>
+        <?php echo $this->widget('menu_index_bottom');?>
+    </div>
+    <div class="column grid_12">
+        <?php echo $this->widget('main_index');?>
+    </div>
+    <script type="text/javascript">
+        $('input[type=button], input[type=submit]').button();
+    </script>
+</div>

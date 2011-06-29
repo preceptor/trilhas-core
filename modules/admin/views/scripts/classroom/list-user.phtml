@@ -1,0 +1,34 @@
+<div class="right">
+    <a href="admin/classroom/matriculate/id/<?php echo $this->id?>"><?php echo $this->translate('New')?></a>
+</div>
+<h3><?php echo $this->classroom->cname?> - <?php echo $this->classroom->name?></h3>
+<br />
+<?php if (count($this->data)): ?>
+    <table class="datatable">
+        <tr>
+            <th><?php echo $this->translate('Name')?></th>
+            <th><?php echo $this->translate('Email')?></th>
+            <th></th>
+        </tr>
+        <?php foreach($this->data as $data): ?>
+            <tr>
+                <td><?php echo $data->name?></td>
+                <td><?php echo $data->email?></td>
+                <td><a class="delete" href="admin/classroom/delete/userId/<?php echo $data->id?>/id/<?php echo $this->id?>"><?php echo $this->translate('delete')?></a></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php else:?>
+    <p><?php echo $this->translate('No register')?></p>
+<?php endif;?>
+<script type="text/javascript">
+    $('form').submit(function(){
+        this.action = this.action + '/query/' + $('input[type=text]').val();
+    });
+
+    $('.delete').click(function(){
+        if (!confirm('<?php echo $this->translate('want to delete?')?>')) {
+            return false;
+        }
+    });
+</script>

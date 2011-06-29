@@ -1,0 +1,37 @@
+<?php $locale = strtolower(str_replace('_', '-', $this->locale))?>
+<div class="right">
+     <a href="admin/course"><?php echo $this->translate('back')?></a>
+</div>
+<?php echo $this->form ?>
+<script type="text/javascript">
+    var $information = $('#course-information-text'),
+        config = {
+            toolbar: [
+                ['Source','-','Preview','Templates'],
+                ['Cut','Copy','Paste','PasteText','PasteFromWord'],
+                ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+                '/',
+                ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+                ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv'],
+                ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+                ['Link','Unlink','Anchor'],
+                ['Image','Flash','Table','HorizontalRule','SpecialChar'],
+                '/',
+                ['Styles','Format','Font','FontSize'],
+                ['TextColor','BGColor'],
+                ['Maximize', 'ShowBlocks','-','About']
+            ],language: '<?php echo $locale?>'
+        }, 
+        editorInfo = CKEDITOR.appendTo('information-element', config, $information.val());
+   
+    $information.hide();
+
+    $("form").submit(function() {
+        var $this = $(this);
+        $information.val(editorInfo.getData());
+	});
+
+    $('#category').other();
+
+    $('input[type=button], input[type=submit]').button();
+</script>

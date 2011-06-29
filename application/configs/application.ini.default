@@ -1,0 +1,65 @@
+[production]
+phpSettings.display_startup_errors  = 0
+phpSettings.display_errors          = 0
+phpSettings.session.cache_expire    = 60
+phpSettings.session.cookie_httponly = 1
+phpSettings.session.use_only_cookie = 1
+phpSettings.default_charset         = "utf-8"
+phpSettings.date.timezone           = "America/Sao_Paulo"
+phpSettings.soap.wsdl_cache_enabled = 0
+
+includePaths.library = APPLICATION_PATH "/../plugins"
+
+bootstrap.path  = APPLICATION_PATH "/Bootstrap.php"
+bootstrap.class = "Bootstrap"
+appnamespace    = "Application"
+
+autoloadernamespaces[] = "Tri"
+autoloadernamespaces[] = "Preceptor"
+
+pluginPaths.Tri_Application_Resource = "Tri/Application/Resource"
+
+resources.view.doctype = "XHTML1_STRICT"
+resources.view.encoding = "UTF-8"
+resources.view.scriptPath[] = APPLICATION_PATH "/views/scripts"
+resources.view.scriptPath[] = APPLICATION_PATH "/views/layouts"
+resources.view.helperPath.Tri_View_Helper[] = "Tri/View/Helper"
+
+resources.layout =
+
+resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
+
+resources.frontController.moduleDirectory[] = APPLICATION_PATH "/../modules"
+resources.frontController.moduleDirectory[] = APPLICATION_PATH "/../plugins"
+resources.frontController.moduleDirectory[] = APPLICATION_PATH "/../themes"
+
+resources.frontController.plugins[] = "Tri_Controller_Plugin_Acl"
+resources.frontController.plugins[] = "Tri_Controller_Plugin_Locale"
+resources.frontController.plugins[] = "Tri_Controller_Plugin_Layout"
+resources.frontController.plugins[] = "Tri_Controller_Plugin_FlashMessenger"
+resources.frontController.plugins[] = "Tri_Controller_Plugin_Mobile"
+resources.modules =
+
+resources.log.stream.writerName = "Stream"
+resources.log.stream.writerParams.stream = APPLICATION_PATH "/../data/log/application.log"
+resources.log.stream.writerParams.mode = "a"
+
+resources.db.adapter         = "PDO_Mysql"
+resources.db.params.username = "root"
+resources.db.params.dbname   = "trilhas"
+resources.db.params.password = "123456"
+resources.db.params.host     = "127.0.0.1"
+resources.db.params.charset  = "utf8"
+[staging : production]
+
+[development : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors         = 1
+phpSettings.error_reporting        = E_ALL
+
+;zfdebug.plugins[] = "Variables"
+;zfdebug.plugins[] = "Time"
+;zfdebug.plugins[] = "Memory"
+;zfdebug.plugins[] = "Registry"
+;zfdebug.plugins[] = "Html"
+;zfdebug.plugins[] = "Exception"

@@ -1,0 +1,47 @@
+<div>
+    <?php
+        if ($this->id) {
+            echo $this->ajax('back', 'content/organizer/');
+            echo '<br /><br />';
+        }
+    ?>
+	<?php if( count( $this->data ) ): ?>
+		<form action="content/organizer/save" id="form_organizer">
+			<ul class="organizer" id="organizer">
+				<?php foreach ($this->data as $key => $rs): ?>
+                    <li class="ui-state-default" id="organizer_li_<?php echo $rs['id']?>">
+                        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                        <?php echo $this->ajax($rs['title'], "content/organizer/index/id/" . $rs['id'] )?>
+                        <input name="position[<?php echo $rs['id']?>]" type="hidden" value="" />
+                    </li>
+                <?php endforeach; ?>
+			</ul>
+			<br />
+			<input type="submit" value="<?php echo $this->translate("save")?>" />
+		</form>
+        
+		<script type="text/javascript" charset="utf-8">
+			$("#organizer").sortable();
+            $("#organizer").disableSelection();
+
+            $("#form_organizer").submit(function() {
+                var $this = $(this);
+
+                $("#organizer li").each(function(i){
+                    var id = this.id.replace('organizer_li_', ''),
+                        position = i + 1;
+
+                    $(this).next().val(id).attr('name', 'position['+position+']');
+                });
+                
+                $.post(this.action, $(this).serialize(), function(data){
+                    $this.parents('.content').html(data);
+                });
+                return false;
+            });
+            $('input[type=button], input[type=submit]').button();
+		</script>
+	<?php else: ?>
+		<p><?php echo $this->translate( "there are no records" );?></p>
+	<?php endif; ?>
+</div>

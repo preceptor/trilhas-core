@@ -1,0 +1,11 @@
+<div class="content-file">
+    <div class="right">
+        <?php echo $this->ajax('back', 'content/file', 2) ?>
+    </div>
+    <?php echo $this->form?>
+    <iframe class="none" name="content-upload-iframe" src="about:blank"></iframe>
+</div>
+<script type="text/javascript">
+    $('#folder').other();
+    $('input[type=button], input[type=submit]').button();
+</script>

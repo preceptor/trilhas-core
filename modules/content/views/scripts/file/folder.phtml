@@ -1,0 +1,37 @@
+<?php if($this->isAllowed('form')): ?>	
+	<div class="right"><?php echo $this->ajax("new", 'content/file/form/', 2); ?></div>
+<?php endif; ?>	
+<div class="left">
+    <form id="formFindFile" action="#">
+        <span class="ui-icon ui-icon-search magnifier"></span>
+        <input type="text" name="q" id="qFile" style="width: 16em" />
+        <input type="submit" value="ok" /> &nbsp;&nbsp;&nbsp;
+    </form>
+</div>
+<div class="clear">&nbsp;</div>
+
+<?php if (count($this->data)):?>
+    <table class="datatable">
+        <?php foreach ($this->data as $data): ?>
+            <tr>
+                <td width="30">
+                    <img height="30" src="img/ext/folder.png" />
+                </td>
+                <td>
+                    <?php $folder = $data->folder ? $data->folder: "null"?>
+                    <?php echo $this->ajax($folder, 'content/file/index/folder/'. urlencode($folder))?>
+                </td>
+            </tr>
+        <?php endforeach;?>
+    </table>
+<?php else:?>
+    <p><?php echo $this->translate( "there are no records" );?></p>
+<?php endif;?>
+<script type="text/javascript">
+    $("#formFindFile").submit(function(ev) {
+		$(this).parents('.content').load('content/file/index/q/' + $('#qFile').val());
+        return false;
+	});
+
+    $('input[type=button], input[type=submit]').button();
+</script>

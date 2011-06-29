@@ -1,0 +1,16 @@
+<?php echo $this->form ?>
+<script type="text/javascript">
+    $('.date').datepicker().mask('99/99/9999');
+
+    $('#register_type').change(function(){
+        if (this.value == 'payment') {
+            $('#amount-label, #amount-element').show();
+        } else {
+            $('#amount-label, #amount-element').hide();
+        }
+    });
+
+    <?php if ($this->form->getElement('register_type')->getValue() != 'payment') :?>
+        $('#amount-label, #amount-element').hide();
+    <?php endif?>
+</script>

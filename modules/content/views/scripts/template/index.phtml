@@ -1,0 +1,63 @@
+<?php if($this->isAllowed('form')): ?>	
+	<div class="right"><?php echo $this->ajax("new", 'content/template/form/', 2); ?></div>
+<?php endif; ?>	
+<form id="formFindTemplate" action="#">
+    <span class="ui-icon ui-icon-search magnifier"></span>
+    <input type="text" name="q" id="qTemplate" style="width: 16em" />
+    <input type="submit" value="ok" /> &nbsp;&nbsp;&nbsp;
+</form>
+
+<?php if (count($this->data)):?>
+    <table class="datatable">
+        <?php foreach ($this->data as $key => $data): ?>
+            <?php
+                $display = "display: none;";
+                if ($this->q && (strlen($this->q) > 1) && $key == 0) {
+                    $display = null;
+                }
+            ?>
+            <tr>
+                <td>
+                    <a class="template-show" href="#" target="#g<?php echo $data->id?>"><?php echo $data->name?></a>
+                </td>
+                <td nowrap="nowrap">
+                    <?php if ($this->isAllowed('form')): ?>
+                        <?php echo $this->ajax("edit", 'content/template/form/id/'. $data->id, 2); ?>
+                    <?php endif;?>
+
+                    <?php if($this->isAllowed("delete")): ?>
+                        <?php echo $this->ajax("delete", 'content/template/delete/id/' . $data->id, 2 , "want to delete?");?>
+                    <?php endif;?>
+                </td>
+            </tr>
+            <tr style="<?php echo $display?>" id="g<?php echo $data->id?>">
+                <td>
+                    <?php echo $data->description?>
+                </td>
+            </tr>
+        <?php endforeach;?>
+    </table>
+    <div id="template-page">
+        <?php echo $this->paginationControl($this->data) ?>
+    </div>
+<?php else:?>
+    <p><?php echo $this->translate( "there are no records" );?></p>
+<?php endif;?>
+<script type="text/javascript">
+    $('.template-show').click(function(){
+        $(this.target).toggle();
+        return false;
+    });
+
+    $('#template-page a').click(function(){
+        $(this).parents('.content').load(this.href);
+        return false;
+    });
+
+    $("#formFindTemplate").submit(function(ev) {
+		$(this).parents('.content').load('content/template/index/q/' + $('#qTemplate').val());
+        return false;
+	});
+
+    $('input[type=button], input[type=submit]').button();
+</script>

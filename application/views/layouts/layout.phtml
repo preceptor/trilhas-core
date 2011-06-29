@@ -1,0 +1,85 @@
+<?php echo $this->doctype(); ?>
+<?php $locale = str_replace('_', '-', $this->locale)?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $this->locale?>" xml:lang="en">
+	<head>
+		<title>Trilhas - Preceptor Educação a Distância</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $this->appCharset?>"/>
+        <base href="<?php echo $this->serverUrl() . $this->baseUrl() ?>/" />
+        <link rel="shortcut icon" href="favicon.ico" />
+
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headLink()->appendStylesheet('css/grid.css')
+                                    ->appendStylesheet('css/utils.css')
+                                    ->appendStylesheet('css/jquery-ui.css')
+                                    ->appendStylesheet('css/style.css')
+                                    ->appendStylesheet('css/'. Tri_Config::get('tri_theme_style').'.css'); ?>
+
+		<?php $this->headScript()->appendFile('js/jquery/jquery.min.js')
+                                 ->appendFile('js/jquery/jquery-ui.min.js')
+                                 ->appendFile('js/jquery/jquery.maskedinput.js')
+                                 ->appendFile('js/ckeditor/ckeditor.js');
+              if ($locale != 'en') { $this->headScript()->appendFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js'); }
+              if ($locale != 'en') { $this->headScript()->appendFile('js/ckeditor/lang/' . strtolower($locale) . '.js'); }
+		      $this->headScript()->appendFile('js/jquery/jquery.other.js')
+                                 ->appendFile('js/yahoo/yahoo-dom-event.js')
+                                 ->appendFile('js/yahoo/json-min.js')
+                                 ->appendFile('js/navigation.js');
+              echo $this->headScript();?>
+	</head>
+    <body>
+        <script type="text/javascript">
+            $.datepicker.setDefaults({showOn: "button",
+                                      buttonImage: "img/calendar.gif",
+                                      showOtherMonths: true,
+                                      selectOtherMonths: true,
+                                      buttonImageOnly: true});
+        </script>
+        <?php echo $this->widget('fix_header')?>
+        <div id="loading"><?php echo $this->translate('Loading')?></div>
+        <div class="row header">
+            <div class="column">
+                <h1>Trilhas</h1>
+            </div>
+        </div>
+        <div class="main">
+            <div class="row">
+                <div class="column grid_16">
+                    <?php if ($this->messages):?>
+                        <div class="message">
+                            <ul>
+                                <?php foreach ($this->messages as $message): ?>
+                                    <li><?php echo $this->translate($message)?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                        <br />
+                    <?php endif;?>
+                    <?php echo $this->layout()->content?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column grid_16">
+                <div class="footer">
+                    <a href="http://www.preceptoread.com.br">
+                        <img border="0" src="img/logo.png" alt="Logo Preceptor" />
+                    </a>
+                    <div class="info">
+                        Preceptor Educação a Distância
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->widget('fix_footer')?>
+
+        <script type="text/javascript">
+            $("#loading").bind("ajaxSend", function(){
+                $(this).show();
+            }).bind("ajaxComplete", function(){
+                $(this).hide();
+            });
+
+            $('input[type=button], input[type=submit]').button();
+        </script>
+    </body>
+</html>

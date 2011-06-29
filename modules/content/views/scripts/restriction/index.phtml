@@ -1,0 +1,59 @@
+<div class="aright">
+    <?php echo $this->ajax('new time restriction', 'content/restriction/time-form', 2)?>
+    <?php echo $this->ajax('new panel restriction', 'content/restriction/panel-form', 2)?>
+</div>	
+
+<div>
+    <h3><?php echo $this->translate('Time restriction')?></h3>
+	<?php if(count($this->dataTime)):?>
+		<table class="datatable">
+			<tr>
+                <th width="350"><?php echo $this->translate("Content")?></th>
+                <th><?php echo $this->translate("Begin")?></th>
+                <th><?php echo $this->translate("End")?></th>
+                <th></th>
+			</tr>
+			<?php foreach($this->dataTime as $data): ?>
+				<tr>
+					<td><?php echo $data->title ?></td>
+					<td><?php echo $this->date($data->begin)?></td>
+					<td><?php echo $data->end ? $this->date($data->end) : '---' ?></td>
+                    <td class="aright"  >
+                        <?php echo $this->ajax("edit", "content/restriction/time-form/id/" . $data->id)?> |
+                        <?php echo $this->ajax("delete", "content/restriction/time-delete/id/" . $data->id, 1, "want to delete?")?>
+                    </td>
+				</tr>
+			<?php endforeach;?>
+		</table>  
+	<?php else:?>
+        <p><?php echo $this->translate( "there are no records" );?></p>
+	<?php endif;?>
+</div>
+<br /><br />
+<div>
+    <h3><?php echo $this->translate('Panel restriction')?></h3>
+	<?php if(count($this->dataPanel)):?>
+		<table class="datatable">
+			<tr>
+                <th width="350"><?php echo $this->translate("Content")?></th>
+                <th><?php echo $this->translate("Note")?></th>
+                <th></th>
+			</tr>
+			<?php foreach($this->dataPanel as $data): ?>
+				<tr>
+					<td><?php echo $data->title ?></td>
+					<td><?php echo $data->note ?></td>
+                    <td class="aright">
+                        <?php echo $this->ajax("edit", "content/restriction/panel-form/id/" . $data->id)?> |
+                        <?php echo $this->ajax("delete", "content/restriction/panel-delete/id/" . $data->id, 1, "want to delete?")?>
+                    </td>
+				</tr>
+			<?php endforeach;?>
+		</table>  
+	<?php else:?>
+        <p><?php echo $this->translate( "there are no records" );?></p>
+	<?php endif;?>
+</div>
+<script>
+    $('input[type=button], input[type=submit]').button();
+</script>

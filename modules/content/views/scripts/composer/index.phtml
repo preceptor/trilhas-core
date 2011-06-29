@@ -1,0 +1,44 @@
+<div id="composer-content-main">
+    <div class="nav">
+        <div class="bread">
+            <img src="img/treeview.gif" />
+            <div class="treeview"></div>
+            <span></span>
+        </div>
+        <div class="buttons">
+            <a id="content-new" href="content/composer/form"><?php echo $this->translate('new')?></a> | 
+            <a class="previous" href="content/previous"><?php echo $this->translate('previous content') ?></a>&nbsp;&nbsp;
+            <a class="next" href="content/next"><?php echo $this->translate('next content') ?></a>
+        </div>
+        <div class="clear zero"></div>
+    </div>
+    <div id="content-main-composer" class="text"></div><br />
+</div>
+<script type="text/javascript">
+    $('#content-new').click(function(){
+        $('#content-main-composer').load(this.href);
+        return false;
+    });
+
+    var initCurrent = 0;
+
+    <?php if ($this->go): ?>
+        initCurrent = $(window).data('current_index')-1;
+    <?php else:?>
+        initCurrent = $(window).data('current_index');
+    <?php endif?>
+
+    <?php if ($this->current): ?>
+        initCurrent = <?php echo $this->current?>;
+    <?php endif?>
+
+    $('#composer-content-main').navigation('<?php echo str_replace("\'", "'", $this->contents)?>' ,
+                                           {current: initCurrent, url:'content/composer/form/id/'});
+
+    $('input[type=button], input[type=submit]').button();
+
+    $("#composer-content-main").parents(".main").find('.close').click(function(){
+        window.location.reload();
+        return false;
+    });
+</script>

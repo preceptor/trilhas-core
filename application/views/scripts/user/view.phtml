@@ -1,0 +1,21 @@
+<div class="courses">
+    <div class="item">
+        <img src="upload/<?php echo $this->thumbnail($this->data->image, 'medium') ?>"
+        <h2><?php echo $this->data->name?></h2>
+        <p><?php echo $this->data->email?></p>
+        <p>
+            <?php if ($this->data->born):?>
+                <strong><?php echo $this->translate('Born')?></strong>: 
+                <?php echo $this->date($this->data->born)?>
+                &nbsp;&nbsp;&nbsp;
+            <?php endif?>
+            <strong><?php echo $this->translate('Created user')?></strong>:
+            <?php echo $this->date($this->data->created)?>
+
+        </p>
+        <p><?php echo nl2br($this->data->description)?></p>
+    </div>
+</div>
+<script type="text/javascript">
+    
+</script>

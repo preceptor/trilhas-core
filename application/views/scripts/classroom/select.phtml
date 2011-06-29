@@ -1,0 +1,33 @@
+<?php if (count($this->data)): ?>
+    <h2>Curso: <?php echo $this->course->name?></h2>
+    <table class="datatable">
+        <tr>
+            <th><?php echo $this->translate('Name')?></th>
+            <th><?php echo $this->translate('Begin')?></th>
+            <th><?php echo $this->translate('End')?></th>
+            <th><?php echo $this->translate('Value')?></th>
+        </tr>
+        <?php $currency = new Zend_Currency(null, $this->locale)?>
+        <?php foreach($this->data as $data): ?>
+            <tr>
+                <td>
+                    <?php if ($data->register_type == 'open') :?>
+                        <a href="classroom/sign/id/<?php echo $data->id?>"><?php echo $data->name?></a>
+                    <?php elseif ($data->register_type == 'process'): ?>
+                        <a href="selection-process/index/sign/id/<?php echo $data->id?>"><?php echo $data->name?></a>
+                    <?php elseif ($data->register_type == 'payment'): ?>
+                        <a href="payment/index/sign/id/<?php echo $data->id?>"><?php echo $data->name?></a>
+                    <?php endif; ?>
+                </td>
+                <td><?php echo $this->date($data->begin)?></td>
+                <td><?php echo $data->end ? $this->date($data->end): '---'?></td>
+                <td><?php echo $data->amount > 0 ? $currency->toCurrency($data->amount): $this->translate('free')?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php else:?>
+    <p><?php echo $this->translate('No register')?></p>
+<?php endif;?>
+<script type="text/javascript">
+    $('input[type=button], input[type=submit]').button();
+</script>

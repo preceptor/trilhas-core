@@ -1,0 +1,56 @@
+<?php
+$names = Tri_Config::get('tri_classroom_menu', true);
+$resource = new Tri_Application_Resource_Menu();
+$resource->setNames($names);
+$menu = $resource->init();
+$i = 0;
+$previousParentName = null;
+?>
+<script src="js/menu.js" type="text/javascript"></script>
+<div class="box menu">
+    <?php echo $this->widget('menu_classroom_top');?>
+    <div class="header blue">
+        <h3>Menu</h3>
+    </div>
+    <div class="content">
+        <?php foreach ($menu as $parentName => $childs): ?>
+            <?php foreach($childs as $name => $data): ?>
+                <?php if ($this->isAllowed($data)): ?>
+                    <?php if ($parentName != $previousParentName):?>
+                        <?php if($i > 0): ?>
+                                </ul>
+                        <?php endif;?>
+                            <h3><?php echo $this->translate($parentName)?></h3>
+                            <ul>
+                    <?php endif;?>
+                    <li>
+                        <a href="<?php echo $data['module']?>/<?php echo $data['controller']?>/<?php echo $data['action']?>" target="<?php echo $data['module']?>-<?php echo $data['controller']?>-<?php echo $data['action']?>">
+                            <?php echo $this->translate($name)?>
+                        </a>
+                    </li>
+                <?php $previousParentName = $parentName; $i++;?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php echo $this->widget('menu_classroom_bottom');?>
+</div>
+<script type="text/javascript" charset="utf-8">
+    var startAnchor = 0;
+    $('.menu a').click(function(){
+        if(!navigator.userAgent.match(/iPhone/i)) {
+            var selector = "#main";
+            if (this.target == "content-composer-index") {
+                selector = "#fixed";
+            }
+            
+            if (!Menu.has(this.target)) {
+                $(selector).load(this.href + '/layout/box');
+            } else {
+                $('a[name='+this.target+']').focus();
+            }
+            return false;
+        }
+    });
+</script>

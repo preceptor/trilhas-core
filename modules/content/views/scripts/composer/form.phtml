@@ -1,0 +1,40 @@
+<?php $locale = strtolower(str_replace('_', '-', $this->locale))?>
+<div class="composer">
+	<?php echo $this->form?>
+    <?php echo $this->ajax('delete', 'content/composer/delete/id/'.$this->id, 2, 'want to delete?')?>
+</div>
+<script type="text/javascript">
+    var $composer = $('#composer-description-text'),
+        config = {
+            extraPlugins: 'youtube,mediaembed',
+            toolbar: [
+                ['Undo','Redo','-','Find','Replace','-',],
+                ['Preview','Templates','SelectAll','RemoveFormat'],
+                ['Cut','Copy','Paste','PasteText','PasteFromWord'],
+                '/',
+                ['Bold','Italic','Underline','Strike'],
+                ['TextColor','BGColor'],
+                ['NumberedList','BulletedList','-','Outdent','Indent'],
+                ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+                ['Link','Unlink'],
+                '/',
+                ['Font','FontSize'],
+                ['Image','Flash','Youtube','mediaembed','Table','HorizontalRule','SpecialChar'],
+                ['ShowBlocks','-','Source']
+            ],
+            language: '<?php echo $locale?>', 
+            height: '400px',
+            filebrowserBrowseUrl : '<?php echo $this->serverUrl() . $this->baseUrl()?>/content/file/index'
+        }, editor = CKEDITOR.appendTo('description-element', config, $composer.val());
+    $composer.hide();
+
+    $(".composer form").submit(function() {
+        var $this = $(this);
+        $composer.val(editor.getData());
+		$.post(this.action, $(this).serialize(), function(data){
+            $this.parents('.content').html(data);
+        });
+        return false;
+	});
+    $('input[type=button], input[type=submit]').button();
+</script>

@@ -1,0 +1,22 @@
+<?php foreach($this->data as $data):?>
+    <?php $name = $data->getBasename();?>
+    <?php if ($name != '..' && $name != '.') :?>
+    <div class="padding dashed">
+            <strong><?php echo $this->translate($name)?></strong> |
+            <?php if (in_array($name, $this->activated)) :?>
+                <a href="admin/plugin/desactivate/name/<?php echo $name?>">
+                    <?php echo $this->translate('desactivate')?></a>
+            <?php else:?>
+                <a href="admin/plugin/activate/name/<?php echo $name?>">
+                    <?php echo $this->translate('activate')?></a>
+            <?php endif;?>
+
+            <?php $readme = $data->getPathname(). '/README';?>
+            <?php if (file_exists($readme)):?>
+                <br /><br />
+                <?php echo $this->escape(file_get_contents($readme))?>
+            <?php endif;?>
+        </div>
+        <br />
+    <?php endif;?>
+<?php endforeach;?>

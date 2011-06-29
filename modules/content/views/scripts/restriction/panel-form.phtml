@@ -1,0 +1,17 @@
+<div class="right">
+    <?php echo $this->ajax('back', 'content/restriction/index', 2) ?>
+</div>
+<div class="restriction-panel">
+    <?php echo $this->form ?>
+</div>
+<script type="text/javascript">
+    $(".restriction-panel form").submit(function() {
+        var $this = $(this);
+		$.post(this.action, $(this).serialize(), function(data){
+            $this.parents('.content').html(data);
+        });
+        return false;
+	});
+    
+    $('input[type=button], input[type=submit]').button();
+</script>

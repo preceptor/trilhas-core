@@ -1,0 +1,31 @@
+<?php if ($this->pageCount > 1): ?>
+    <?php $params = array('layout' => null)?>
+    <div class="paginationControl">
+        <?php if (isset($this->previous)): ?>
+            <?php $params['page'] = $this->previous?>
+            <a href="<?php echo $this->url($params); ?>">
+                &lt; <?php echo $this->translate('previous') ?>
+            </a> |
+        <?php else: ?>
+            <span class="disabled">&lt; <?php echo $this->translate('previous') ?></span> |
+        <?php endif; ?>
+
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if ($page != $this->current): ?>
+                <?php $params['page'] = $page?>
+                <a href="<?php echo $this->url($params); ?>"><?php echo $page; ?></a> |
+            <?php else: ?>
+                <?php echo $page; ?> |
+            <?php endif; ?>
+        <?php endforeach; ?>
+
+        <?php if (isset($this->next)): ?>
+            <?php $params['page'] = $this->next?>
+            <a href="<?php echo $this->url($params); ?>">
+                <?php echo $this->translate('next') ?>  &gt;
+            </a>
+        <?php else: ?>
+            <span class="disabled"><?php echo $this->translate('next') ?> &gt;</span>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>

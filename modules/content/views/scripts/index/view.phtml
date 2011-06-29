@@ -1,0 +1,12 @@
+<div>
+    <?php
+        if ($this->restriction) {
+            echo $this->restriction;
+            exit;
+        }
+    ?>
+    <p><?php echo $this->data->description;?></p>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(".content > * > a").attr("target", "_blank");
+</script>

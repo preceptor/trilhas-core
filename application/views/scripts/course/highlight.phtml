@@ -1,0 +1,15 @@
+<?php if ($this->data):?>
+    <?php $course = $this->data?>
+    <div class="box courses">
+        <div class="header">
+            <h3><?php echo $this->translate('Highlight');?></h3>
+        </div>
+        <div class="content">
+            <div class="item">
+                <img alt="<?php echo $course->name?>" src="upload/<?php echo $this->thumbnail($course->image, 'medium')?>" />
+                <h2><a href="course/view/id/<?php echo $course->id?>"><?php echo $course->name?></a></h2>
+                <p><?php echo nl2br($course->description)?></p>
+            </div>
+        </div>
+    </div>
+<?php endif;?>

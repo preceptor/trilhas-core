@@ -1,0 +1,21 @@
+<?php $request = Zend_Controller_Front::getInstance()->getRequest();?>
+<div class="box">
+    <div class="main index">
+        <div class="header">
+            <h3 class="left title">
+                <?php echo $this->title($this->title)?>
+            </h3>
+            <div class="right">
+                <a title="<?php echo $this->translate('fix module')?>" href="#" class="fix icon icon-pin" style="margin-right: 6px;" name="<?php echo $request->getModuleName()?>-<?php echo $request->getControllerName()?>-<?php echo $request->getActionName()?>">
+                    fix
+                </a>
+                <a title="<?php echo $this->translate('close module')?>" href="#" class="close icon icon-close" name="<?php echo $request->getModuleName()?>-<?php echo $request->getControllerName()?>-<?php echo $request->getActionName()?>">
+                    close
+                </a>
+            </div>
+        </div>
+        <div class="content">
+             <?php echo $this->layout()->content?>
+        </div>
+    </div>
+</div>

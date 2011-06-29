@@ -1,0 +1,5 @@
+.acl{border: 1px solid; padding: 5px; margin: 5px 0; clear: both;}
+.acl .toggle{cursor: pointer;}
+.acl .list{margin-top:10px; border-top: 1px dotted;}
+.acl .list .item{margin-top: 10px;}
+.acl .list label{float: left; width: 300px; display: block; margin-top: 5px;}

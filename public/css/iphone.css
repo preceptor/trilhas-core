@@ -1,0 +1,9 @@
+#menu{float: none; width: 100%;}
+#menu li a{padding: 8px; border: 1px dotted #aaa;}
+#menu h3{font-size: 1.4em}
+.menu{float: none;}
+.login .ui-dialog{width: auto;}
+
+.main{margin-left:0}
+
+a {font-size: 1.4em}

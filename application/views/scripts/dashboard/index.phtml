@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="column grid_4">
+        <?php echo $this->widget('menu_dashboard_top');?>
+        <div class="box logo">
+            <div class="content center">
+                <img alt="<?php echo Tri_Config::get('tri_title')?>" src="upload/<?php echo Tri_Config::get('tri_logo')?>" />
+            </div>
+        </div>
+        <div class="box profile">
+            <div class="header blue">
+                <h3><?php echo $this->user->name ?></h3>
+            </div>
+            <div class="content">
+                <div class="row no-margin">
+                    <div class="column grid_2 image">
+                        <img alt="<?php echo $this->user->name ?>" src="upload/<?php echo $this->thumbnail($this->user->image, 'medium') ?>" />
+                    </div>
+                    <div class="column grid_2">
+                        <div class="info">
+                            <a href="user/view/id/<?php echo $this->user->id?>"><?php echo $this->translate('View profile')?></a><br />
+                            <a href="user/edit"><?php echo $this->translate('Edit profile')?></a>
+                        </div>
+                        <div class="info">
+                            <?php echo $this->translate('Last access')?><br />
+                            <?php echo date('d/m/Y')?>
+                        </div>
+                        <?php if (Zend_Auth::getInstance()->getIdentity()->role == 'institution'):?>
+                            <div class="info">
+                                <a href="admin/course">
+                                    <?php echo $this->translate('Admin')?>
+                                </a>
+                            </div>
+                        <?php endif;?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->widget('menu_dashboard_bottom');?>
+    </div>
+
+    <div class="column grid_12">
+        <?php echo $this->widget('main_dashboard');?>
+    </div>
+</div>

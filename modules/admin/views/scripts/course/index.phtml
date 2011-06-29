@@ -1,0 +1,33 @@
+<div class="right">
+    <a href="admin/course/form"><?php echo $this->translate('new')?></a>
+</div>
+<div class="search">
+    <form action="admin/course/index" method="get">
+        <input type="text" name="query" value="<?php echo $this->params['query']?>" />
+        <input type="submit" value="<?php echo $this->translate('Search')?>" />
+    </form>
+</div>
+<br />
+<?php if (count($this->data)): ?>
+    <table class="datatable">
+        <tr>
+            <th><?php echo $this->translate('Name')?></th>
+            <th><?php echo $this->translate('Status')?></th>
+        </tr>
+        <?php foreach($this->data as $data): ?>
+            <tr>
+                <td><a href="admin/course/form/id/<?php echo $data->id?>"><?php echo $data->name?></a></td>
+                <td><?php echo $this->translate($data->status)?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php echo $this->paginationControl($this->data, null, null, $this->params); ?>
+<?php else:?>
+    <p><?php echo $this->translate('No register')?></p>
+<?php endif;?>
+<script type="text/javascript">
+    $('form').submit(function(){
+        this.action = this.action + '/query/' + $('input[type=text]').val();
+    });
+    $('input[type=button], input[type=submit]').button();
+</script>

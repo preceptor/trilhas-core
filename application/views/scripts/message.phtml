@@ -1,0 +1,8 @@
+<div class="message">
+    <span class="icon icon-info"></span>
+    <ul>
+        <?php foreach ($this->messages as $message): ?>
+            <li><?php echo $this->translate($message)?></li>
+        <?php endforeach; ?>
+    </ul>
+</div>

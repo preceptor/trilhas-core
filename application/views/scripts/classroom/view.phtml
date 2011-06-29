@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="column grid_4">
+        <div class="box logo">
+            <div class="content center">
+                <a href="index"><img alt="<?php echo Tri_Config::get('tri_title')?>" src="upload/<?php echo Tri_Config::get('tri_logo')?>" /></a>
+            </div>
+        </div>
+        <?php echo $this->render('menu.phtml') ?>
+    </div>
+    <div class="column grid_12">
+        <a name="start0"></a>
+        <div id="main"></div>
+        <div id="fixed"><?php echo $this->widget('main_classroom');?></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".close").live("click", function() {
+        Menu.remove(this.name);
+        $(this).parents('.box').remove();
+        return false;
+    });
+
+    $(".fix").live("click", function() {
+        Menu.add(this.name);
+        $('#fixed').prepend($(this).parents('.box'));
+        $(this).remove();
+        return false;
+    });
+</script>

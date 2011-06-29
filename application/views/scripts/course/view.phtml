@@ -1,0 +1,27 @@
+<?php if(isset($this->data)): ?>
+<div class="courses row">
+    <div class="item">
+        <div class="column grid_4">
+            <img alt="<?php echo $this->data->name?>" src="upload/<?php echo $this->thumbnail($this->data->image, 'medium')?>" />
+
+            <?php if ($this->classroom):?>
+                <input class="sign big-button" title="classroom/select/id/<?php echo $this->data->id?>" type="button" value="<?php echo $this->translate('register')?>" />
+            <?php endif; ?>
+        </div>
+        <div class="column grid_7">
+            <h2><?php echo $this->data->name?></h2>
+            <p><?php echo nl2br($this->data->description)?></p>
+            <div class="clear">&nbsp;</div>
+            <p><?php echo $this->data->information?></p>
+        </div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        $('.sign').click( function(){
+            location = this.title;
+            return false;
+        });
+    </script>
+</div>
+<?php else: ?>
+    <p><?php echo $this->translate('No register')?></p>
+<?php endif; ?>

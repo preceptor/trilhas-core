@@ -1,0 +1,34 @@
+<div class="search">
+    <form action="admin/classroom/search-user" method="get">
+        <input type="text" name="query" />
+        <input type="hidden" name="id" value="<?php echo $this->id?>" />
+        <input type="submit" value="<?php echo $this->translate('Search')?>" />
+    </form>
+</div>
+<br />
+<?php if (count($this->data)): ?>
+    <table class="datatable">
+        <tr>
+            <th><?php echo $this->translate('Name')?></th>
+            <th><?php echo $this->translate('Email')?></th>
+            <th><?php echo $this->translate('Role')?></th>
+        </tr>
+        <?php foreach($this->data as $data): ?>
+            <tr>
+                <td><a href="admin/classroom/matriculate/userId/<?php echo $data->id?>/id/<?php echo $this->id?>"><?php echo $data->name?></a></td>
+                <td><?php echo $data->email?></td>
+                <td><?php echo $this->translate($data->role)?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php echo $this->paginationControl($this->data); ?>
+<?php else:?>
+    <p><?php echo $this->translate('No register')?></p>
+<?php endif;?>
+<script type="text/javascript">
+    $('form').submit(function(){
+        this.action = this.action 
+                    + '/query/' + $('input[name=query]').val()
+                    + '/id/' + $('input[name=id]').val();
+    });
+</script>

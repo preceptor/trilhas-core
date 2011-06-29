@@ -1,0 +1,24 @@
+<div>
+    <form action="theme/save">
+        <h3><?php echo $this->translate('Available styles')?></h3>
+        <?php foreach($this->styles as $style):?>
+            <?php
+                $checked = null;
+                if ($style == $this->style) {
+                    $checked = "checked='checked'";
+                }
+            ?>
+            <div class="left margin">
+                <img src="static/img/type/themes/name/core/file/<?php echo $style?>.png" /><br />
+                <input <?php echo $checked?> type="radio" name="style" value="<?php echo $style?>" />
+                <?php echo $style?>
+            </div>
+        <?php endforeach?>
+        <div class="clear">&nbsp;</div>
+        <h3><?php echo $this->translate('Logo')?></h3>
+        <img alt="<?php echo Tri_Config::get('tri_title')?>" src="upload/<?php echo $this->logo?>" /><br />
+        <input type="file" name="logo" />
+        <br /><br />
+        <input type="submit" value="<?php echo $this->translate('save') ?>" />
+    </form>
+</div>

@@ -1,0 +1,50 @@
+<fieldset>
+    <legend><?php echo $this->translate('new')?></legend>
+    <form action="admin/acl/add" method="post">
+        <?php
+            echo $this->formLabel('url', $this->translate('url'));
+            echo $this->formText('url');
+            echo "&nbsp;&nbsp;";
+            echo $this->formLabel('role', $this->translate('role'));
+            echo $this->formText('role');
+        ?>
+        <?php echo $this->formSubmit('save', $this->translate('Save'));?>
+    </form>
+</fieldset>
+<br />
+<form action="admin/acl/save" method="post">
+    <?php foreach ($this->data as $module => $controllers):?>
+        <div class="acl">
+            <div class="toggle" style="border-bottom: 1px dotted #ddd; margin-bottom: 10px; padding-bottom: 5px; cursor: pointer;">
+                <strong><?php echo $this->translate($module)?></strong>
+            </div>
+            <div class="list" style="display: none; margin-left: 10px; margin-bottom: 20px;">
+                <table class="item">
+                    <?php foreach ($controllers as $controller => $actions):?>
+                        <?php foreach ($actions as $action => $roles): ?>
+                                <?php $name = "data[$module][$controller][$action]"; ?>
+                                <tr>
+                                    <td><?php echo $this->formLabel($name,"$module/$controller/$action");?></td>
+                                    <td><?php echo $this->formText($name, $roles);?></td>
+                                    <td><a href="#"><?php echo $this->translate('delete')?></a></td>
+                                </tr>
+                        <?php endforeach;?>
+                    <?php endforeach;?>
+                </table>
+            </div>
+        </div>
+    <?php endforeach;?>
+    <?php echo $this->formSubmit('save', $this->translate('Save'));?>
+</form>
+<script type="text/javascript">
+    $('.toggle').click(function(){
+        $(this).next().slideToggle('fast');
+    });
+
+    $('.item a').click(function(){
+        if (confirm('<?php echo $this->translate('want to delete?')?>')) {
+            $(this).parent().parent().remove();
+        }
+        return false;
+    });
+</script>

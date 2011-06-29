@@ -1,0 +1,133 @@
+<?php echo $this->doctype(); ?>
+<?php $locale = str_replace('_', '-', $this->locale)?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $this->locale?>" xml:lang="en">
+	<head>
+		<title>Trilhas - Preceptor Educação a Distância</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $this->appCharset?>"/>
+        <base href="<?php echo $this->serverUrl() . $this->baseUrl() ?>/" />
+        <link rel="shortcut icon" href="favicon.ico" />
+
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headLink()->appendStylesheet('css/grid.css')
+                                    ->appendStylesheet('css/utils.css')
+                                    ->appendStylesheet('css/jquery-ui.css')
+                                    ->appendStylesheet('css/style.css')
+                                    ->appendStylesheet('css/'. Tri_Config::get('tri_theme_style').'.css'); ?>
+
+		<?php $this->headScript()->appendFile('js/jquery/jquery.min.js')
+                                 ->appendFile('js/jquery/jquery-ui.min.js')
+                                 ->appendFile('js/jquery/jquery.maskedinput.js')
+                                 ->appendFile('js/ckeditor/ckeditor.js');
+              if ($locale != 'en') { $this->headScript()->appendFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js'); }
+              if ($locale != 'en') { $this->headScript()->appendFile('js/ckeditor/lang/' . strtolower($locale) . '.js'); }
+		      $this->headScript()->appendFile('js/jquery/jquery.other.js')
+                                 ->appendFile('js/yahoo/yahoo-dom-event.js')
+                                 ->appendFile('js/yahoo/json-min.js');
+              echo $this->headScript();?>
+	</head>
+    <body>
+        <script type="text/javascript">
+            $.datepicker.setDefaults({showOn: "button",
+                                      buttonImage: "img/calendar.gif",
+                                      showOtherMonths: true,
+                                      selectOtherMonths: true,
+                                      buttonImageOnly: true});
+        </script>
+        <?php echo $this->widget('fix_header')?>
+        <div id="loading"><?php echo $this->translate('Loading')?></div>
+        <div class="row header">
+            <div class="column">
+                <h1>Trilhas</h1>
+            </div>
+        </div>
+        <div class="main">
+            <div class="row">
+                <div class="column grid_16">
+                    <?php if ($this->messages):?>
+                        <div class="message">
+                            <span class="icon icon-info"></span>
+                            <ul>
+                                <?php foreach ($this->messages as $message): ?>
+                                    <li><?php echo $this->translate($message)?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                        <br />
+                    <?php endif;?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column grid_4">
+                    <div class="box logo">
+                        <div class="content center">
+                            <a href="index"><img alt="<?php echo Tri_Config::get('tri_title')?>" src="upload/<?php echo Tri_Config::get('tri_logo')?>" /></a>
+                        </div>
+                    </div>
+                    <div class="menu box">
+                        <div class="header blue">
+                            <h3><?php echo $this->translate('Admin')?></h3>
+                        </div>
+                        <div class="content">
+                            <?php
+                                $names = Tri_Config::get('tri_admin_menu', true);
+                                $resource = new Tri_Application_Resource_Menu();
+                                $resource->setNames($names);
+                                $menu = $resource->init();
+                                $i = 0;
+                                $previousParentName = null;
+                            ?>
+                            <?php foreach ($menu as $parentName => $childs): ?>
+                                <?php foreach($childs as $name => $data): ?>
+                                    <?php if ($this->isAllowed($data)): ?>
+                                        <?php if ($parentName != $previousParentName):?>
+                                            <?php if($i > 0): ?>
+                                                    </ul>
+                                            <?php endif;?>
+                                                <h3><?php echo $this->translate($parentName)?></h3>
+                                                <ul>
+                                        <?php endif;?>
+                                        <li>
+                                            <a href="<?php echo $data['module']?>/<?php echo $data['controller']?>/<?php echo $data['action']?>">
+                                                <?php echo $this->translate($name)?>
+                                            </a>
+                                        </li>
+                                    <?php $previousParentName = $parentName; $i++;?>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="column grid_12">
+                    <div class="box">
+                        <div class="main">
+                            <div class="header">
+                                <h3><?php echo $this->translate($this->title); ?></h3>
+                            </div>
+                            <div class="content">
+                                 <?php echo $this->layout()->content?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column grid_16">
+                    <div class="footer">
+                        <a href="http://www.preceptoread.com.br">
+                            <img border="0" src="img/logo.png" alt="Logo Preceptor" />
+                        </a>
+                        <div class="info">
+                            Preceptor Educação a Distância
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->widget('fix_footer')?>
+        <script type="text/javascript">
+            $('input[type=button], input[type=submit]').button();
+        </script>
+    </body>
+</html>

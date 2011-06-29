@@ -1,0 +1,78 @@
+<div class="right">
+    <?php if($this->isAllowed('form')): ?>	
+        <?php echo $this->ajax("new", 'content/file/form/', 2); ?>
+    <?php endif; ?>	
+    <?php echo $this->ajax("back", 'content/file/index/', 2); ?>
+</div>
+<div class="left">
+    <form id="formFindFile" action="#">
+        <span class="ui-icon ui-icon-search magnifier"></span>
+        <input type="text" name="q" id="qFile" style="width: 16em" />
+        <input type="submit" value="ok" /> &nbsp;&nbsp;&nbsp;
+    </form>
+</div>
+<div class="clear">&nbsp;</div>
+
+<h3><?php echo $this->translate($this->folder)?></h3>
+
+<?php if (count($this->data)):?>
+    <table class="datatable">
+        <?php foreach ($this->data as $data): ?>
+            <tr>
+                <?php 
+                    $url      = 'static/'.$data->location; 
+                    $imageExt = array('jpg','jpeg','gif','png');
+                    $docExt   = array('doc','ocx','pdf','ppt','pps','pptx','txt','odt','ods','xls','lsx','swf');
+                    $fileExt  = strtolower(substr($data->location, -3));
+                ?>
+                <td>
+                    <?php if (in_array($fileExt, $imageExt)):?>
+                        <img height="30" src="upload/<?php echo $this->thumbnail($data->location, 'small')?>" /></a>
+                    <?php else: ?>
+                        <?php if (in_array($fileExt, $docExt)):?>
+                            <img height="30" src="img/ext/<?php echo $fileExt?>.png" /></a>
+                        <?php else: ?>
+                            <img height="30" src="img/ext/file.png" /></a>
+                        <?php endif;?>
+                    <?php endif;?>
+                </td>
+                <td><a class="file-url" href="<?php echo $url?>"><?php echo $data->name?></a></td>
+                <td><?php //echo $this->formText('path', $this->serverUrl() . $this->baseUrl() .'/' . $url)?></td>
+                <td nowrap="nowrap">
+                    <?php if($this->isAllowed("delete")): ?>
+                        <?php echo $this->ajax("delete", 'content/file/delete/id/'. $data->id . '/location/' . $data->location, 2 , "want to delete?");?>
+                    <?php endif;?>
+                </td>
+            </tr>
+        <?php endforeach;?>
+    </table>
+    <div id="file-page">
+        <?php echo $this->paginationControl($this->data) ?>
+    </div>
+<?php else:?>
+    <p><?php echo $this->translate( "there are no records" );?></p>
+<?php endif;?>
+<script type="text/javascript">
+    $('.file-show').click(function(){
+        $(this.target).toggle();
+        return false;
+    });
+    
+    $('.file-url').click(function(){
+        window.opener.CKEDITOR.tools.callFunction(1, this.href);
+        window.close();
+        return false;
+    });
+
+    $('#file-page a').click(function(){
+        $(this).parents('.content').load(this.href);
+        return false;
+    });
+
+    $("#formFindFile").submit(function(ev) {
+		$(this).parents('.content').load('content/file/index/q/' + $('#qFile').val());
+        return false;
+	});
+
+    $('input[type=button], input[type=submit]').button();
+</script>
