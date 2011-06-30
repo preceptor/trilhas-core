@@ -2,7 +2,7 @@
 <?php $locale = str_replace('_', '-', $this->locale)?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $this->locale?>" xml:lang="en">
 	<head>
-		<title>Trilhas - Preceptor Educação a Distância</title>
+		<title><?php echo Tri_Config::get('tri_title')?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $this->appCharset?>"/>
         <base href="<?php echo $this->serverUrl() . $this->baseUrl() ?>/" />
         <link rel="shortcut icon" href="favicon.ico" />
@@ -85,7 +85,7 @@
                         <img border="0" src="img/logo.png" alt="Logo Preceptor" />
                     </a>
                     <div class="info">
-                        Preceptor Educação a Distância
+                        <?php echo Tri_Config::get('tri_title')?>
                     </div>
                 </div>
             </div>

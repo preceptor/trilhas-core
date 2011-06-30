@@ -244,3 +244,4 @@
 "'%value%' is more than %max% characters long";"O tamanho de '%value%' é superior a %max% caracteres"
 
 "Captcha value is wrong";"O valor do Captcha está incorreto"
+"'%value%' does not appear to be a valid CPF";"'%value%' não parece ser um CPF válido"
