@@ -221,12 +221,6 @@ class UserController extends Tri_Controller_Action
             }
 
             $this->_helper->_flashMessenger->addMessage('Success');
-
-            $identity = Zend_Auth::getInstance()->getIdentity();
-            if ($identity->id == $id) {
-                $this->_redirect('user/edit');
-            }
-
             $this->_redirect('dashboard');
         }
 

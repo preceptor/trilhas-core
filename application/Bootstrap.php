@@ -40,14 +40,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         if (file_exists($classFileIncCache)) {
             include_once $classFileIncCache;
         }
-        Zend_Loader_PluginLoader::setIncludeFileCache($classFileIncCache);
-//        Zend_Db_Table::setDefaultMetadataCache($cache);
-//        Zend_Date::setOptions(array('cache' => $cache));
-//        Zend_Translate::setCache($cache);
-//        Zend_Locale::setCache($cache);
+        
+        if (APPLICATION_ENV == 'production') {
+            Zend_Loader_PluginLoader::setIncludeFileCache($classFileIncCache);
+            Zend_Db_Table::setDefaultMetadataCache($cache);
+            Zend_Date::setOptions(array('cache' => $cache));
+            Zend_Translate::setCache($cache);
+            Zend_Locale::setCache($cache);
+        }
 
         Zend_Registry::set('cache', $cache);
-        
         Zend_Registry::set('Zend_Log', $this->bootstrap('log')
                                             ->getPluginResource('log')
                                             ->getLog());

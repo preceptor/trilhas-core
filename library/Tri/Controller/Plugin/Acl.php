@@ -43,9 +43,6 @@ class Tri_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         }
         
         if (!$acl->isAllowed($role, $resource, $privilege)) {
-            $session = new Zend_Session_Namespace('data');
-            $session->url = $request->getPathInfo();
-
             $request->setModuleName('default')
                     ->setControllerName('error')
                     ->setActionName('access');
