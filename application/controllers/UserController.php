@@ -224,6 +224,8 @@ class UserController extends Tri_Controller_Action
             $this->_redirect('dashboard');
         }
 
+        $form->getElement('born')->removeFilter('Date');
+        
         $messages[] = 'Error';
         $this->view->messages = $messages;
         $this->view->form = $form;
