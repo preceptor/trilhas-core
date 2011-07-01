@@ -2,6 +2,7 @@
 "Error";"Erro"
 "Success";"Realizado com sucesso"
 "Email existing";"E-mail já cadastrado."
+"Cpf existing";"CPF já cadastrado."
 
 "Password confirmation does not match";"Confirmação de senha incorreta."
 
@@ -18,7 +19,9 @@
 "'%value%' failed checksum validation";"'%value%' falhou na validação do checksum"
 "'%value%' contains invalid characters";"'%value%' contém caracteres inválidos"
 "'%value%' should have a length of %length% characters";"'%value%' tem um comprimento de %length% caracteres"
-"Invalid type given, value should be string";"O tipo especificado é inválido, o valor deve ser string"
+"Invalid type given, value should be string";"O tipo especificado é inválido, o valor deve ser textual"
+"Invalid type given. String expected";"O tipo especificado é inválido, o valor deve ser textual"
+
 
 #Zend_Validate_Between
 "'%value%' is not between '%min%' and '%max%', inclusively";"'%value%' não está entre '%min%' e '%max%', inclusivamente"
