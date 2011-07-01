@@ -53,6 +53,36 @@ class Tri_Controller_Dispatcher_Plugin extends Zend_Controller_Dispatcher_Standa
      * @return string Class name loaded
      * @throws Zend_Controller_Dispatcher_Exception if class not loaded
      */
+    public function isDispatchable(Zend_Controller_Request_Abstract $request)
+    {
+        $className = $this->getControllerClass($request);
+        if (!$className) {
+            return false;
+        }
+
+        $finalClass  = $className;
+        if (($this->_defaultModule != $this->_curModule)
+            || $this->getParam('prefixDefaultModule'))
+        {
+            $finalClass = $this->formatClassName($this->_curModule, $className);
+        }
+        if (class_exists($finalClass, false)) {
+            return true;
+        }
+        
+        if ($this->_themeController && $this->_defaultModule == $this->_curModule) {
+            $dispatchDir = $this->_themeController;
+            $loadFile = $dispatchDir . DIRECTORY_SEPARATOR . $this->classToFilename($className);
+            
+            return Zend_Loader::isReadable($loadFile);
+        }
+
+        $fileSpec    = $this->classToFilename($className);
+        $dispatchDir = $this->getDispatchDirectory();
+        $test        = $dispatchDir . DIRECTORY_SEPARATOR . $fileSpec;
+        return Zend_Loader::isReadable($test);
+    }
+    
     public function loadClass($className)
     {
         $finalClass  = $className;
