@@ -74,7 +74,9 @@ class Tri_Controller_Dispatcher_Plugin extends Zend_Controller_Dispatcher_Standa
             $dispatchDir = $this->_themeController;
             $loadFile = $dispatchDir . DIRECTORY_SEPARATOR . $this->classToFilename($className);
             
-            return Zend_Loader::isReadable($loadFile);
+            if (Zend_Loader::isReadable($loadFile)) {
+                return true;
+            }
         }
 
         $fileSpec    = $this->classToFilename($className);
