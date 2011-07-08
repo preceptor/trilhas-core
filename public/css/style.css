@@ -169,6 +169,7 @@ input[type=button], input[type=submit]{padding: 0.3em 0.6em; font-weight: normal
 .icon-close{background-position: -80px -128px}
 .icon-pin{background-position: -144px -144px;}
 .icon-info{background-position: -16px -144px;}
+.icon-user{background-position: -146px -97px;}
 
 .zend_form .errors{color: red;}
 

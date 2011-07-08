@@ -38,25 +38,17 @@ class Admin_PluginController extends Tri_Controller_Action
         $iterator = new DirectoryIterator($this->pluginsPath);
         $this->view->data = $iterator;
         $this->view->activated = Tri_Config::get('tri_plugins', true);
+        $this->view->installed = Tri_Config::get('tri_plugins_installed', true);
     }
 
     public function activateAction()
     {
         $name = $this->_getParam('name');
-        $className = $this->_formatName($name) . '_Plugin';
+        $plugin = new Tri_Plugin($name);
 
-        try {
-            include($name.'/Plugin.php');
-            Zend_Loader::loadClass($className);
+        $plugin->activate();
 
-            $plugin = new $className;
-            $plugin->_activate();
-
-            $this->_helper->flashMessenger->addMessage('Success');
-        } catch(Exception $e) {
-            echo $e->getMessage();exit;
-            $this->_helper->flashMessenger->addMessage('Error');
-        }
+        $this->_helper->flashMessenger->addMessage('Success');
 
         $this->_redirect('admin/plugin');
     }
@@ -64,29 +56,24 @@ class Admin_PluginController extends Tri_Controller_Action
     public function desactivateAction()
     {
         $name = $this->_getParam('name');
-        $className = $this->_formatName($name) . '_Plugin';
+        $plugin = new Tri_Plugin($name);
 
-        try {
-            include($name.'/Plugin.php');
-            Zend_Loader::loadClass($className);
-            
-            $plugin = new $className;
-            $plugin->_desactivate();
-            
-            $this->_helper->flashMessenger->addMessage('Success');
-        } catch(Exception $e) {
-            $this->_helper->flashMessenger->addMessage('Error');
-        }
-        
+        $plugin->desactivate();
+
+        $this->_helper->flashMessenger->addMessage('Success');
+
         $this->_redirect('admin/plugin');
     }
-
-    public function _formatName($name)
+    
+    public function uninstallAction()
     {
-        $parts = explode('-', $name);
-        foreach ($parts as $key => $part) {
-            $parts[$key] = ucfirst($part);
-        }
-        return implode('', $parts);
+        $name = $this->_getParam('name');
+        $plugin = new Tri_Plugin($name);
+
+        $plugin->uninstall();
+
+        $this->_helper->flashMessenger->addMessage('Success');
+
+        $this->_redirect('admin/plugin');
     }
 }

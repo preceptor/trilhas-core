@@ -100,6 +100,7 @@ class Tri_Config
 
         if (!$row) {
             $row = $table->createRow();
+            $row->name = $name;
         }
 
         if ($encoded) {

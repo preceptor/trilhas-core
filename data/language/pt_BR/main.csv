@@ -108,6 +108,7 @@
 "Unblock";"Desbloquear"
 "fix module";"Fixar este módulo"
 "close module";"Fechar este módulo"
+"uninstall";"Desinstalar"
 
 #message
 "there are no records";"Não existem registros"
@@ -147,6 +148,7 @@
 "Retricted access.";"Acesso restrito."
 "To access";"Para acessar realize o"
 "Non-existent page.";"Página não existente."
+"No XML configuration file (configuration.xml)";"Arquivo de configuração não encontrado (configuration.xml)"
 
 #timeline
 "saved a new file";"adicionou um novo arquivo"
