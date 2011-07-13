@@ -58,7 +58,7 @@ class Tri_Config
             return $row->value;
         }
 
-        throw new Tri_Exception('Invalid option');
+        throw new Tri_Exception('Invalid option.' . $name);
     }
 
     /**
