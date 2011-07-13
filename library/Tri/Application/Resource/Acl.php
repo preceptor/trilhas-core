@@ -43,21 +43,23 @@ class Tri_Application_Resource_Acl extends Zend_Application_Resource_ResourceAbs
         $this->_acl = new Zend_Acl();
 
         // static roles
-        $this->_acl->addRole(new Zend_Acl_Role('all'));
-        $this->_acl->addRole(new Zend_Acl_Role('anonymous'), 'all');
-        $this->_acl->addRole(new Zend_Acl_Role('identified'), 'all');
+        $this->_acl->addRole('all');
+        $this->_acl->addRole('anonymous', 'all');
+        $this->_acl->addRole('identified', 'all');
 
         // dinamic roles
+        $prevRoleName = 'identified';
         foreach ($this->_roles as $roleName) {
             if (!$this->_acl->hasRole($roleName)) {
-                $this->_acl->addRole(new Zend_Acl_Role($roleName), 'identified');
+                $this->_acl->addRole($roleName, $prevRoleName);
+                $prevRoleName = $roleName;
             }
         }
         
         // rules
         foreach ($this->_resources as $module => $grants) {
             $module = strtolower($module);
-            $this->_acl->add(new Zend_Acl_Resource($module));
+            $this->_acl->addResource($module);
             foreach ($grants as $controller => $grant) {
                 $controller = strtolower($controller);
                 foreach ($grant as $action => $roles) {
