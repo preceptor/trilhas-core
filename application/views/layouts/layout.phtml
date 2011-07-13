@@ -87,6 +87,7 @@
             $("#loading").bind("ajaxSend", function(){
                 $(this).show();
             }).bind("ajaxComplete", function(){
+                $('input[type=button], input[type=submit]').button();
                 $(this).hide();
             });
 

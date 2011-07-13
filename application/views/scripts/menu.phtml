@@ -36,7 +36,8 @@ $previousParentName = null;
     <?php echo $this->widget('menu_classroom_bottom');?>
 </div>
 <script type="text/javascript" charset="utf-8">
-    var startAnchor = 0;
+    var startAnchor = 0,
+        startTop = 117;
     $('.menu a').click(function(){
         if(!navigator.userAgent.match(/iPhone/i)) {
             var selector = "#main";
@@ -45,11 +46,23 @@ $previousParentName = null;
             }
             
             if (!Menu.has(this.target)) {
-                $(selector).load(this.href + '/layout/box');
+                $(selector).load(this.href + '/layout/box', function(){
+                    $(window).scrollTop(0);
+                });
             } else {
                 $('a[name='+this.target+']').focus();
             }
             return false;
+        }
+    });
+    
+    $(window).scroll(function(){
+        var scrollTop = $(this).scrollTop();
+
+        if (scrollTop > startTop) {
+            $('.menu').css({top: 5, position: 'fixed', width: '218px'});
+        } else {
+            $('.menu').css({position: 'static'});
         }
     });
 </script>
