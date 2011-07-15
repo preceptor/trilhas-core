@@ -162,7 +162,7 @@ input[type=button], input[type=submit]{padding: 0.3em 0.6em; font-weight: normal
 .no-margin .column{margin: 0 0 0 3px; height: 150px;}
 
 .profile .info{margin: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;}
-.profile .image{border: 1px solid #ccc; overflow: hidden; width: 195px; margin-left: 5px;}
+.profile .image{overflow: hidden; width: 195px; margin-left: 5px;}
 .icon{background: url(../img/sprite.png) no-repeat; width: 16px; height: 16px; display: block; overflow: hidden; text-indent: -99999px; float: left;}
 .icon:hover{background-image: url(../img/sprite-red.png);}
 
