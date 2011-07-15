@@ -158,23 +158,39 @@ class Tri_Plugin
         Tri_Config::set($name, $itens, true);
     }
 
-    protected function _addWidget($position, $module, $controller, $action, $order = 1)
+    protected function _addWidget($position, $resource, $order)
     {
+        $resources = explode("/", $resource);
+        
+        if (count($resources) != 3) {
+            throw new Tri_Exception('Invalid resource.');
+        }
+        
+        if (!$order) {
+            $order = 1;
+        }
+        
         $table = new Tri_Db_Table('widget');
         $table->createRow(array('position' => $position,
-                                'module' => $module,
-                                'controller' => $controller,
-                                'action' => $action,
+                                'module' => $resources[0],
+                                'controller' => $resources[1],
+                                'action' => $resources[2],
                                 'order' => $order))->save();
     }
 
-    protected function _removeWidget($position, $module, $controller, $action)
+    protected function _removeWidget($position, $resource)
     {
+        $resources = explode("/", $resource);
+        
+        if (count($resources) != 3) {
+            throw new Tri_Exception('Invalid resource.');
+        }
+        
         $table = new Tri_Db_Table('widget');
         $table->delete(array('position = ?' => $position,
-                             'module = ?' => $module,
-                             'controller = ?' => $controller,
-                             'action = ?' => $action));
+                             'module = ?' => $resources[0],
+                             'controller = ?' => $resources[1],
+                             'action = ?' => $resources[2]));
     }
 
     public function activate()
@@ -213,6 +229,13 @@ class Tri_Plugin
             }
         }
         
+        //add widget
+        if ($config->widget) {
+            foreach ($config->widget->item as $item) {
+                $this->_addWidget((string) $item['position'], (string) $item, (string) $item['order']);
+            }
+        }
+        
         $actived[] = $this->_name;
         $actived   = array_unique($actived);
         
@@ -240,6 +263,13 @@ class Tri_Plugin
         if ($config->access) {
             foreach ($config->access->resource as $resource) {
                 $this->_removeAclItem((string) $resource);
+            }
+        }
+        
+        //remove widget
+        if ($config->widget) {
+            foreach ($config->widget->item as $item) {
+                $this->_removeWidget((string) $item['position'], (string) $item);
             }
         }
         
