@@ -12,26 +12,24 @@
             </div>
             <div class="content">
                 <div class="row no-margin">
-                    <div class="column grid_2 image">
+                    <div class="image">
                         <img alt="<?php echo $this->user->name ?>" src="upload/<?php echo $this->thumbnail($this->user->image, 'medium') ?>" />
                     </div>
-                    <div class="column grid_2">
-                        <div class="info">
-                            <a href="user/view/id/<?php echo $this->user->id?>"><?php echo $this->translate('View profile')?></a><br />
-                            <a href="user/edit"><?php echo $this->translate('Edit profile')?></a>
-                        </div>
-                        <div class="info">
-                            <?php echo $this->translate('Last access')?><br />
-                            <?php echo date('d/m/Y')?>
-                        </div>
-                        <?php if (Zend_Auth::getInstance()->getIdentity()->role == 'institution'):?>
-                            <div class="info">
-                                <a href="admin/course">
-                                    <?php echo $this->translate('Admin')?>
-                                </a>
-                            </div>
-                        <?php endif;?>
+                    <div class="info">
+                        <a href="user/view/id/<?php echo $this->user->id?>"><?php echo $this->translate('View profile')?></a> | 
+                        <a href="user/edit"><?php echo $this->translate('Edit profile')?></a>
                     </div>
+                    <div class="info">
+                        <?php echo $this->translate('Last access')?> 
+                        <?php echo date('d/m/Y')?>
+                    </div>
+                    <?php if (Zend_Auth::getInstance()->getIdentity()->role == 'institution'):?>
+                        <div class="info">
+                            <a href="admin/course">
+                                <?php echo $this->translate('Admin')?>
+                            </a>
+                        </div>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
