@@ -33,7 +33,7 @@
     <?php endif?>
 
     $('#composer-content-main').navigation('<?php echo str_replace("\'", "'", $this->contents)?>' ,
-                                           {current: initCurrent, url:'content/composer/form/id/'});
+                                           {current: initCurrent, url:'content/composer/form/id/',transition:'none'});
 
     $('input[type=button], input[type=submit]').button();
 

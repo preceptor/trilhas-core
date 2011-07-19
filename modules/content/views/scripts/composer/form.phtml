@@ -25,7 +25,7 @@
             language: '<?php echo $locale?>', 
             height: '400px',
             filebrowserBrowseUrl : '<?php echo $this->serverUrl() . $this->baseUrl()?>/content/file/index'
-        }, editor = CKEDITOR.appendTo('description-element', config, $composer.val());
+        }, editor = CKEDITOR.appendTo('composer-description-text-element', config, $composer.val());
     $composer.hide();
 
     $(".composer form").submit(function() {

@@ -16,7 +16,12 @@ class Content_FileController extends Tri_Controller_Action
         $query   = Zend_Filter::filterStatic($this->_getParam("q"), 'stripTags');
         $folder  = Zend_Filter::filterStatic($this->_getParam("folder"), 'stripTags');
         $message = $this->_hasParam('message');
+        $CKEditorFuncNum = Zend_Filter::filterStatic($this->_getParam('CKEditorFuncNum'), 'int');
 
+        if ($CKEditorFuncNum) {
+            $session->CKEditorFuncNum = $CKEditorFuncNum;
+        }
+        
         if ($message) {
             $this->view->messages = array('Success');
             $this->getResponse()->prepend('messages', $this->view->render('message.phtml'));
@@ -41,6 +46,7 @@ class Content_FileController extends Tri_Controller_Action
             $this->view->data = $paginator->getResult();
             $this->view->q = $query;
             $this->view->folder = $folder;
+            $this->view->CKEditorFuncNum = $session->CKEditorFuncNum;
             
             $this->render('file');
         } else {

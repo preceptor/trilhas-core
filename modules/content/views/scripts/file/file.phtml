@@ -59,7 +59,7 @@
     });
     
     $('.file-url').click(function(){
-        window.opener.CKEDITOR.tools.callFunction(1, this.href);
+        window.opener.CKEDITOR.tools.callFunction(<?php echo $this->CKEditorFuncNum?>, this.href);
         window.close();
         return false;
     });

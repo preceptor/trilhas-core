@@ -49,6 +49,7 @@ class Content_Form_Composer extends Zend_Form
         $filters['title'][] = 'StripTags';
         $title = new Zend_Form_Element_Text('title');
         $title->setLabel('Title')
+              ->setAttrib('size', 80)
               ->addValidators($validators['title'])
               ->addFilters($filters['title']);
         
