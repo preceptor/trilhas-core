@@ -6,8 +6,8 @@ $menu = $resource->init();
 $i = 0;
 $previousParentName = null;
 ?>
+<?php echo $this->widget('menu_classroom_top');?>
 <div class="box menu">
-    <?php echo $this->widget('menu_classroom_top');?>
     <div class="header blue">
         <h3>Menu</h3>
     </div>
@@ -33,11 +33,11 @@ $previousParentName = null;
         <?php endforeach; ?>
         </ul>
     </div>
-    <?php echo $this->widget('menu_classroom_bottom');?>
 </div>
+<?php echo $this->widget('menu_classroom_bottom');?>
 <script type="text/javascript" charset="utf-8">
-    var startAnchor = 0,
-        startTop = 117;
+    var startAnchor = 0;
+    
     $('.menu a').click(function(){
         if(!navigator.userAgent.match(/iPhone/i)) {
             var selector = "#main";
@@ -56,13 +56,21 @@ $previousParentName = null;
         }
     });
     
-    $(window).scroll(function(){
-        var scrollTop = $(this).scrollTop();
+    (function(){
+        var startTop = 117,
+            windowHeight = $(window).height(),
+            menuHeight = $('.menu').height();
+            
+        if ((windowHeight - startTop) > menuHeight) {    
+            $(window).scroll(function(){
+                var scrollTop = $(this).scrollTop();
 
-        if (scrollTop > startTop) {
-            $('.menu').css({top: 5, position: 'fixed', width: '218px'});
-        } else {
-            $('.menu').css({position: 'static'});
+                if (scrollTop > startTop) {
+                    $('.menu').css({top: 5, position: 'fixed', width: '218px'});
+                } else {
+                    $('.menu').css({position: 'static'});
+                }
+            });
         }
-    });
+    })();
 </script>
