@@ -7,6 +7,8 @@ $.fn.navigation = function(contentJson, options)
 {
 	var content,current,url,
 		context = this,
+        transitions = ['slideLR','slideRR','slideUD','fade'],
+        transition = 'none',
 
 		next = function(){
 			if( content[(current+1)] ){
@@ -92,9 +94,31 @@ $.fn.navigation = function(contentJson, options)
 		},
 
 		update = function(){
-			var $content = $('.text',context);
+			var $content = $('.text',context),
+                selector = '#' + $content[0].id,
+                applyTransition = transition;
 			
-            $('#'+$content[0].id).load(url + content[current].id);
+            if (transition == 'random') {
+                applyTransition = transitions[Math.floor(Math.random()*4)];
+            }
+            
+            switch (applyTransition) {
+                case 'none':
+                    $(selector).load(url + content[current].id);
+                    break;
+                case 'slideRR':
+                    Transitions.slideRR(selector, url + content[current].id);
+                    break;
+                case 'slideLR':
+                    Transitions.slideLR(selector, url + content[current].id);
+                    break;
+                case 'slideUD':
+                    Transitions.slideUD(selector, url + content[current].id);
+                    break;
+                case 'fade':
+                    Transitions.fade(selector, url + content[current].id);
+                    break;
+            }
 
 			$.data(window, 'current_id'   , content[current].id);
 			$.data(window, 'current_index', current);
@@ -148,9 +172,10 @@ $.fn.navigation = function(contentJson, options)
 			$nextButton = $('.nav .buttons a.next',this),
 			$previousButton = $('.nav .buttons a.previous',this);
 			
-		content = $.parseJSON(contentJson) || ['No content'];
-		current = options.current || 0;
-		url     = options.url || 'content/index/view/id/';
+		content    = $.parseJSON(contentJson) || ['No content'];
+		current    = options.current || 0;
+		url        = options.url || 'content/index/view/id/';
+		transition = options.transition || 'random';
 		
 		$nextButton.click( function(){
 			next.apply(context);
@@ -178,5 +203,45 @@ $.fn.navigation = function(contentJson, options)
 		}).css('cursor','pointer');
 	});
 }
+
+var Transitions = {
+    slideLR: function(selector, url) {
+        $.get(url, function(data){
+            $(selector).css('position', 'relative').animate({"left": "-=700px"}, 'slow', function(){
+                $(this).html(data)
+                       .animate({"left": "+=700px"}, 'slow', function(){
+                           $(this).css('position', 'static');
+                       });
+            });
+        });
+    },
+    slideRR: function(selector, url) {
+        $.get(url, function(data){
+            $(selector).css('position', 'relative').animate({"left": "+=700px"}, 'slow', function(){
+                $(this).html(data)
+                       .css('left', '-700px')
+                       .animate({"left": "+=700px"}, 'slow', function(){
+                           $(this).css('position', 'static');
+                       });
+            });
+        });
+    },
+    slideUD: function(selector, url) {
+        $.get(url, function(data){
+            $(selector).slideUp('slow', function(){
+                $(this).html(data)
+                       .slideDown('slow');
+            });
+        });
+    },
+    fade: function(selector, url) {
+        $.get(url, function(data){
+            $(selector).fadeOut('slow', function(){
+                $(this).html(data)
+                       .fadeIn('slow');
+            });
+        });
+    }
+};
 
 })(jQuery);
