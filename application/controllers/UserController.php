@@ -154,7 +154,7 @@ class UserController extends Tri_Controller_Action
         $form         = new Application_Form_User();
         $table        = new Tri_Db_Table('user');
         $data         = $this->_getAllParams();
-
+        
         if ($data['email'] && (!isset($data['id']) || !$data['id'])) {
             $row = $table->fetchRow(array('email = ?' => $data['email']));
             if ($row) {
@@ -167,18 +167,15 @@ class UserController extends Tri_Controller_Action
             $form->getElement('password')->setAllowEmpty(false);
         }
 
-        if (!isset($data['image']) || !$data['image']) {
-            $form->removeElement('image');
-        }
-
         if ($form->isValid($data) && $isValidEmail) {
-            $data = $form->getValues();
-            if ($form->image && !$form->image->receive()) {
+            if (!$form->image->receive()) {
                 $messages[] = 'Image fail';
-                
-                if (!$form->image->getValue()) {
-                    unset($data['image']);
-                }
+            }
+
+            $data = $form->getValues();
+            
+            if (!$form->image->getValue()) {
+                unset($data['image']);
             }
 
             if (!$data['password']) {

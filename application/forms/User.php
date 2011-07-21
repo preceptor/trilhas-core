@@ -38,8 +38,8 @@ class Application_Form_User extends Zend_Form
         $user = new Tri_Db_Table('user');
 
         $validators = $user->getValidators();
-        $filters = $user->getFilters();
-        $uploadDir = str_replace('APPLICATION_PATH', APPLICATION_PATH, Tri_Config::get('tri_upload_dir'));
+        $filters    = $user->getFilters();
+        $uploadDir  = Tri_Config::get('tri_upload_dir');
 
         $this->setAction('user/save')
                 ->setMethod('post')
@@ -99,6 +99,7 @@ class Application_Form_User extends Zend_Form
              ->setMaxFileSize(2097152)//2mb
              ->setValueDisabled(true)
              ->addFilter('Rename', uniqid())
+             ->addValidator('IsImage')
              ->addValidator('Count', false, 1)
              ->addValidator('Size', false, 2097152)//2mb
              ->addValidator('Extension', false, 'jpg,png,gif');

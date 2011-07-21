@@ -37,11 +37,11 @@ class Admin_Form_User extends Zend_Form
 
         $user = new Tri_Db_Table('user');
 
-        $validators = $user->getValidators();
-        $filters = $user->getFilters();
+        $validators    = $user->getValidators();
+        $filters       = $user->getFilters();
         $statusOptions = array('active' => 'active', 'inactive' => 'inactive');
-        $roles = array('student' => 'student', 'teacher' => 'teacher', 'coordinator' => 'coordinator', 'institution' => 'institution');
-        $uploadDir = str_replace('APPLICATION_PATH', APPLICATION_PATH, Tri_Config::get('tri_upload_dir'));
+        $roles         = array('student' => 'student', 'teacher' => 'teacher', 'coordinator' => 'coordinator', 'institution' => 'institution');
+        $uploadDir     = Tri_Config::get('tri_upload_dir');
 
         $this->setAction('admin/user/save')
              ->setMethod('post')
@@ -106,6 +106,7 @@ class Admin_Form_User extends Zend_Form
                 ->setMaxFileSize(2097152)//2mb
                 ->setValueDisabled(true)
                 ->addFilter('Rename', uniqid())
+                ->addValidator('IsImage')
                 ->addValidator('Count', false, 1)
                 ->addValidator('Size', false, 2097152)//2mb
                 ->addValidator('Extension', false, 'jpg,png,gif');
