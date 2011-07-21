@@ -80,9 +80,9 @@ class ClassroomController extends Tri_Controller_Action
                 $row   = $table->fetchRow(array('id = ?' => $id));
 
                 if ($row->register_type == 'payment') {
-                    $this->_redirect('/payment/index/sign/id' . $id);
+                    $this->_redirect('/payment/index/sign/id/' . $id);
                 } elseif ($row->register_type == 'process') {
-                    $this->_redirect('/selection-process/index/sign/id' . $id);
+                    $this->_redirect('/selection-process/index/sign/id/' . $id);
                 } elseif ($row->register_type == 'open') {
                     $data['user_id'] = Zend_Auth::getInstance()->getIdentity()->id;
                     $data['classroom_id'] = $id;

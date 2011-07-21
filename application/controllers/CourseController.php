@@ -74,6 +74,18 @@ class CourseController extends Tri_Controller_Action
         $this->view->user      = $identity;
     }
 
+    public function listAction()
+    {
+        $table = new Zend_Db_Table('classroom');
+        $select = $table->select(true)
+                        ->setIntegrityCheck(false)
+                        ->join('course', 'classroom.course_id = course.id', 'course.name as cname')
+                        ->where("classroom.status='open'")
+                        ->order('status');
+                    //var_dump($select->__toString());exit;
+        $this->view->data = $table->fetchAll($select);
+    }
+
     public function highlightAction()
     {
         $id = Tri_Config::get('tri_course_highlight');

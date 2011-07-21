@@ -52,5 +52,7 @@
                 <?php endforeach; ?>
             </table>
         <?php endif;?>
+        <br />
+        <?php echo $this->ajax("List of available courses", 'course/list/', 1); ?>
     </div>
 </div>
