@@ -25,6 +25,9 @@ html, body{margin: 0; padding: 0;}
 a{color: #0052A3; text-decoration: none;}
 a:hover{text-decoration: underline;}
 img{border: none;}
+h1{font-size: 18px;}
+h2{font-size: 16px;}
+h3{font-size: 14px;}
 
 input[type=button], input[type=submit]{padding: 0.3em 0.6em; font-weight: normal; font-family: 'Lucida Grande', Arial, Helvetica, sans-serif;}
 
