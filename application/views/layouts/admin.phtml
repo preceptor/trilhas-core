@@ -27,6 +27,9 @@
             echo $this->headLink();
             echo $this->headScript();
          ?>
+         <style>
+             <?php echo Tri_Config::get('tri_custom_css');?>
+         </style>
 	</head>
     <body>
         <script type="text/javascript">
@@ -138,6 +141,23 @@
         </div>
         <?php echo $this->widget('fix_footer')?>
         <script type="text/javascript">
+            (function(){
+                var startTop = 117,
+                    windowHeight = $(window).height(),
+                    menuHeight = $('.menu').height();
+
+                if ((windowHeight - startTop) > menuHeight) {    
+                    $(window).scroll(function(){
+                        var scrollTop = $(this).scrollTop();
+
+                        if (scrollTop > startTop) {
+                            $('.menu').css({top: 5, position: 'fixed', width: '218px'});
+                        } else {
+                            $('.menu').css({position: 'static'});
+                        }
+                    });
+                }
+            })();
             $('input[type=button], input[type=submit]').button();
         </script>
     </body>

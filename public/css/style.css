@@ -38,11 +38,11 @@ input[type=button], input[type=submit]{padding: 0.3em 0.6em; font-weight: normal
 
 .main{background: #fff; padding-top: 1px;}
 
-.box{ margin-bottom: 5px; border: 1px solid #CCC; }
+.box{margin-bottom: 5px; border: 1px solid #CCC; }
 .box .header {background: url(../img/title-white.jpg) repeat-x; height: 19px; padding: 2px 10px 8px; overflow: hidden;}
 .box .blue{background: url(../img/title-blue.jpg); margin-top: 0; padding-top: 5px; height: 16px; color: white;}
 .box .header h3{line-height: 20px; margin: 0; font-size: 15px; font-weight: normal;}
-.box .content{ background: url(../img/content.jpg) repeat-x white;  font-size: 0.91em; padding: 20px 15px; overflow: hidden; }
+.box .content{background: url(../img/content.jpg) repeat-x white;  font-size: 0.91em; padding: 20px 15px; overflow: hidden;}
 
 .logo .content{padding: 10px 0;}
 
@@ -101,7 +101,7 @@ input[type=button], input[type=submit]{padding: 0.3em 0.6em; font-weight: normal
 .datatable th{text-align: left;padding: 5px;}
 .datatable td{padding: 5px;}
 
-.message{padding: 5px; background: #FFF1A8; margin-bottom: 10px;}
+.message{padding: 10px; background: #FFF1A8; margin-bottom: 5px; border: 1px solid #FAD42E;}
 .message span{float: left; margin-right: 5px;;}
 .message ul{margin: 0; padding: 0; list-style: none;}
 
@@ -132,8 +132,12 @@ input[type=button], input[type=submit]{padding: 0.3em 0.6em; font-weight: normal
 
 .magnifier{float: left; margin: 4px 8px 0 0;}
 
-.nav .buttons{margin: 5px 0; text-align: right; border: 1px dotted #ddd; border-left: none; border-right: none; padding: 5px 0;}
-.nav .buttons a{ padding: 5px; margin: 0;}
+.nav .buttons{margin: 5px 0; border: 1px dotted #ddd; border-left: none; border-right: none; padding: 5px 0; clear: both;}
+.nav .buttons .treeview{float: left;}
+.nav .buttons .treeview div li{margin: 5px 0;}
+.nav .buttons .treeview img{cursor: pointer;}
+.nav .buttons .prevnext{float: right; text-align: right;}
+.nav .buttons .treeview a{padding: 5px; margin: 0;}
 
 .panel .item{float: left; padding-right: 10px;}
 .panel .note input{border: 1px solid; padding: 5px; margin-top: 3px; width: 50px;}

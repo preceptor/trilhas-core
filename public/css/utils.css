@@ -1,5 +1,6 @@
 .inline{display: inline;}
 .hidden{visibility: hidden;}
+.ohidden{overflow: hidden;}
 .padding{padding: 10px;}
 .margin{margin: 10px;}
 .left{float: left;}
@@ -10,5 +11,6 @@
 .none{display: none;}
 .solid{border: 1px solid;}
 .dashed{border: 1px dashed;}
+.dotted{border: 1px dotted;}
 .clear{clear: both;}
 .clear-min{clear: both; overflow: hidden; height: 1px; width: 1px; display: block;}

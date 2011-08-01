@@ -7,11 +7,11 @@ $.fn.navigation = function(contentJson, options)
 {
 	var content,current,url,
 		context = this,
-        transitions = ['slideLR','slideRR','slideUD','fade'],
+        transitions = ['slideLR','slideRR'],
         transition = 'none',
 
 		next = function(){
-			if( content[(current+1)] ){
+			if (content[(current+1)]) {
 				current++;
 				update();
 			}
@@ -19,7 +19,7 @@ $.fn.navigation = function(contentJson, options)
 		},
 
 		previous = function(){
-			if( content[current-1] ){
+			if (content[current-1]) {
 				current--;
 				update();
 			}
@@ -31,32 +31,32 @@ $.fn.navigation = function(contentJson, options)
 				length = content.length,
 				hierachLength = 0;
 
-			for( i = 0; i < length ; i++ ){
-				if( content[i+1] ){
-					if( content[i+1].level > content[i].level ){
-						html += '<li><img src="img/minus.jpg" />&nbsp;';
+			for (i = 0; i < length ; i++) {
+				if (content[i+1]) {
+					if (content[i+1].level > content[i].level) {
+						html += '<li><img src="img/plus.jpg" />&nbsp;';
 						html += '<a href="#" id="content_' + i + '">';
 						html += content[i].title;
 						html += '</a><ul>';
-					}else{
+					} else {
 						html += '<li><a href="#" id="content_' + i + '">';
 						html += content[i].title;
 						html += '</a></li>';
 					}
 
-					if( content[i+1].level < content[i].level ){
+					if (content[i+1].level < content[i].level) {
 						hierachLength = content[i].level - content[i+1].level;
-						for( j = 0; j < hierachLength ; j++ ){
+						for (j = 0; j < hierachLength ; j++) {
 							html += '</ul></li>';
 						}
 					}
-				}else{
+				} else {
 					html += '<li><a href="#" id="content_' + i + '">' + content[i].title + '</a></li>';
 
                     if (content[i-1]) {
                         if (content[i-1].level > content[i].level) {
                             hierachLength = content[i-1].level - content[i].level;
-                            for( j = 0; j < hierachLength ; j++ ){
+                            for (j = 0; j < hierachLength ; j++) {
                                 html += '</ul></li>';
                             }
                         }
@@ -66,40 +66,56 @@ $.fn.navigation = function(contentJson, options)
 
 			html += '</ul>';
 
-			$('.nav .bread .treeview',context).html(html);
+			$('.nav .buttons .treeview div', context).html(html).hide();
 
-			$('.nav .bread .treeview img',context).click(function(){
+            $('.nav .buttons .treeview .button', context).click(function(){
+                $(this).next().slideToggle('fast');
+            });
+            
+			$('.nav .buttons .treeview div img', context).click(function(){
 				var $img = $(this);
 
                 $img.parent().children().eq(2).slideToggle('fast');
 				
-				if( $img.attr( 'src').indexOf('minus') > -1 ){
-                    $img.attr( 'src' , $img.attr( 'src').replace( 'minus' , 'plus' ) );
+				if($img.attr('src').indexOf('minus') > -1) {
+                    $img.attr('src', $img.attr('src').replace('minus', 'plus'));
                 }else{
-                    $img.attr( 'src' , $img.attr( 'src').replace( 'plus' , 'minus' ) );
+                    $img.attr('src', $img.attr('src').replace('plus', 'minus'));
                 }
 				return false;
-			})
-			.trigger('click')
-			.css('cursor','pointer');
+			});
+            
+            $('.nav .buttons .treeview .first ul').hide();
 
-			$('.nav .bread .treeview',context).hide();
-			
-			$('.nav .bread .treeview a',context).click(function(){
-				current = parseInt( this.id.replace('content_','') );
-				$('.nav .bread .treeview',context).hide('fast');
+			$('.nav .buttons .treeview a', context).click(function() {
+				current = parseInt(this.id.replace('content_',''));
+				$('.nav .buttons .treeview div', context).hide('fast');
 				update();
 				return false;
 			});
 		},
 
 		update = function(){
-			var $content = $('.text',context),
+			var $content = $('.text', context),
                 selector = '#' + $content[0].id,
-                applyTransition = transition;
-			
+                applyTransition = transition,
+                $nextButton = $('.nav .buttons a.next', context),
+                $previousButton = $('.nav .buttons a.previous', context);
+                
+                
+            $previousButton.show();
+            $nextButton.show();
+                
+			if (!content[current-1]) {
+                $previousButton.hide();
+            }
+            
+            if (!content[current+1]) {
+                $nextButton.hide();
+            }
+            
             if (transition == 'random') {
-                applyTransition = transitions[Math.floor(Math.random()*4)];
+                applyTransition = transitions[Math.floor(Math.random()*2)];
             }
             
             switch (applyTransition) {
@@ -112,12 +128,12 @@ $.fn.navigation = function(contentJson, options)
                 case 'slideLR':
                     Transitions.slideLR(selector, url + content[current].id);
                     break;
-                case 'slideUD':
-                    Transitions.slideUD(selector, url + content[current].id);
-                    break;
-                case 'fade':
-                    Transitions.fade(selector, url + content[current].id);
-                    break;
+//                case 'slideUD':
+//                    Transitions.slideUD(selector, url + content[current].id);
+//                    break;
+//                case 'fade':
+//                    Transitions.fade(selector, url + content[current].id);
+//                    break;
             }
 
 			$.data(window, 'current_id'   , content[current].id);
@@ -127,26 +143,27 @@ $.fn.navigation = function(contentJson, options)
 		},
 
 		updateBreadCrumb = function(){
-			var $bread = $('.nav .bread span',context),
+			var $bread = $('.nav .bread span', context),
 				itens = getParents(),
 				item = null,
 				i = 0,
 				tmp = [];
 
-			for( i=0;i<itens.length;i++ ){
+			for (i = 0;i < itens.length;i++) {
 				item = '<a href="#"  id="bread_content_' + itens[i].index + '">';
 				item += itens[i].title + '</a>';
-				tmp.push( item );
+				tmp.push(item);
 			}
 
-			tmp.push( content[current].title );
-			
-			$bread.html( tmp.join( ' - ' ) );
+			tmp.push(content[current].title);
+            
+			$bread.html(tmp.join(' - '));
 			$bread.find('a').click(function(){
-				current = parseInt( this.id.replace('bread_content_','') );
+				current = parseInt(this.id.replace('bread_content_', ''));
 				update();
 				return false;
 			});
+            $(window).scrollTop($(context).offset().top - 37);
 		},
 
 		getParents = function(){
@@ -154,11 +171,11 @@ $.fn.navigation = function(contentJson, options)
 				response = [],
 				level = content[current].level;
 			
-			for( i = current-1; i > 0; i-- ){
-				if( content[i] ){
-					if( content[i].level < level ){
+			for (i = current-1; i > 0; i--) {
+				if (content[i]) {
+					if (content[i].level < level) {
 						content[i].index = i;
-						response.push( content[i] );
+						response.push(content[i]);
 						level--;
 					}
 				}
@@ -177,12 +194,12 @@ $.fn.navigation = function(contentJson, options)
 		url        = options.url || 'content/index/view/id/';
 		transition = options.transition || 'random';
 		
-		$nextButton.click( function(){
+		$nextButton.click(function(){
 			next.apply(context);
 			return false;
 		});
 		
-		$previousButton.click( function(){
+		$previousButton.click(function(){
 			previous.apply(context);
 			return false;
 		});

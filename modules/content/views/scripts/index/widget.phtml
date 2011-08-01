@@ -6,12 +6,18 @@
         <div id="content" class="content">
             <div class="nav">
                 <div class="bread">
-                    <img src="img/treeview.gif" />
-                    <div class="treeview"></div>
                     <span></span>
                 </div>
                 <div class="buttons">
-                    <a class="previous" href="content/previous"><?php echo $this->translate('previous content') ?></a><a class="next" href="content/next"><?php echo $this->translate('next content') ?></a>
+                    <div class="treeview">
+                        <img class="button" src="img/treeview.gif" />
+                        <div></div>
+                    </div>
+                    <div class="prevnext">
+                        <a class="previous" href="content/previous"><?php echo $this->translate('previous content') ?></a>&nbsp;
+                        <a class="next" href="content/next"><?php echo $this->translate('next content') ?></a>
+                    </div>
+                    <div class="clear-min">&nbsp;</div>
                 </div>
             </div>
             <div id="content-main-content" class="text">
@@ -19,7 +25,11 @@
             </div>
             <div class="nav">
                 <div class="buttons">
-                    <a class="previous" href="content/previous"><?php echo $this->translate('previous content') ?></a><a class="next" href="content/next"><?php echo $this->translate('next content') ?></a>
+                    <div class="prevnext">
+                        <a class="previous" href="content/previous"><?php echo $this->translate('previous content') ?></a>&nbsp;
+                        <a class="next" href="content/next"><?php echo $this->translate('next content') ?></a>
+                    </div>
+                    <div class="clear-min">&nbsp;</div>
                 </div>
             </div>
         </div>
