@@ -162,10 +162,9 @@ class Application_Model_Classroom
         $content = new Tri_Db_Table('content');
 
         $select = $table->select(true)
-                        ->columns('COUNT(0) as total')
+                        ->columns('COUNT(DISTINCT content_id) as total')
                         ->where('user_id = ?', $userId)
-                        ->where('classroom_id = ?', $classroomId)
-                        ->group('content_id');
+                        ->where('classroom_id = ?', $classroomId);
         $accessed = $table->fetchRow($select);
         
         $select = $content->select(true)->setIntegrityCheck(false)
