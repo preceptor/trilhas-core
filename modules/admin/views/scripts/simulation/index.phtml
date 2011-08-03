@@ -3,14 +3,14 @@
         <dl class="zend_form">
             <dt id="email-label"><label for="style" class="optional"><?php echo $this->translate('Email')?></label></dt>
             <dd id="email-element"><?php echo $this->formText('email')?></dd>
-            <dd id="simulate-element"><?php echo $this->formSubmit('simulate','Simulate')?></dd>
+            <dd id="simulate-element"><?php echo $this->formSubmit('simulate',$this->translate('Simulate'))?></dd>
         </dl>
     </form>
     <form action="admin/simulation/simulate">
         <dl class="zend_form">
             <dt id="role-label"><label for="style" class="optional"><?php echo $this->translate('Role')?></label></dt>
             <dd id="role-element"><?php echo $this->formSelect('role', null, null, $this->roles)?></dd>
-            <dd id="simulate-2-element"><?php echo $this->formSubmit('simulate','Simulate')?></dd>
+            <dd id="simulate-2-element"><?php echo $this->formSubmit('simulate', $this->translate('Simulate'))?></dd>
         </dl>
     </form>
 </div>
