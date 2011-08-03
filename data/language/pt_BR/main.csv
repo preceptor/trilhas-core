@@ -51,6 +51,7 @@
 "processes";"Processos"
 "payment";"Pagamento"
 "minute";"minuto";"minutos"
+"simulation";"Simulação"
 
 #buttons
 "previous content";"Anterior"
@@ -109,6 +110,7 @@
 "fix module";"Fixar este módulo"
 "close module";"Fechar este módulo"
 "uninstall";"Desinstalar"
+"Simulate";"Simular"
 
 #message
 "there are no records";"Não existem registros"
@@ -332,3 +334,4 @@
 "null";"Sem diretório"
 "Current theme";"Tema atual"
 "Available themes list";"Lista de temas disponíveis"
+"Simulation";"Simulação"

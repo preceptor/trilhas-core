@@ -231,8 +231,17 @@ class UserController extends Tri_Controller_Action
 
     public function logoutAction()
     {
+        $identity = Zend_Auth::getInstance()->getIdentity();
+        
         $session = new Zend_Session_Namespace('data');
         $session->unsetAll();
+        
+        if ($identity->simulation == true) {
+            $admin = $identity->admin;
+            
+            Zend_Auth::getInstance()->getStorage()->write($admin);
+            $this->_redirect( "/admin/simulation" );
+        }
         
 		Zend_Auth::getInstance()->clearIdentity();
 		$this->_redirect( "/index" );

@@ -147,39 +147,4 @@ class Admin_UserController extends Tri_Controller_Action
         $this->view->form = $form;
         $this->render('form');
     }
-    
-	/**
-	 * Action logout.
-	 *
-	 * @return void
-	 */
-    public function logoutAction()
-    {
-		Zend_Auth::getInstance()->clearIdentity();
-		$this->_redirect( "/index" );
-    }
-	
-	
-	/**
-	 * Action reset.
-	 *
-	 * @todo implement functionality. 
-	 * @return void
-	 */
-    public function resetAction()
-    {
-
-    }
-	
-	private function generateCaptcha()
-	{
-		$captcha = new Zend_Captcha_Figlet(array(
-		    'name' => 'captch_verify',
-		    'wordLen' => 3,
-		    'timeout' => 200,
-		));
-		
-		$captcha->generate();
-		return $captcha->render();
-	}
 }
