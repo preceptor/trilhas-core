@@ -34,20 +34,44 @@ class ThemeController extends Tri_Controller_Action
 
     public function indexAction()
     {
-        $this->view->style  = Tri_Config::get('tri_theme_style');
-        $this->view->logo   = Tri_Config::get('tri_logo');
-        $this->view->styles = array('default', 'blue', 'green');
+        $form = new Application_Form_Theme();
+        
+        $form->populate(array('style' => Tri_Config::get('tri_theme_style'),
+                              'custom_css' => Tri_Config::get('tri_custom_css')));
+        
+        $this->view->form = $form;
+        $this->view->logo = Tri_Config::get('tri_logo');
     }
 
     public function saveAction()
     {
-        $style = $this->_getParam('style');
+        $form  = new Application_Form_Theme();
+        $data  = $this->_getAllParams();
 
-        if ($style) {
-            Tri_Config::set('tri_theme_style', $style);
+        if ($form->isValid($data)) {
+            if (!$form->logo->receive()) {
+                $messages[] = 'Image fail';
+            }
+            $data = $form->getValues();
+            
+            if ($data['style']) {
+                Tri_Config::set('tri_theme_style', $data['style']);
+            }
+
+            Tri_Config::set('tri_custom_css', $data['custom_css']);
+            
+            if ($form->logo->getValue()) {
+                Tri_Config::set('tri_logo', $data['logo']);
+            }
+            
+            $this->_helper->flashMessenger->addMessage('Success');
+            $this->_redirect('default/theme/index');
         }
-
-        $this->_helper->flashMessenger->addMessage('Success');
-        $this->_redirect('theme');
+        
+        $form->populate($data);
+        $this->view->form = $form;
+        $this->view->logo = Tri_Config::get('tri_logo');
+        
+        $this->render('index');
     }
 }

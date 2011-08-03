@@ -19,18 +19,18 @@
 
 /**
  * @category   Tri
- * @package    Tri_Plugin
+ * @package    Tri_Theme
  * @copyright  Copyright (C) 2005-2010  Preceptor Educação a Distância Ltda. <http://www.preceptoead.com.br>
  * @license    http://www.gnu.org/licenses/  GNU GPL
  */
-class Tri_Plugin extends Tri_Installation
+class Tri_Theme extends Tri_Installation
 {
     /**
      *
      * @var string 
      */
     protected $_name;
-
+    
     /**
      *
      * @param string $name 
@@ -38,7 +38,11 @@ class Tri_Plugin extends Tri_Installation
     public function __construct($name) 
     {
         $this->_name = $name;
-        $this->_path = APPLICATION_PATH . '/../plugins/' . $name . '/';
+        if ($name == 'default') {
+            $this->_path = APPLICATION_PATH . '/configs/';
+        } else {
+            $this->_path = APPLICATION_PATH . '/../themes/' . $name . '/';
+        }
     }
     
     /**
@@ -48,72 +52,59 @@ class Tri_Plugin extends Tri_Installation
      */
     public static function isActive($name)
     {
-        $activedPlugins = Tri_Config::get('tri_plugins', true);
-        if (in_array($name, $activedPlugins)) {
+        $actived = Tri_Config::get('tri_theme');
+        if ($actived == $name) {
             return true;
         }
         return false;
     }
     
-    /**
+     /**
      * Checks if the plugin is active
      *
      * @param string $name
      */
     public static function isInstall($name)
     {
-        $installed = Tri_Config::get('tri_plugins_installed', true);
+        $installed = Tri_Config::get('tri_themes_installed', true);
         if (in_array($name, $installed)) {
             return true;
         }
         return false;
     }
-    
+
     public function activate()
     {
-        $actived = Tri_Config::get('tri_plugins', true);
-        
         if (!self::isInstall($this->_name)) {
             $this->install();
         }
         
         parent::activate();
         
-        $actived[] = $this->_name;
-        $actived   = array_unique($actived);
-        
-        Tri_Config::set('tri_plugins', $actived, true);
+        Tri_Config::set('tri_theme', $this->_name);
     }
-
+    
     public function desactivate()
     {
-        $activedPlugins = Tri_Config::get('tri_plugins', true);
-        
-        parent::desactivate();
-        
-        foreach($activedPlugins as $key => $value) {
-            if ($value == $this->_name) {
-                unset($activedPlugins[$key]);
-            }
+        if ($this->_name != 'default') {
+            parent::desactivate();
         }
-
-        Tri_Config::set('tri_plugins', $activedPlugins, true);
     }
-
+    
     public function install()
     {
-        $installed = Tri_Config::get('tri_plugins_installed', true);
+        $installed = Tri_Config::get('tri_themes_installed', true);
             
         parent::install();
         
         $installed[] = $this->_name;
         $installed   = array_unique($installed);
-        Tri_Config::set('tri_plugins_installed', $installed, true);
+        Tri_Config::set('tri_themes_installed', $installed, true);
     }
     
     public function uninstall()
     {
-        $installed = Tri_Config::get('tri_plugins_installed', true);
+        $installed = Tri_Config::get('tri_themes_installed', true);
             
         parent::uninstall();
         
@@ -123,6 +114,6 @@ class Tri_Plugin extends Tri_Installation
             }
         }
         
-        Tri_Config::set('tri_plugins_installed', $installed, true);
+        Tri_Config::set('tri_themes_installed', $installed, true);
     }
 }

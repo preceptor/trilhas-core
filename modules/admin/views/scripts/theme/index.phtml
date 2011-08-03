@@ -1,0 +1,40 @@
+<?php $theme = Tri_Config::get('tri_theme')?></p>
+<div>
+    <h3><?php echo $this->translate('Current theme')?></h3>
+    <p><?php echo $this->translate($theme)?></p>
+</div>
+<br />
+<h3><?php echo $this->translate("Available themes list")?></h3>
+<?php if ($theme != 'default') :?>
+    <div class="padding dotted grid_5 column margin ohidden" style="height: 57px;">
+        <strong><?php echo $this->translate('default')?></strong> |
+        <a href="admin/theme/activate/name/default"><?php echo $this->translate('activate')?></a>
+        <br /><br />
+        <?php echo $this->translate('Default theme')?>
+    </div>
+<?php endif;?>
+<?php foreach($this->data as $data):?>
+    <?php $name = $data->getBasename();?>
+    <?php if (!$data->isDot() && ! $data->isFile()) :?>
+            <?php $filename = $data->getPathname(). '/configuration.xml';?>
+            <?php if (file_exists($filename)):?>
+                <?php 
+                    $config = simplexml_load_file($filename);
+                    $name = strtolower((string) $config->name);
+                ?>
+                <?php if ($name != $theme) :?>
+                    <div class="padding dotted grid_5 column margin ohidden" style="height: 57px;">
+                        <strong><?php echo $this->translate((string) $config->name)?></strong>
+                        <?php echo (string) $config->version?> |
+                        <a href="admin/theme/activate/name/<?php echo $name?>"><?php echo $this->translate('activate')?></a>
+                        <br /><br />
+                        <?php echo $this->translate($this->escape((string) $config->description))?>
+                    </div>
+                <?php endif;?>
+            <?php else:?>
+                <div class="padding dotted grid_5 column margin ohidden" style="height: 57px;">
+                    <?php echo $this->translate('No XML configuration file (configuration.xml)')?>
+                </div>
+            <?php endif;?>
+    <?php endif;?>
+<?php endforeach;?>
