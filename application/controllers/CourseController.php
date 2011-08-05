@@ -81,6 +81,7 @@ class CourseController extends Tri_Controller_Action
                         ->setIntegrityCheck(false)
                         ->join('course', 'classroom.course_id = course.id', 'course.name as cname')
                         ->where("classroom.status='open'")
+                        ->where("course.status='active'")
                         ->order('status');
                     //var_dump($select->__toString());exit;
         $this->view->data = $table->fetchAll($select);
