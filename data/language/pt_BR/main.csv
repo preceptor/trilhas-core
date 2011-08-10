@@ -151,6 +151,7 @@
 "To access";"Para acessar realize o"
 "Non-existent page.";"Página não existente."
 "No XML configuration file (configuration.xml)";"Arquivo de configuração não encontrado (configuration.xml)"
+"No user found with provided email.";"Nenhum usuário encontrado com o e-mail fornecido."
 
 #timeline
 "saved a new file";"adicionou um novo arquivo"

@@ -67,6 +67,8 @@ class Admin_SimulationController extends Tri_Controller_Action
                 
                 $this->_redirect('index');
             }
+            
+            $this->_helper->_flashMessenger->addMessage('No user found with provided email.');
         }
         
         if ($role) {
