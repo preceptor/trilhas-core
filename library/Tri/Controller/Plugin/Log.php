@@ -19,44 +19,29 @@
 
 /**
  * @category   Tri
- * @package    Tri_Db
+ * @package    Tri_Controller
  * @copyright  Copyright (C) 2005-2010  Preceptor Educação a Distância Ltda. <http://www.preceptoead.com.br>
  * @license    http://www.gnu.org/licenses/  GNU GPL
  */
-class Tri_Db_Table_Log extends Tri_Db_Table
+class Tri_Controller_Plugin_Log extends Zend_Controller_Plugin_Abstract
 {
-    /**
-     * Table name
-     *
-     * var string
-     */
-    protected $_name = 'log';
+    public function preDispatch(Zend_Controller_Request_Abstract $request)
+    {
+        $identity = Zend_Auth::getInstance()->getIdentity();
+        if ($identity && $identity->role != 'institution') {
+            $log      = new Tri_Db_Table_Log();
+            $session  = new Zend_Session_Namespace('data');
+            
+            $data = array('module' => $request->getModuleName(),
+                          'controller' => $request->getControllerName(),
+                          'action' => $request->getActionName(),
+                          'user_id' => $identity->id);
 
-    /**
-     * Table primary keys
-     *
-     * var array
-     */
-    protected $_primary = array('id');
-
-    /**
-     * Dependent tables
-     *
-     * var array
-     */
-    protected $_dependentTables = array();
-
-    /**
-     * Reference tables
-     *
-     * var array
-     */
-    protected $_referenceMap = array(
-        array('refTableClass' => 'Tri_Db_Table_User',
-              'refColumns'    => array('id'),
-              'columns'       => array('user_id')),
-        array('refTableClass' => 'Tri_Db_Table_Classroom',
-              'refColumns'    => array('id'),
-              'columns'       => array('classroom_id'))
-    );
+            if ($session->classroom_id) {
+                $data['classroom_id'] = $session->classroom_id;
+            }
+            
+            $log->createRow($data)->save();
+        }
+    }
 }
