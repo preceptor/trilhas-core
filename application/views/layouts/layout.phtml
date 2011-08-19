@@ -7,25 +7,27 @@
         <base href="<?php echo $this->serverUrl() . $this->baseUrl() ?>/" />
         <link rel="shortcut icon" href="favicon.ico" />
         <?php 
-            $this->headLink()->appendStylesheet('css/grid.css')
-                             ->appendStylesheet('css/utils.css')
-                             ->appendStylesheet('css/jquery-ui.css')
-                             ->appendStylesheet('css/style.css')
-                             ->appendStylesheet('css/'. Tri_Config::get('tri_theme_style').'.css');
+            $this->headLink()->prependStylesheet('css/'. Tri_Config::get('tri_theme_style').'.css')
+                             ->prependStylesheet('css/style.css')
+                             ->prependStylesheet('css/jquery-ui.css')
+                             ->prependStylesheet('css/utils.css')
+                             ->prependStylesheet('css/grid.css');
 
-            $this->headScript()->appendFile('js/jquery/jquery.min.js')
-                               ->appendFile('js/jquery/jquery-ui.min.js')
-                               ->appendFile('js/jquery/jquery.maskedinput.js')
-                               ->appendFile('js/jquery/jquery.other.js')
-                               ->appendFile('js/ckeditor/ckeditor.js')
-                               ->appendFile('js/navigation.js')
-                               ->appendFile('js/menu.js');
-            
             if ($locale != 'en') { 
-                $this->headScript()->appendFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js')
-                                   ->appendFile('js/ckeditor/lang/' . strtolower($locale) . '.js'); 
+                $this->headScript()->prependFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js')
+                                   ->prependFile('js/ckeditor/lang/' . strtolower($locale) . '.js'); 
             }
             
+            $this->headScript()->prependFile('js/jquery/jquery-ui.min.js')
+                               ->prependFile('js/jquery/jquery.maskedinput.js')
+                               ->prependFile('js/jquery/jquery.other.js')
+                               ->prependFile('js/ckeditor/ckeditor.js')
+                               ->prependFile('js/navigation.js')
+                               ->prependFile('js/menu.js')
+                               ->prependFile('js/jquery/jquery.min.js');
+            
+            
+            echo $this->headMeta();
             echo $this->headLink();
             echo $this->headScript();
         ?>
