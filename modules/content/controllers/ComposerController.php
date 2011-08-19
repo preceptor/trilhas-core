@@ -137,18 +137,16 @@ class Content_ComposerController extends Tri_Controller_Action
     public function deleteAction() {
         $id = Zend_Filter::filterStatic( $this->_getParam( "id" ) , "int" );
 
-        $content 	   = new Tri_Db_Table('content');
-        $contentAccess = new Tri_Db_Table('content_access');
-        $restriction   = new Tri_Db_Table('restriction_panel');
+        $content 	     = new Tri_Db_Table('content');
+        $contentAccess   = new Tri_Db_Table('content_access');
+        $restriction     = new Tri_Db_Table('restriction_panel');
+        $restrictionTime = new Tri_Db_Table('restriction_time');
 
-        try {
-            if( $id ) {
-                $restriction->delete(array('content_id = ?' => $id));
-                $contentAccess->delete(array('content_id = ?' => $id));
-                $content->delete(array('id = ?' => $id));
-            }
-        }catch( Exception $e ) {
-            $this->_helper->_flashMessenger->addMessage('Error');
+        if ($id) {
+            $restriction->delete(array('content_id = ?' => $id));
+            $restrictionTime->delete(array('content_id = ?' => $id));
+            $contentAccess->delete(array('content_id = ?' => $id));
+            $content->delete(array('id = ?' => $id));
         }
 
         $session = new Zend_Session_Namespace('data');
