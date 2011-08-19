@@ -1,9 +1,25 @@
-#menu{float: none; width: 100%;}
-#menu li a{padding: 8px; border: 1px dotted #aaa;}
-#menu h3{font-size: 1.4em}
-.menu{float: none;}
-.login .ui-dialog{width: auto;}
-
-.main{margin-left:0}
+.menu li a{padding: 10px; border: 1px dotted #aaa; display: block;}
+.menu h3{font-size: 1.4em}
 
 a {font-size: 1.4em}
+
+/* reset grids */
+.column{float: none; margin: 0px;}
+.row {width: auto;	margin: 0 auto;}
+.row .row {margin: 0; width: auto;}
+.grid_1 { width:auto; }
+.grid_2 { width:auto; }
+.grid_3 { width:auto; }
+.grid_4 { width:auto; }
+.grid_5 { width:auto; }
+.grid_6 { width:auto; }
+.grid_7 { width:auto; }
+.grid_8 { width:auto; }
+.grid_9 { width:auto; }
+.grid_10 { width:auto; }
+.grid_11 { width:auto; }
+.grid_12 { width:auto; }
+.grid_13 { width:auto; }
+.grid_14 { width:auto; }
+.grid_15 { width:auto; }
+.grid_16 { width:auto; }

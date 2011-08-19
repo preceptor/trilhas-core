@@ -28,21 +28,21 @@ class Tri_Controller_Plugin_Mobile extends Zend_Controller_Plugin_Abstract
     public function preDispatch(Zend_Controller_Request_Abstract $request)
     {
         $userAgent = new Zend_Http_UserAgent();
-        if (strstr($userAgent->getUserAgent(), 'iPhone')) {
+        if (strstr($userAgent->getUserAgent(), 'iPhone') 
+            || strstr($userAgent->getUserAgent(), 'Android')) {
             $view = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer')->view;
 
             $view->headMeta('user-scalable=no, width=device-width', 'viewport');
             $view->headMeta('yes', 'apple-mobile-web-app-capable');
 
-            $view->headLink()->appendStylesheet('css/iphone.css');
             
             $view->headLink(array('rel' => 'apple-touch-icon',
                                   'href' => $view->serverUrl() . $view->baseUrl() . '/img/iphoneIcon.png'));
 
             $view->headLink(array('rel' => 'apple-touch-startup-image',
                                   'href' => $view->serverUrl() . $view->baseUrl() . '/img/iphoneStartup.png'));
-
+            
+            $view->headLink()->appendStylesheet('css/iphone.css');
         }
-
     }
 }
