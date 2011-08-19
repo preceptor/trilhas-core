@@ -136,7 +136,9 @@ class Admin_ClassroomController extends Tri_Controller_Action
 	
     public function matriculateAction()
     {
+        $page  = Zend_Filter::filterStatic($this->_getParam('page'), 'int');
         $id = Zend_filter::filterStatic($this->_getParam('id'), 'int');
+        
         if ($this->_hasParam('userId')) {
             $classroomUser = new Tri_Db_Table('classroom_user');
             
@@ -154,7 +156,7 @@ class Admin_ClassroomController extends Tri_Controller_Action
                         ->where('role IN(?)', array('student', 'teacher'))
                         ->order('id DESC');
 
-        $paginator = new Tri_Paginator($select, 1);
+        $paginator = new Tri_Paginator($select, $page);
         $this->view->data = $paginator->getResult();
         $this->view->id = $id;
     }
