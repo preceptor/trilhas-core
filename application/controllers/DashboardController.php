@@ -44,9 +44,17 @@ class DashboardController extends Tri_Controller_Action
 
     public function timelineAction()
     {
+        $this->view->title = 'timeline';
+        
+        $limit     = Zend_Filter::filterStatic($this->_getParam('limit', 5), 'int');
+        $page      = Zend_Filter::filterStatic($this->_getParam('page', 1), 'int');
         $identity  = Zend_Auth::getInstance()->getIdentity();
         $courses   = Application_Model_Classroom::getAllByUser($identity->id);
 
-        $this->view->timeline = Application_Model_Timeline::getByClassroom($courses, 1);
+        $this->view->timeline = Application_Model_Timeline::getByClassroom($courses, $limit, $page);
+        
+        if ($limit == 999) {
+            $this->render('time-content');
+        }
     }
 }

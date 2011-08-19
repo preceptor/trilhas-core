@@ -32,7 +32,7 @@ class Application_Model_Timeline
      * @param int $page
      * @return Zend_Db_Rowset
      */
-    public static function getByClassroom($courses, $page)
+    public static function getByClassroom($courses, $limit, $page)
     {
         if ($courses) {
             foreach ($courses as $course) {
@@ -50,7 +50,7 @@ class Application_Model_Timeline
                         ->join('course', 'course.id = course_id', array('course.name as cname'))
                         ->where('classroom_id IN(?)', $ids)
                         ->order('id DESC')
-                        ->limit(10, $page-1);
+                        ->limit($limit, $page-1);
         
         return $table->fetchAll($select);
     }

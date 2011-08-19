@@ -1,0 +1,19 @@
+<div class="courses">
+<?php if (count($this->timeline)) :?>
+    <?php foreach ($this->timeline as $timeline): ?>
+        <div class="item">
+            <img alt="<?php echo $timeline['name'] ?>" src="upload/<?php echo $this->thumbnail($timeline['image'], 'small') ?>" width="40" height="40" />
+            <?php echo $timeline['name'] ?>
+            <span>
+                <?php echo $this->date($timeline['created'], true)?>
+                (<?php echo $timeline['cname']?>)
+            </span>
+            <p class="light"><?php echo $timeline['description']?></p>
+        </div>
+    <?php endforeach; ?>
+</div>
+<?php else: ?>
+    <p>
+       <?php echo $this->translate('there are no records'); ?>
+    </p>
+<?php endif;?>
