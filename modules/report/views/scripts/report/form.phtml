@@ -1,0 +1,16 @@
+<div class="form padding">
+    <form action="report/save" method="post">
+        <input type="hidden" name="id" value="<?php echo $this->data->id?>" />
+
+        <label><?php echo $this->translate('Nome')?>:</label>
+        <input type="text" name="name" value="<?php echo $this->data->name?>" />
+
+        <label><?php echo $this->translate('Identificador')?>:</label>
+        <input type="text" name="alias" value="<?php echo $this->data->alias?>" />
+
+        <label><?php echo $this->translate('Grupos')?>:</label>
+        <?php echo $this->formSelect('group_id[]', $this->selectedGroups, null, $this->groups);?>
+
+        <input type="submit" value="Enviar" />
+</form>
+</div>

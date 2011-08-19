@@ -1,0 +1,29 @@
+<div class="table-field">
+	<h3><?php echo $this->fields[0]['table']?></h3>
+	<ul>
+		<?php foreach($this->fields as $field): ?>
+			<li>
+				<a href='report/index/list'><?php echo $field['colunm']?></a>
+				<input type="hidden" value='<?php echo Zend_Json::encode($field)?>' />
+			</li>
+		<?php endforeach;?>
+	</ul>
+</div>
+<div class="detail">
+	<a class="button-more" href="#">relacionamentos</a>
+	<div class="list-table">
+		<ul>
+			<?php foreach($this->tables as $table): ?>
+				<li>
+					<a class="button-table" href='report/index/more'><?php echo $table['table']?> (by <?php echo $table['column']?>)</a>
+					<input type="hidden" value='<?php echo Zend_Json::encode($table)?>' />
+				</li>
+			<?php endforeach;?>
+		</ul>
+	</div>
+</div>
+<script>
+	Report.eventField();
+	Report.eventTable();
+	Report.eventMore();
+</script>

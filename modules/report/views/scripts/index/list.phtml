@@ -1,0 +1,118 @@
+<div class="aright">
+    <a href="#" class="button-options">Opções</a>
+</div>
+<div class="options" style="display: none;">
+    <br />
+    <div class="box">
+        <form action="report/report/save" method="post">
+            <h3><?php echo $this->translate('Salvar este relatório')?></h3>
+            <?php echo $this->formText('name')?>
+            <input type="submit" value="ok" />
+        </form>
+    </div>
+    <br />
+    <div class="box">
+        <form id="formAggregate" action="report/index/aggregate">
+            <h3>Agregador</h3>
+            <?php echo $this->formSelect('colunm',null,array('class' => 'fixed'), $this->colunms)?>
+
+            <input type="submit" value="ok" />
+        </form>
+    </div>
+    <br />
+    <div class="box">
+        <form id="formColumn" action="report/index/column">
+            <h3>Coluna</h3>
+            <?php echo $this->formSelect('colunm',null,array('class' => 'fixed'), $this->colunms)?>
+
+            <input type="submit" value="ok" />
+        </form>
+    </div>
+    <br />
+    <div class="box">
+        <form id="formFilter" action="report/index/filter" method="post">
+            <h3>Filtro:</h3>
+            <?php if (count($this->filters)): ?>
+            <select name="logic">
+                <option value="OR">OU</option>
+                <option value="AND">E</option>
+            </select>
+            <?php endif;?>
+
+            <select name="colunm" class="fixed">
+                <?php foreach ($this->allColunms as $colunm):?>
+                <option value="<?php echo $colunm?>"><?php echo $colunm?></option>
+                <?php endforeach;?>
+            </select>
+
+            <select name="operator">
+                <option value="=">=</option>
+                <option value="<>"><></option>
+                <option value=">">></option>
+                <option value="<"><</option>
+            </select>
+            
+            <input class="value" type="text" name="value" />
+
+            <input type="checkbox" name="isExpr" value="true" /> É expressão?
+            
+            <input type="submit" value="ok" />
+        </form>
+    </div>
+</div>
+<div>
+    <?php if (count($this->filters)): ?>
+        <ul class="list-filter">
+            <?php foreach ($this->filters as $filter):?>
+                <li><?php echo $filter['colunm'].' '.$filter['operator'].' '.$filter['value']?></li>
+            <?php endforeach;?>
+        </ul>
+    <?php endif;?>
+</div>
+<div>
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <?php foreach ($this->colunms as $colunm):?>
+                    <?php
+                    $order = null;
+                    foreach ($this->orders as $order) {
+                        if($order['colunm'] == $colunm) {
+                            $order = $order['direction'] == 'ASC' ? 'headerSortUp': 'headerSortDown';
+                        }
+                    }
+                    ?>
+                    <th class="header <?php echo $order;?>">
+                        <?php echo $colunm;?>
+                        <input type="hidden" value="<?php echo $colunm?>" />
+                    </th>
+                <?php endforeach;?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->rs as $key => $rs):?>
+                <tr class="<?php echo ($key%2)?'even':'odd';?>">
+                    <?php foreach ($rs as $column):?>
+                        <?php if(is_numeric($column)) :?>
+                            <td><?php echo $column;?></td>
+                        <?php else: ?>
+                            <th><?php echo $column;?></th>
+                        <?php endif; ?>
+                    <?php endforeach;?>
+                </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+    <?php echo $this->paginationControl($this->rs, 'Sliding','ajax_page.phtml'); ?>
+</div>
+<script type="text/javascript">
+    Report.eventOrder();
+    Report.eventFilter();
+    Report.eventAggregate();
+    Report.eventColumn();
+
+    $('a.button-options').click(function(){
+        $('.options').slideToggle('fast');
+        return false;
+    });
+</script>

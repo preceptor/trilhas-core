@@ -52,6 +52,10 @@
 "payment";"Pagamento"
 "minute";"minuto";"minutos"
 "simulation";"Simulação"
+"report";"Relatório"
+"saved";"Salvos"
+"builder";"Construtor"
+"Builder";"Construtor"
 
 #buttons
 "previous content";"Anterior"
@@ -336,3 +340,4 @@
 "Current theme";"Tema atual"
 "Available themes list";"Lista de temas disponíveis"
 "Simulation";"Simulação"
+"Report";"Relatório"

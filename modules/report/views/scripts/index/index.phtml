@@ -1,0 +1,31 @@
+<div id="report">
+    <div id="items">
+        <div id="table" class="table-field">
+            <h3>Tabelas</h3>
+            <ul>
+                <?php foreach($this->tables as $table): ?>
+                <li>
+                    <a href="#"><?php echo $table['name']?></a>
+                    <input type="hidden" name="schema" value="<?php echo $table['schema']?>" />
+                    <input type="hidden" name="table"  value="<?php echo $table['name']?>" />
+                </li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+        <div id="field">
+            <div id="table-field">
+                <p>Escolha uma tabela</p>
+            </div>
+
+            <div id="more">
+
+            </div>
+        </div>
+    </div>
+    <div id="list">
+
+    </div>
+</div>
+<script type="text/javascript">
+    Report.init();
+</script>

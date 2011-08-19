@@ -1,0 +1,32 @@
+<?php if ($this->pageCount): ?>
+    <div class="paginationControl" style="text-align:center">
+        <!-- Previous page link -->
+        <?php if (isset($this->previous)): ?>
+            <a href="#" target="<?php echo $this->previous; ?>">&lt; Anterior</a> |
+        <?php else: ?>
+            <span class="disabled">&lt; Anterior</span> |
+        <?php endif; ?>
+
+        <!-- Numbered page links -->
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if ($page != $this->current): ?>
+                <a href="#" target="<?php echo $page?>"><?php echo $page; ?></a> |
+            <?php else: ?>
+                <?php echo $page; ?> |
+            <?php endif; ?>
+        <?php endforeach; ?>
+
+        <!-- Next page link -->
+        <?php if (isset($this->next)): ?>
+            <a href="#" target="<?php echo $this->next; ?>">Próximo &gt;</a>
+        <?php else: ?>
+            <span class="disabled">Próximo &gt;</span>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+<script>
+    $('.paginationControl a').click(function(){
+        $('#list').load('report/index/list/page/'+this.target);
+        return false;
+    });
+</script>

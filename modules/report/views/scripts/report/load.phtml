@@ -1,0 +1,94 @@
+<div id="icons">
+    <ul>
+        <li><a href="javascript:false" class="list"><img src="img/report/list.jpg" /></a></li>
+        <li><a href="javascript:false" class="pie"><img src="img/report/pie.jpg" /></a></li>
+        <li><a href="javascript:false" class="bar"><img src="img/report/bar.jpg" /></a></li>
+        <?php if (count($this->colunms) > 2): ?>
+            <li><a href="javascript:false" class="line"><img src="img/report/line.jpg" /></a></li>
+        <?php endif; ?>
+    </ul>
+</div>
+<div>
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <?php foreach ($this->colunms as $key => $colunm):?>
+                    <?php
+                        $orderBy = 'view';
+                        foreach ($this->orders as $order) {
+                            if($order['colunm'] == $colunm) {
+                                $orderBy = $order['direction'] == 'ASC' ? 'headerSortUp': 'headerSortDown';
+                            }
+                        }
+                    ?>
+                    <?php if($key == 0): //for bar chart?>
+                        <td class="header <?php echo $orderBy;?>">
+                            <?php echo $colunm;?>
+                        </td>
+                    <?php else: ?>
+                        <th class="header <?php echo $orderBy;?>">
+                            <?php if (strlen($colunm) > 20):?>
+                                <abbr title="<?php echo $colunm;?>"><?php echo substr($colunm, 0, 3);?>...</abbr>
+                            <?php else:?>
+                                <?php echo $colunm;?>
+                            <?php endif; ?>
+                        </th>
+                     <?php endif; ?>
+                <?php endforeach;?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->rs as $key => $rs):?>
+                <tr class="<?php echo ($key%2)?'even':'odd';?>">
+                    <?php foreach ($rs as $column):?>
+                        <?php if(is_numeric($column)) :?>
+                            <td><?php echo $column;?></td>
+                        <?php else: ?>
+                            <th><?php echo $column;?></th>
+                        <?php endif; ?>
+                    <?php endforeach;?>
+                </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+    <div class="tablesorter">
+        <?php echo $this->paginationControl($this->rs, 'Sliding','page.phtml'); ?>
+    </div>
+    <div>&nbsp;</div>
+</div>
+<script type="text/javascript">
+    var colors = ['#FDB813','#666699','#92d5ea','#ee8310','#8d10ee','#5a3b16','#B96A9A','#f45a90','#e9e744','#F68B1F','#0000CD','#458B74','#FF4040','#FF1493','#7A378B'];
+
+    $('.pie').click(function(){
+        $('.visualize-line, .visualize-bar, .tablesorter').hide();
+        if ($('.visualize-pie').length == 0) {
+            $('table').visualize({type: 'pie', height: '500px', width: '800px', colors: colors});
+        }
+        $('.visualize-pie').show();
+        return false;
+    });
+
+    $('.line').click(function(){
+        $('.visualize-bar, .visualize-pie, .tablesorter').hide();
+        if ($('.visualize-line').length == 0) {
+            $('table').visualize({type: 'line', height: '500px', width: '800px', colors: colors});
+        }
+        $('.visualize-line').show();
+        return false;
+    });
+
+    $('.bar').click(function(){
+        $('.visualize-line, .visualize-pie, .tablesorter').hide();
+        if ($('.visualize-bar').length == 0) {
+            $('table').visualize({type: 'bar', height: '500px', width: '800px', colors: colors});
+        }
+        $('.visualize-bar').show();
+        return false;
+    });
+
+    $('.list').click(function(){
+        $('.visualize-line, .visualize-pie, .visualize-bar').hide();
+        $('.tablesorter').show();
+        return false;
+    });
+</script>

@@ -1,0 +1,47 @@
+<?php foreach($this->fields as $key => $field): ?>
+	<?php
+		$nextTable = null;
+		if( isset($this->fields[$key+1]) ){
+			$nextTable = $this->fields[$key+1]['table'];
+		}
+
+		$previousTable = null;
+		if( isset($this->fields[$key-1]) ){
+			$previousTable = $this->fields[$key-1]['table'];
+		}
+	?>
+	<?php if($previousTable != $field['table']):?>
+		<div class="table-field">
+			<h3><?php echo $field['table'];?></h3>
+			<ul>
+	<?php endif;?>
+	
+	<li>
+		<a href='report/index/list'><?php echo $field['colunm']?></a>
+		<input type="hidden" value='<?php echo Zend_Json::encode($field)?>' />
+	</li>
+
+	<?php if( $nextTable != $field['table']):?>
+			</ul>
+		</div>
+		<div class="detail">
+			<a class="button-more" href="#">relacionamentos</a>
+			<div class="list-table">
+				<ul>
+					<?php foreach($this->tables as $table): ?>
+						<li>
+							<a class="button-table" href='report/index/more'><?php echo $table['table']?> (by <?php echo $table['column']?>)</a>
+							<input type="hidden" value='<?php echo Zend_Json::encode($table)?>' />
+						</li>
+					<?php endforeach;?>
+				</ul>
+			</div>
+		</div>
+	<?php endif;?>
+<?php endforeach;?>
+
+<script>
+	Report.eventField();
+	Report.eventTable();
+	Report.eventMore();
+</script>
