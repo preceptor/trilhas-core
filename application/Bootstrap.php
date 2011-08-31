@@ -32,27 +32,29 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $defaultOptions = $this->getOptions();
         $this->setOptions($this->mergeOptions($options, $defaultOptions));
     
-        $this->bootstrap('cachemanager');
-        $cache = $this->getResource('cachemanager')
-                      ->getCache('default');
-
-        $classFileIncCache = APPLICATION_PATH . '/../data/cache/pluginLoaderCache.php';
-        if (file_exists($classFileIncCache)) {
-            include_once $classFileIncCache;
-        }
+        if ($this->hasResource('cachemanager')){
+            $this->bootstrap('cachemanager');
+            $cache = $this->getResource('cachemanager')
+                          ->getCache('default');
         
-        if (APPLICATION_ENV == 'production') {
-            Zend_Loader_PluginLoader::setIncludeFileCache($classFileIncCache);
-            Zend_Db_Table::setDefaultMetadataCache($cache);
-            Zend_Date::setOptions(array('cache' => $cache));
-            Zend_Translate::setCache($cache);
-            Zend_Locale::setCache($cache);
-        }
+            $classFileIncCache = APPLICATION_PATH . '/../data/cache/pluginLoaderCache.php';
+            if (file_exists($classFileIncCache)) {
+                include_once $classFileIncCache;
+            }
 
-        Zend_Registry::set('cache', $cache);
-        Zend_Registry::set('Zend_Log', $this->bootstrap('log')
-                                            ->getPluginResource('log')
-                                            ->getLog());
+            if (APPLICATION_ENV == 'production') {
+                Zend_Loader_PluginLoader::setIncludeFileCache($classFileIncCache);
+                Zend_Db_Table::setDefaultMetadataCache($cache);
+                Zend_Date::setOptions(array('cache' => $cache));
+                Zend_Translate::setCache($cache);
+                Zend_Locale::setCache($cache);
+            }
+
+            Zend_Registry::set('cache', $cache);
+            Zend_Registry::set('Zend_Log', $this->bootstrap('log')
+                                                ->getPluginResource('log')
+                                                ->getLog());
+        }
     }
 
     protected function _initAcl()

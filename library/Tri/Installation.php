@@ -48,9 +48,9 @@ class Tri_Installation
      *
      * @param string $name 
      */
-    public function __construct() 
+    public function __construct($path) 
     {
-        $this->_path = APPLICATION_PATH . '/../data/';
+        $this->_path = $path;
     }
     
     /**
@@ -172,6 +172,13 @@ class Tri_Installation
     {
         $config = $this->getConfiguration();
         
+        //add configuration
+        if ($config->configuration) {
+            foreach ($config->configuration->item as $item) {
+                Tri_Config::set((string) $item['name'], (string) $item, false, (string) $item['autoload']);
+            }
+        }
+        
         //add menus
         if ($config->menus) {
             foreach ($config->menus->menu as $menu) {
@@ -191,12 +198,6 @@ class Tri_Installation
             }
         }
         
-        //add configuration
-        if ($config->configuration) {
-            foreach ($config->configuration->item as $item) {
-                Tri_Config::set((string) $item['name'], (string) $item);
-            }
-        }
         
         //add widget
         if ($config->widget) {
