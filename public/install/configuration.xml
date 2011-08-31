@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <name>Trilhas</name>
+    <description>Inicial configuration</description>
+    <author>Preceptor Educação a Distância</author>
+    <version>1.0</version>
+    <license>GPL 3</license>
+    <keywords>general</keywords>
+    <url>http://www.preceptoread.com.br</url>
+    
+    <files>
+        <sql>
+            <install>install.sql</install>
+        </sql>
+    </files>
+    
+    <configuration>
+        <item name="tri_resources" />
+        <item name="tri_classroom_menu" />
+        <item name="tri_admin_menu" />
+        <item name="tri_upload_dir" />
+        <item name="tri_app_charset">utf-8</item>
+        <item name="tri_average">7</item>
+        <item name="tri_attempts">3</item>
+        <item name="tri_new_user_to_guest">1</item>
+        <item name="tri_mail" autoload="1">{"type":"Sendmail","defaultfrom":{"email":"sistema@espacoead.com.br","name":"Trilhas"}}</item>
+        <item name="tri_cachemanager" autoload="1">{"default":{"frontend":{"name":"Core","options":{"automatic_serialization":"1"}},"backend":{"name":"File","options":{"cache_dir":"data\\/cache\\/"}}}}</item>
+        <item name="tri_locale" autoload="1">{"default":"pt_BR"}</item>
+        <item name="tri_translate" autoload="1">{"adapter":"csv","data":"data\\/language\\/","locale":"pt_BR","options":{"scan":"directory"}}</item>
+        <item name="tri_mail_vector">-forgot-</item>
+        <item name="tri_roles">["student","teacher","coordinator","institution"]</item>
+        <item name="tri_course_highlight">1</item>
+        <item name="tri_logo">logo.png</item>
+        <item name="tri_title">Trilhas Abertas</item>
+        <item name="tri_salt">trilhas</item>
+        <item name="tri_plugins" />
+        <item name="tri_plugins_installed" />
+        <item name="tri_custom_css" />
+        <item name="tri_theme">default</item>
+        <item name="tri_theme_style">default</item>
+        <item name="tri_theme_styles">{"default":"Padrão","green":"Verde","blue":"Azul"}</item>
+        <item name="tri_themes_installed">["default"]</item>
+    </configuration>
+    
+    <menus>
+        <menu type="tri_admin_menu">
+            <item group="general" resource="admin/course/index">course</item>    
+            <item group="general" resource="admin/classroom/index">classroom</item>    
+            <item group="general" resource="admin/acl/index">access</item>    
+            <item group="general" resource="admin/plugin/index">plugin</item>    
+            <item group="general" resource="admin/user/index">user</item>    
+            <item group="appearance" resource="admin/theme/index">theme</item>    
+            <item group="appearance" resource="default/theme/index">options</item>    
+        </menu>
+        <menu type="tri_classroom_menu">
+            <item group="communication" resource="forum/index/index">forum</item>    
+            <item group="communication" resource="message/index/index">message</item>    
+            <item group="communication" resource="chat/room/index">chat</item>    
+            <item group="communication" resource="bigbluebutton/index/index">conference</item>
+            <item group="creation" resource="content/composer/index">creation</item>    
+            <item group="creation" resource="content/organizer/index">organizer</item>    
+            <item group="creation" resource="content/restriction/index">restriction</item>
+            <item group="support" resource="faq/index/index">faq</item>    
+            <item group="support" resource="file/index/index">file</item>    
+            <item group="support" resource="glossary/index/index">glossary</item>    
+            <item group="support" resource="notepad/index/index">notepad</item>
+            <item group="evaluation" resource="exercise/index/index">exercise</item>
+            <item group="evaluation" resource="activity/index/index">activity</item>
+            <item group="evaluation" resource="panel/index/index">panel</item>
+        </menu>
+    </menus>
+    
+    <access>
+        <resource role="all">default/index/index</resource>
+        <resource role="all">default/index/return</resource>
+        <resource role="identified">default/index/keep-session</resource>
+        <resource role="identified">default/dashboard/index</resource>
+        <resource role="identified">default/user/index</resource>
+        <resource role="identified">default/user/edit</resource>
+        <resource role="all">default/user/form</resource>
+        <resource role="all">default/user/save</resource>
+        <resource role="all">default/user/login</resource>
+        <resource role="identified">default/user/logout</resource>
+        <resource role="identified">default/user/forgot</resource>
+        <resource role="identified">default/user/view</resource>
+        <resource role="all">default/course/view</resource>
+        <resource role="identified">default/course/list</resource>
+        <resource role="identified">default/classroom/view</resource>
+        <resource role="all">default/classroom/select</resource>
+        <resource role="identified">default/classroom/sign</resource>
+        <resource role="all">default/static/js</resource>
+        <resource role="all">default/static/css</resource>
+        <resource role="all">default/static/img</resource>
+        <resource role="all">default/error/error</resource>
+        <resource role="all">default/forgot/index</resource>
+        <resource role="all">default/forgot/send</resource>
+        <resource role="all">default/forgot/save</resource>
+        <resource role="all">default/forgot/recovery</resource>
+        <resource role="institution">default/theme/index</resource>
+        <resource role="institution">default/theme/save</resource>
+        <resource role="institution">admin/index/index</resource>
+        <resource role="institution">admin/course/index</resource>
+        <resource role="institution">admin/course/form</resource>
+        <resource role="institution">admin/course/save</resource>
+        <resource role="institution">admin/acl/save</resource>
+        <resource role="institution">admin/acl/index</resource>
+        <resource role="institution">admin/acl/add</resource>
+        <resource role="institution">admin/plugin/index</resource>
+        <resource role="institution">admin/plugin/activate</resource>
+        <resource role="institution">admin/plugin/desactivate</resource>
+        <resource role="institution">admin/plugin/uninstall</resource>
+        <resource role="institution">admin/classroom/index</resource>
+        <resource role="institution">admin/classroom/form</resource>
+        <resource role="institution">admin/classroom/list-user</resource>
+        <resource role="institution">admin/classroom/matriculate</resource>
+        <resource role="institution">admin/classroom/save</resource>
+        <resource role="institution">admin/user/index</resource>
+        <resource role="institution">admin/user/form</resource>
+        <resource role="institution">admin/user/save</resource>
+        <resource role="institution">admin/theme/index</resource>
+        <resource role="institution">admin/theme/save</resource>
+        <resource role="identified">content/index/view</resource>
+        <resource role="identified">content/print/index</resource>
+        <resource role="identified">content/print/view</resource>
+        <resource role="teacher">content/composer/index</resource>
+        <resource role="teacher">content/composer/form</resource>
+        <resource role="teacher">content/composer/save</resource>
+        <resource role="teacher">content/composer/delete</resource>
+        <resource role="teacher">content/organizer/index</resource>
+        <resource role="teacher">content/organizer/save</resource>
+        <resource role="teacher">content/restriction/time-form</resource>
+        <resource role="teacher">content/restriction/time-delete</resource>
+        <resource role="teacher">content/restriction/time-save</resource>
+        <resource role="teacher">content/restriction/panel-form</resource>
+        <resource role="teacher">content/restriction/panel-delete</resource>
+        <resource role="teacher">content/restriction/panel-save</resource>
+        <resource role="teacher">content/restriction/index</resource>
+        <resource role="teacher">content/file/form</resource>
+        <resource role="teacher">content/file/delete</resource>
+        <resource role="teacher">content/file/save</resource>
+        <resource role="teacher">content/file/index</resource>
+        <resource role="teacher">content/file/download</resource>
+        <resource role="teacher">content/template/form</resource>
+        <resource role="teacher">content/template/delete</resource>
+        <resource role="teacher">content/template/save</resource>
+        <resource role="teacher">content/template/index</resource>
+    </access>
+    
+    <widget>
+        <item position="main_index" order="1">default/course/widget</item>
+        <item position="main_dashboard">default/course/dashboard</item>
+        <item position="main_dashboard">default/course/highlight</item>
+        <item position="main_dashboard">default/dashboard/timeline</item>
+        <item position="main_classroom">content/index/widget</item>
+
+    </widget>
+</configuration>

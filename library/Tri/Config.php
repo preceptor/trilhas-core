@@ -91,7 +91,7 @@ class Tri_Config
         return $options;
     }
 
-    public static function set($name, $data, $encoded = false)
+    public static function set($name, $data, $encoded = false, $autoload = 0)
     {
         $table = new Tri_Db_Table('configuration');
         $where = array('name = ?' => $name);
@@ -101,6 +101,7 @@ class Tri_Config
         if (!$row) {
             $row = $table->createRow();
             $row->name = $name;
+            $row->autoload = $autoload;
         }
 
         if ($encoded) {
