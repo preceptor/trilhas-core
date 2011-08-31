@@ -18,7 +18,8 @@
                                    ->prependFile('js/ckeditor/lang/' . strtolower($locale) . '.js'); 
             }
             
-            $this->headScript()->prependFile('js/jquery/jquery-ui.min.js')
+            $this->headScript()->prependFile('js/jquery/jquery.strength.js')
+                               ->prependFile('js/jquery/jquery-ui.min.js')
                                ->prependFile('js/jquery/jquery.maskedinput.js')
                                ->prependFile('js/jquery/jquery.other.js')
                                ->prependFile('js/ckeditor/ckeditor.js')

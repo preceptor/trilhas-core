@@ -13,4 +13,4 @@
 .dashed{border: 1px dashed;}
 .dotted{border: 1px dotted;}
 .clear{clear: both;}
-.clear-min{clear: both; overflow: hidden; height: 1px; width: 1px; display: block;}
+.clear-min{clear: both; overflow: hidden; height: 1px; width: 1px; display: block;} 

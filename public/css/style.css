@@ -206,3 +206,10 @@ table.messages div{cursor: pointer;}
 
 #question-type div{ float: left; margin-right: 20px;}
 #question-type img{ border: 1px solid #ddd;}
+
+.passwordStrengthBar{background: white; border: 1px solid #777777; margin: 1px; width: 180px;} 
+.passwordStrengthBar div{height: 5px; width: 0;} 
+.passwordStrengthBar div.strong{background-color: #32cd32;} 
+.passwordStrengthBar div.medium{background-color: yellow;} 
+.passwordStrengthBar div.weak{background-color: orange;}
+.passwordStrengthBar div.useless{background-color: red;}
