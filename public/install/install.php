@@ -22,7 +22,6 @@ if ($conect) {
     mysql_query($sql);
     mysql_select_db($_POST['db']);
 
-    
     $config = new Zend_Config_Ini($defaultApplicationFile, null, true);
     $config->setExtend('staging', 'production');
     $config->setExtend('development', 'production');
@@ -47,14 +46,11 @@ if ($conect) {
     Zend_Db_Table::setDefaultAdapter($db);
     
     
-    $opa = new Tri_Installation(dirname(__FILE__).'/');
-    $opa->install();
-    $opa->activate();
+    $installation = new Tri_Installation(dirname(__FILE__).'/');
+    $installation->install();
+    $installation->activate();
     
     $password = MD5("trilhas".$_POST['userpassword']);
-    
-    //$query = "INSERT INTO `user` (name,email,password,role) VALUES ('Administrador','".$_POST['login']."','".$password."','institution')";
-    //mysql_query($query) or die(mysql_error());
     
     $user = new Zend_Db_Table('user');
     $data = array('name'        => 'administrador',

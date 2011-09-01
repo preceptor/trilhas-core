@@ -1,0 +1,5 @@
+<?php if (file_exists(APPLICATION_PATH . '/configs/application.ini')): ?>
+    <p><?php echo 'application.ini ja existente';?></p>
+<?php else: ?>
+    <p><a href='form.php' class='button'>Instalar</a></p>
+<?php endif; ?>
