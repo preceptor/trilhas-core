@@ -113,6 +113,7 @@
         <resource role="institution">admin/classroom/form</resource>
         <resource role="institution">admin/classroom/list-user</resource>
         <resource role="institution">admin/classroom/matriculate</resource>
+        <resource role="institution">admin/classroom/search-user</resource>
         <resource role="institution">admin/classroom/save</resource>
         <resource role="institution">admin/user/index</resource>
         <resource role="institution">admin/user/form</resource>
