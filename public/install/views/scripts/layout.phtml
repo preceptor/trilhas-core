@@ -22,6 +22,16 @@
         <div class="main">
             <div class="row">
                 <div class="column grid_16">
+                    <?php if ($this->layout()->messages):?>
+                        <div class="message">
+                            <ul>
+                                <?php foreach ($this->layout()->messages as $message): ?>
+                                    <li><?php echo $this->translate($message)?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                        <br />
+                    <?php endif;?>
                     <div class="box">
                         <div class="header">Instalação</div>
                         <div class="content">

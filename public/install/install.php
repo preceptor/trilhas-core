@@ -1,5 +1,5 @@
 <?php
-
+ini_set('display_errors', 0);
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../../application'));
 
@@ -15,9 +15,13 @@ $autoloader->registerNamespace('Tri');
 $defaultApplicationFile = APPLICATION_PATH . '/configs/application.ini.default';
 $applicationFile = APPLICATION_PATH . '/configs/application.ini';
 
-$conect = mysql_connect($_POST['host'], $_POST['user'], $_POST['password']);
-if ($conect) {
+$connect = mysql_connect($_POST['host'], $_POST['user'], $_POST['password']);
 
+require_once 'forms/Installation.php';
+
+$form = new Install_Form_Installation();
+
+if ($form->isValid($_POST) && $connect) {
     $sql = 'CREATE DATABASE IF NOT EXISTS ' . $_POST['db'];
     mysql_query($sql);
     mysql_select_db($_POST['db']);
@@ -50,7 +54,7 @@ if ($conect) {
     $installation->install();
     $installation->activate();
     
-    $password = MD5("trilhas".$_POST['userpassword']);
+    $password = MD5("trilhas".$_POST['user_password']);
     
     $user = new Zend_Db_Table('user');
     $data = array('name'        => 'administrador',
@@ -97,6 +101,24 @@ if ($conect) {
     
     header("Location: '/../../");
 } else {
-    echo 'Erro ao conectar com o servidor mysql';
+    $view = new Zend_View();
+    $view->addBasePath(realpath(dirname(__FILE__) . '/views/'));
+
+    $layout = Zend_Layout::startMvc();
+    $layout->setView($view);
+    
+    $form->setView($view);
+    $form->populate($_POST);
+
+    $view->form = $form;
+    
+    
+    $layout->content = $view->render('form.phtml');
+    
+    $messages = array();
+    $messages[] = 'Erro ao contectar com o servidor, confira os dados preenchidos e tente novamente';
+    $layout->messages = $messages;
+    
+    echo $layout->render();
 }
 ?>
