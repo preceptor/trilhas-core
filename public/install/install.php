@@ -27,6 +27,7 @@ if ($form->isValid($_POST)) {
     if ($connect) {
         $sql = 'CREATE DATABASE IF NOT EXISTS ' . $data['db'];
 
+<<<<<<< HEAD
         mysql_query($sql);
         mysql_select_db($data['db']);
 
@@ -99,6 +100,55 @@ if ($form->isValid($_POST)) {
 
         header("Location: '/../../");
         exit;
+=======
+    $writer = new Zend_Config_Writer_Ini();
+    $writer->write($applicationFile, $config);
+    
+    $db = Zend_Db::factory('PDO_MYSQL',array('host' => $_POST['host'], 
+                                             'username' => $_POST['user'], 
+                                             'password' => $_POST['password'], 
+                                             'dbname' => $_POST['db'],
+                                             'charset' => 'UTF8'));
+    
+    Zend_Db_Table::setDefaultAdapter($db);
+    
+    
+    $installation = new Tri_Installation(dirname(__FILE__).'/');
+    $installation->install();
+    $installation->activate();
+    
+    $password = MD5("trilhas".$_POST['user_password']);
+    
+    $user = new Zend_Db_Table('user');
+    $data = array('name'        => 'administrador',
+                  'email'       => $_POST['login'],
+                  'password'    => $password,
+                  'role'       =>  'institution');
+
+    $row = $user->createRow($data);
+    $uId = $row->save();
+
+    if($_POST['course'] == 1){
+        
+        $course = new Zend_Db_Table('course');
+        $data = array('user_id'     => $uId,
+                      'responsible' => $uId,
+                      'name'        => 'Demonstraçao',
+                      'description' => 'Curso de demonstração',
+                      'status'      => 'active');
+
+        $row = $course->createRow($data);
+        $cId = $row->save();
+                
+        $classroom = new Zend_Db_Table('classroom');
+        $data = array('course_id'   => $cId,
+                      'responsible' => $uId,
+                      'name'        => 'Demonstração',
+                      'begin'       => date('Y-m-d'));
+
+        $row = $classroom->createRow($data);
+        $row->save();
+>>>>>>> add ˜ in the word demonstração
     }
 } 
 
