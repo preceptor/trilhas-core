@@ -153,6 +153,5 @@
         <item position="main_dashboard">default/course/highlight</item>
         <item position="main_dashboard">default/dashboard/timeline</item>
         <item position="main_classroom">content/index/widget</item>
-
     </widget>
 </configuration>

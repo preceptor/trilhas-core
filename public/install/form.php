@@ -12,8 +12,7 @@ require_once 'forms/Installation.php';
 $view = new Zend_View();
 $view->addBasePath(realpath(dirname(__FILE__) . '/views/'));
 
-$layout = Zend_Layout::startMvc();
-
+$layout = new Zend_Layout();
 $layout->setView($view);
 
 $form = new Install_Form_Installation();

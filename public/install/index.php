@@ -12,7 +12,7 @@ $autoloader = Zend_Loader_Autoloader::getInstance();
 $view = new Zend_View();
 $view->addBasePath(realpath(dirname(__FILE__) . '/views/'));
 
-$layout = Zend_Layout::startMvc();
+$layout = new Zend_Layout();
 
 $layout->setView($view);
 $layout->content = $view->render('index.phtml');

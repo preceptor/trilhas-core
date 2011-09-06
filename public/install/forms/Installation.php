@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Trilhas - Learning Management System
  * Copyright (C) 2005-2010  Preceptor Educação a Distância Ltda. <http://www.preceptoead.com.br>
@@ -36,50 +35,37 @@ class Install_Form_Installation extends Zend_Form
              ->setMethod('post')
              ->setAttrib('enctype', 'multipart/form-data');
 
-        //$filters['db'][] = 'StripTags';
         $db = new Zend_Form_Element_Text('db');
-        $db->setLabel('Nome do banco dados')
+        $db->setLabel('Database name')
            ->setAttrib('size', '55')
            ->setRequired();
 
-        
-        //$filters['user'][] = 'StripTags';
         $user = new Zend_Form_Element_Text('user');
-        $user->setLabel('Usuário do banco de dados')
-             //->addValidators($validators['user'])
-             //->addFilters($filters['user'])
+        $user->setLabel('Database username')
              ->setAttrib('size', '55')
              ->setRequired();
 
         $password = new Zend_Form_Element_Password('password');
-        $password->setLabel('Senha do banco de dados');
-                 //->addValidators($validators['user_login']);
-        
-        //$filters['host'][] = 'StripTags';
+        $password->setLabel('Database password')
+                 ->setRequired();
+ 
         $host = new Zend_Form_Element_Text('host');
-        $host->setLabel('Servidor do banco de dados')
-            //->addValidators($validators['host'])
-            //->addFilters($filters['host'])
-            ->setAttrib('size', '55')
-            ->setRequired();
+        $host->setLabel('Database host')
+             ->setAttrib('size', '55')
+             ->setRequired();
         
         $login = new Zend_Form_Element_Text('login');
-        $login->setLabel('Email de acesso')
-              //->addValidators($validators['login'])
-              //->addFilters($filters['login'])
+        $login->setLabel('Administration email')
               ->setAttrib('size', '55')
-              ->setAllowEmpty(false);
+              ->setRequired();
         
-        //$filters['user_password'][] = array('Md5', Tri_Config::get('tri_salt'));
         $user_password = new Zend_Form_Element_Password('user_password');
-        $user_password->setLabel('Senha de acesso');
-                      //->addValidators($validators['user_password'])
-                      //->addFilters($filters['user_password']);
-        
+        $user_password->setLabel('Administration password')
+                      ->setRequired();
+                                   
         $course = new Zend_Form_Element_Checkbox('course');
-        $course->setLabel('Criar curso de demonstração')
+        $course->setLabel('Create a demonstration data?')
                ->setChecked(false);
-
 
         $this->addElement($db)
              ->addElement($user)
@@ -92,5 +78,4 @@ class Install_Form_Installation extends Zend_Form
         
         $this->addElement('submit', 'Save');
     }
-
 }
