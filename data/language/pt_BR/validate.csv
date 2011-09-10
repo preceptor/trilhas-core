@@ -1,8 +1,9 @@
 #message
-"Error";"Erro"
-"Success";"Realizado com sucesso"
+"Error";"Erro."
+"Success";"Realizado com sucesso."
 "Email existing";"E-mail já cadastrado."
 "Cpf existing";"CPF já cadastrado."
+"Invalid data";"Dados inválidos."
 
 "Password confirmation does not match";"Confirmação de senha incorreta."
 
