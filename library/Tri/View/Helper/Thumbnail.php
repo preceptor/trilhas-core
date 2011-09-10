@@ -46,7 +46,7 @@ class Tri_View_Helper_Thumbnail extends Zend_View_Helper_Abstract
                 return $type . '.jpg';
             }
             $this->_resize($this->_type[$type]['width'], $this->_type[$type]['height']);
-            imagejpeg($this->_image, $thumb, 70);
+            imagejpeg($this->_image, $thumb, 90);
         }
         return $path . $type . '.jpg';
     }
