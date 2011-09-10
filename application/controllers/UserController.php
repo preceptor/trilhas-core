@@ -33,7 +33,7 @@ class UserController extends Tri_Controller_Action
 
     public function loginAction()
     {
-        $this->view->title = "Login";
+        $this->view->title = "Access";
         $session = new Zend_Session_Namespace('data');
         $auth    = Zend_Auth::getInstance();
         $form    = new Application_Form_Login();
@@ -223,7 +223,7 @@ class UserController extends Tri_Controller_Action
 
         $form->getElement('born')->removeFilter('Date');
         
-        $messages[] = 'Error';
+        $messages[] = 'Invalid data';
         $this->view->messages = $messages;
         $this->view->form = $form;
         $this->render('form');

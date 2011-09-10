@@ -56,24 +56,29 @@ class Application_Form_User extends Zend_Form
         $name->setLabel('Name')
                 ->addValidators($validators['name'])
                 ->addFilters($filters['name'])
-                ->setAllowEmpty(false);
+                ->setRequired()
+                ->setAttrib('size', 55);
 
         $email = new Zend_Form_Element_Text('email');
         $email->setLabel('Email')
                 ->addValidators($validators['email'])
                 ->addFilters($filters['email'])
-                ->setAllowEmpty(false);
+                ->setRequired()
+                ->setAttrib('size', 55);
 
         $filters['password'][] = array('Md5', Tri_Config::get('tri_salt'));
         $validators['password'][] = 'PasswordConfirmation';
         $password = new Zend_Form_Element_Password('password');
         $password->setLabel('Password')
                 ->addValidators($validators['password'])
-                ->addFilters($filters['password']);
+                ->addFilters($filters['password'])
+                ->setAttrib('id', 'passwordIn')
+                ->setRequired();
 
         $passwordConfirmation = new Zend_Form_Element_Password('password_confirm');
         $passwordConfirmation->setLabel('Password confirmation')
-                             ->addFilter('Md5', Tri_Config::get('tri_salt'));
+                             ->addFilter('Md5', Tri_Config::get('tri_salt'))
+                             ->setRequired();
 
         $sex = new Zend_Form_Element_Select('sex');
         $sex->setLabel('Sex')
