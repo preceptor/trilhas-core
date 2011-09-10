@@ -20,8 +20,8 @@
  * @copyright  Copyright (C) 2005-2010  Preceptor Educação a Distância Ltda. <http://www.preceptoead.com.br>
  * @license    http://www.gnu.org/licenses/  GNU GPL
 */
-*{font-size: 12px; font-family: 'Lucida Grande', Arial, Helvetica, sans-serif;}
-html, body{margin: 0; padding: 0;}
+*{font-family: 'Lucida Grande', Arial, Helvetica, sans-serif;}
+html, body{font-size: 12px; margin: 0; padding: 0;}
 a{color: #0052A3; text-decoration: none;}
 a:hover{text-decoration: underline;}
 img{border: none;}
@@ -42,7 +42,7 @@ div.box{margin-bottom: 5px; border: 1px solid #CCC;}
 div.box div.header {background: url(../img/title-white.jpg) repeat-x; height: 19px; padding: 2px 10px 8px; overflow: hidden;}
 div.box div.blue{background: url(../img/title-blue.jpg); margin-top: 0; padding-top: 5px; height: 16px; color: white;}
 div.box div.header h3{line-height: 20px; margin: 0; font-size: 15px; font-weight: normal;}
-div.box div.content{background: url(../img/content.jpg) repeat-x white;  font-size: 0.91em; padding: 20px 15px; overflow: hidden;}
+div.box div.content{background: url(../img/content.jpg) repeat-x white; padding: 20px 15px; overflow: hidden;}
 
 .logo .content{padding: 10px 0;}
 
@@ -68,7 +68,7 @@ div.box div.content{background: url(../img/content.jpg) repeat-x white;  font-si
 .menu .content{padding: 10px 0 0 10px;}
 .menu .content h3{font-size: 15px; font-weight: normal; margin:0 0 0 10px; padding: 0; color: #4480BC;}
 .menu .content ul{margin: 2px 0 10px;  padding: 5px 0;}
-.menu .content ul li{list-style: none; font-size: 0.8em; padding: 2px 0; margin-left: 15px;}
+.menu .content ul li{list-style: none; padding: 2px 0; margin-left: 15px;}
 .menu .content ul li a{text-decoration: none; color: #333;}
 .menu .content ul li a:hover{text-decoration: underline;}
 
@@ -121,7 +121,7 @@ div.box div.content{background: url(../img/content.jpg) repeat-x white;  font-si
 .forum dl{margin: 0;}
 .forum .partial-reply{border: 1px solid #ddd; margin-top: 2px;}
 
-.forgot{ padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px dotted #ccc; font-size: 0.8em;}
+.forgot{ padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px dotted #ccc;}
 
 .paginationControl{text-align: center; margin-top: 10px;}
 
@@ -148,7 +148,7 @@ div.box div.content{background: url(../img/content.jpg) repeat-x white;  font-si
 
 .chat-room ul.messages{margin: 0; padding: 5px; height: 300px; overflow: auto; list-style: none; border: 1px solid #ddd;}
 .chat-room ul.messages li{margin-bottom: 5px; padding: 3px; border-bottom: 1px dotted #ccc;}
-.chat-room ul.messages li span{color: #ddd; font-size: 0.9em;}
+.chat-room ul.messages li span{color: #ddd;}
 .chat-room ul.messages li img{border: 1px solid #ccc; float: left; margin-right: 5px;}
 .chat-room ul.user{height: 300px; overflow: auto; list-style: none; float: right; padding: 5px; margin: 0 0 0 20px; width: 200px; border: 1px solid #ddd;}
 .chat-room ul.user li{border-bottom: 1px dotted #ccc; margin-bottom: 5px; padding-bottom: 5px;}

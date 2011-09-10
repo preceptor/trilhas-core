@@ -1,12 +1,12 @@
 .menu li a{padding: 10px; border: 1px dotted #aaa; display: block;}
 .menu h3{font-size: 1.4em}
 
-a {font-size: 1.4em}
+.menu a {font-size: 1.4em}
 
 /* reset grids */
-.column{float: none; margin: 0px;}
+.column{float: none; margin: 0;}
 .row {width: auto;	margin: 0 auto;}
-.row .row {margin: 0; width: auto;}
+.row .row {margin: 0 10px;}
 .grid_1 { width:auto; }
 .grid_2 { width:auto; }
 .grid_3 { width:auto; }
@@ -23,3 +23,5 @@ a {font-size: 1.4em}
 .grid_14 { width:auto; }
 .grid_15 { width:auto; }
 .grid_16 { width:auto; }
+
+.pages{margin-bottom: 5px;}
