@@ -60,21 +60,17 @@
             </div>
         </div>
         <div class="main">
-            <div class="row">
-                <div class="column grid_16">
-                    <?php if ($this->messages):?>
-                        <div class="message">
-                            <ul>
-                                <?php foreach ($this->messages as $message): ?>
-                                    <li><?php echo $this->translate($message)?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                        <br />
-                    <?php endif;?>
-                    <?php echo $this->layout()->content?>
+            <?php if ($this->messages):?>
+                <div class="message">
+                    <ul>
+                        <?php foreach ($this->messages as $message): ?>
+                            <li><?php echo $this->translate($message)?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
-            </div>
+                <br />
+            <?php endif;?>
+            <?php echo $this->layout()->content?>
         </div>
         <div class="row">
             <div class="column grid_16">
