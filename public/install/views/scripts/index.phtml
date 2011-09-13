@@ -9,38 +9,108 @@
         </tr>
         <tr>
             <td>PHP Version</td>
-            <td><?php echo version_compare(phpversion(), '5.2.4')?></td>
+            <td>
+                <?php if (version_compare(phpversion(), '5.2.4', '>=')): ?>
+                    <span class="button green">Ok</span>
+                <?php else: ?>
+                    <span class="button red">
+                        <?php echo $this->translate('Please upgrade your PHP version')?>
+                    </span>    
+                <?php endif ?>
+            </td>
         </tr>
         <tr>
             <td>Mysql extension</td>
-            <td><?php echo extension_loaded('mysql') && extension_loaded('pdo_mysql')?></td>
+            <td>
+                <?php if(extension_loaded('mysql') && extension_loaded('pdo_mysql')): ?>
+                    <span class="button green">Ok</span>
+                <?php else: ?>
+                    <span class="button red">
+                        <?php echo $this->translate('Your PHP installation appears to be missing the MySQL extension which is required by Trilhas')?>
+                    </span>    
+                <?php endif ?>
+            </td>
         </tr>
         <tr>
             <td>GD extension</td>
-            <td><?php echo extension_loaded('gd')?></td>
+            <td>
+                <?php if(extension_loaded('gd')): ?>
+                    <span class="button green">Ok</span>
+                <?php else: ?>
+                    <?php echo $this->translate('Your PHP installation appears to be missing the GD extension which is required by Trilhas')?>
+                <?php endif ?>    
+            </td>
         </tr>
         <tr>
             <td>Apache mode_rewrite enabled</td>
-            <td><?php echo in_array('mod_rewrite', apache_get_modules())?></td>
+            <td>
+                <?php if(in_array('mod_rewrite', apache_get_modules())):?>
+                    <span class="button green">Ok</span>
+                <?php else: ?>    
+                    <?php echo $this->translate('Please enable mod_rewrite module in your Apache configuration')?>
+                <?php endif ?>    
+            </td>
         </tr>
         <tr>
             <td>/application/configs is writable</td>
-            <td><?php echo is_writable(APPLICATION_PATH . '/configs/')?></td>
+            <td>
+                <?php if (is_writable(APPLICATION_PATH . '/configs/')):?>
+                    <span class="button green">
+                        <?php echo $this->translate('Yes')?>
+                    </span>
+                <?php else: ?>
+                    <span class="button red">
+                        <?php echo $this->translate('No')?>
+                    </span>
+                <?php endif; ?>
+            </td>
         </tr>
         <tr>
             <td>/data is writable</td>
-            <td><?php echo is_writable(APPLICATION_PATH . '/../data')?></td>
+            <td>
+                <?php if(is_writable(APPLICATION_PATH . '/../data')): ?>
+                    <span class="button green">
+                        <?php echo $this->translate('Yes')?>
+                    </span>
+                <?php else: ?>
+                    <span class="button red">
+                        <?php echo $this->translate('No')?>
+                    </span>
+                <?php endif; ?>
+
+            </td>
         </tr>
         <tr>
             <td>/plugins is writable</td>
-            <td><?php echo is_writable(APPLICATION_PATH . '/../plugins')?></td>
+            <td>
+                <?php if (is_writable(APPLICATION_PATH . '/../plugins')): ?>
+                    <span class="button green">
+                        <?php echo $this->translate('Yes')?>
+                    </span>
+                <?php else: ?>
+                    <span class="button red">
+                        <?php echo $this->translate('No')?>
+                    </span>
+                <?php endif; ?>
+            </td>
         </tr>
         <tr>
             <td>/themes is writable</td>
-            <td><?php echo is_writable(APPLICATION_PATH . '/../themes')?></td>
+            <td>
+                <?php if (is_writable(APPLICATION_PATH . '/../themes')): ?>
+                    <span class="button green">
+                        <?php echo $this->translate('Yes')?>
+                    </span>
+                <?php else: ?>
+                    <span class="button red">
+                        <?php echo $this->translate('No')?>
+                    </span>
+                <?php endif; ?>
+                    
+            </td>
         </tr>
 
     </table>
     <br />
-    <p class="aright"><a href='form.php' class='button'><?php echo $this->translate('Install')?></a></p>
+    <p class="aright"><a href='form.php' class='button green'><?php echo $this->translate('Install')?></a></p>
 <?php endif; ?>

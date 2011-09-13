@@ -15,6 +15,7 @@ $autoloader->registerNamespace('Tri');
 $defaultApplicationFile = APPLICATION_PATH . '/configs/application.ini.default';
 $applicationFile = APPLICATION_PATH . '/configs/application.ini';
 
+$messages = array();
 
 require_once 'forms/Installation.php';
 
@@ -27,7 +28,6 @@ if ($form->isValid($_POST)) {
     if ($connect) {
         $sql = 'CREATE DATABASE IF NOT EXISTS ' . $data['db'];
 
-<<<<<<< HEAD
         mysql_query($sql);
         mysql_select_db($data['db']);
 
@@ -42,9 +42,13 @@ if ($form->isValid($_POST)) {
         $config->production->resources->db->params->dbname = $data['db'];
         $config->production->resources->db->params->password = $data['password'];
         $config->production->resources->db->params->host = $data['host'];
-
-        $writer = new Zend_Config_Writer_Ini();
-        $writer->write($applicationFile, $config);
+		
+        try {
+        	$writer = new Zend_Config_Writer_Ini();
+        	$writer->write($applicationFile, $config);
+        } catch (Exception $e) {
+        	$messages[] = "Não foi possível escrever os arquivos de configuração";
+        }
 
         $db = Zend_Db::factory('PDO_MYSQL',$config->production->resources->db->params);
 
@@ -100,9 +104,14 @@ if ($form->isValid($_POST)) {
 
         header("Location: '/../../");
         exit;
-=======
-    $writer = new Zend_Config_Writer_Ini();
-    $writer->write($applicationFile, $config);
+    }
+
+    try {
+    	$writer = new Zend_Config_Writer_Ini();
+    	$writer->write($applicationFile, $config);
+    } catch (Exception $e) {
+		$messages[] = "Não foi possível escrever os arquivos de configuração";
+    }
     
     $db = Zend_Db::factory('PDO_MYSQL',array('host' => $_POST['host'], 
                                              'username' => $_POST['user'], 
@@ -112,44 +121,49 @@ if ($form->isValid($_POST)) {
     
     Zend_Db_Table::setDefaultAdapter($db);
     
-    
-    $installation = new Tri_Installation(dirname(__FILE__).'/');
-    $installation->install();
-    $installation->activate();
-    
-    $password = MD5("trilhas".$_POST['user_password']);
-    
-    $user = new Zend_Db_Table('user');
-    $data = array('name'        => 'administrador',
-                  'email'       => $_POST['login'],
-                  'password'    => $password,
-                  'role'       =>  'institution');
+    try {
+    	
+    	$installation = new Tri_Installation(dirname(__FILE__).'/');
+    	$installation->install();
+    	$installation->activate();
+    	
+    	$password = MD5("trilhas".$_POST['user_password']);
+    	
+    	$user = new Zend_Db_Table('user');
+    	$data = array('name'        => 'administrador',
+    				  'email'       => $_POST['login'],
+    				  'password'    => $password,
+                      'role'       =>  'institution');
 
-    $row = $user->createRow($data);
-    $uId = $row->save();
+    	$row = $user->createRow($data);
+    	$uId = $row->save();
 
-    if($_POST['course'] == 1){
+    	if($_POST['course'] == 1){
         
-        $course = new Zend_Db_Table('course');
-        $data = array('user_id'     => $uId,
-                      'responsible' => $uId,
-                      'name'        => 'Demonstraçao',
-                      'description' => 'Curso de demonstração',
-                      'status'      => 'active');
+        	$course = new Zend_Db_Table('course');
+        	$data = array('user_id'     => $uId,
+            	          'responsible' => $uId,
+                	      'name'        => 'Demonstraçao',
+                    	  'description' => 'Curso de demonstração',
+                      	   'status'      => 'active');
 
-        $row = $course->createRow($data);
-        $cId = $row->save();
+        	$row = $course->createRow($data);
+        	$cId = $row->save();
                 
-        $classroom = new Zend_Db_Table('classroom');
-        $data = array('course_id'   => $cId,
-                      'responsible' => $uId,
-                      'name'        => 'Demonstração',
-                      'begin'       => date('Y-m-d'));
+        	$classroom = new Zend_Db_Table('classroom');
+        	$data = array('course_id'   => $cId,
+            	          'responsible' => $uId,
+                	      'name'        => 'Demonstração',
+                    	  'begin'       => date('Y-m-d'));
 
-        $row = $classroom->createRow($data);
-        $row->save();
->>>>>>> add ˜ in the word demonstração
+        	$row = $classroom->createRow($data);
+        	$row->save();
+    	}
+    
+    } catch (Exception $e) {
+    	$messages[] = $e->getMessage();
     }
+    
 } 
 
 $view = new Zend_View();
@@ -165,7 +179,7 @@ $view->form = $form;
 
 $layout->content = $view->render('form.phtml');
 
-$messages = array('Erro ao contectar com o servidor, confira os dados preenchidos e tente novamente');
+$messages[]  = 'Erro ao contectar com o servidor, confira os dados preenchidos e tente novamente';
 $layout->messages = $messages;
 
 echo $layout->render();

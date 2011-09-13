@@ -248,7 +248,7 @@ class Tri_Installation
             if (file_exists($filename)) {
                 $sql = file_get_contents($filename);
                 if ($sql) {
-                    $this->_getDb()->exec($sql);
+                	$this->_getDb()->exec($sql);
                 }
             }
         }
