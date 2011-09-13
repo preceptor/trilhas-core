@@ -57,6 +57,8 @@ phpSettings.display_startup_errors = 1
 phpSettings.display_errors         = 1
 phpSettings.error_reporting        = E_ALL
 
+[testing : development]
+
 ;zfdebug.plugins[] = "Variables"
 ;zfdebug.plugins[] = "Time"
 ;zfdebug.plugins[] = "Memory"
