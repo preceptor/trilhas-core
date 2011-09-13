@@ -49,7 +49,7 @@ class Tri_Plugin extends Tri_Installation
     public static function isActive($name)
     {
         $activedPlugins = Tri_Config::get('tri_plugins', true);
-        if (in_array($name, $activedPlugins)) {
+        if (is_array($activedPlugins) && in_array($name, $activedPlugins)) {
             return true;
         }
         return false;

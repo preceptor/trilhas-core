@@ -38,7 +38,8 @@ class Tri_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
                    . $request->getActionName();
         
         $role = 'all';
-        if ($identity) {
+        if (!empty($identity->role)) {
+        	//FIXME por algum motivo, depois a instalação é lançado um notice na próxima linha.
             $role = $identity->role;
         }
         
