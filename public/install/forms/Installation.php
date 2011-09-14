@@ -64,8 +64,7 @@ class Install_Form_Installation extends Zend_Form
                       ->setRequired();
                                    
         $course = new Zend_Form_Element_Checkbox('course');
-        $course->setLabel('Create a demonstration data?')
-               ->setChecked(false);
+        $course->setLabel('Create a demonstration data?');
 
         $this->addElement($db)
              ->addElement($user)
