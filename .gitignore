@@ -47,6 +47,7 @@ data/log/*
 themes/*
 plugins/*
 public/upload/*
+tests/log/*
 .project
 .buildpath
 .settings
