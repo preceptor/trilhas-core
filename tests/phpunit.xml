@@ -1,25 +1,31 @@
 <phpunit bootstrap="./application/bootstrap.php" colors="true">
+    <php>
+        <ini name="memory_limit" value="-1" />
+        <ini name="date.timezone" value="America/Sao_Paulo" />
+    </php>
     <testsuite name="Application" >
         <directory>./library</directory>
         <directory>./application</directory>
     </testsuite>
+    
     <filter>
         <whitelist>
             <directory suffix=".php">../application</directory>
+            <directory suffix=".php">../modules</directory>
             <directory suffix=".php">../library</directory>
             <exclude>
+                <directory suffix=".php">../library/Zend</directory>
                 <directory suffix=".phtml">../application/</directory>
                 <file>../application/Bootstrap.php</file>
             </exclude>
         </whitelist>
     </filter>
-    
+    <!--
     <logging>
         <log type="coverage-html" target="./log/report" 
-            charset="UTF-8" yui="true" highlight = "true" 
+            charset="UTF-8" yui="true" highlight="true" 
             lowUpperBound="50" highLowerBound="80" />
         <log type="testdox" target="./log/testdox.html" />
     </logging>
-        
-
+    -->
 </phpunit>
