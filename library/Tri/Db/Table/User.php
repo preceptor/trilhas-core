@@ -52,4 +52,36 @@ class Tri_Db_Table_User extends Tri_Db_Table
      * var array
      */
     protected $_referenceMap = array();
+    
+    public function getFilters() 
+    {
+        $filters = parent::getFilters();
+        
+        $filters['name'][] = 'StripTags';
+        $filters['description'][] = 'StripTags';
+        
+        return $filters;
+    }
+    
+    public function getValidators() 
+    {
+        $validators = parent::getValidators();
+        $validators['email'][] = 'EmailAddress';
+        $validators['password'][] = array('Identical', 
+                                          false, 
+                                          array('token' => 'password_confirm'));
+        $validators['role'][] = array('InArray', 
+                                      false, 
+                                      array('haystack' => array('student', 
+                                                                'teacher', 
+                                                                'coordinator', 
+                                                                'institution')));
+        $validators['sex'][] = array('InArray', 
+                                     false, 
+                                     array('haystack' => array('M', 'F')));
+        $validators['status'][] = array('InArray', 
+                                        false, 
+                                        array('haystack' => array('active', 'inactive')));
+        return $validators;
+    }
 }

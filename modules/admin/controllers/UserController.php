@@ -47,18 +47,11 @@ class Admin_UserController extends Tri_Controller_Action
 	 */
     public function indexAction()
     {
-        $page  = Zend_Filter::filterStatic($this->_getParam('page'), 'int');
+        $page  = $this->_getParam('page');
         $query = $this->_getParam('query');
-        $table = new Zend_Db_Table('user');
-        $select = $table->select()->order('name');
-
-        if ($query) {
-            $select->where('(name LIKE ?', "%$query%");
-            $select->orWhere('email LIKE ?)', "%$query%");
-        }
-
-        $paginator = new Tri_Paginator($select, $page);
-        $this->view->data = $paginator->getResult();
+        $model = new Admin_Model_User();
+        
+        $this->view->data = $model->findByNameOrEmail($query, $page);
     }
 
     public function formAction()
@@ -66,84 +59,47 @@ class Admin_UserController extends Tri_Controller_Action
         $id   = Zend_Filter::filterStatic($this->_getParam('id'), 'int');
         $form = new Admin_Form_User();
 
-        if ($id) {
-            $table = new Tri_Db_Table('user');
-            $row   = $table->find($id)->current();
-
-            if ($row) {
-                $form->populate($row->toArray());
-            }
-        } else {
-            $form->getElement('password')->setAllowEmpty(false);
-        }
+        $model = new Admin_Model_User();
+        $data  = $model->findById($id);
+        $form->populate($data);
         
         $this->view->form = $form;
     }
 
     public function saveAction()
     {
-        $messages     = array();
-        $isValidEmail = true;
-        $session      = new Zend_Session_Namespace('data');
-        $form         = new Admin_Form_User();
-        $table        = new Tri_Db_Table('user');
-        $data         = $this->_getAllParams();
+        $form  = new Admin_Form_User();
+        $model = new Admin_Model_User();
+        $data  = $this->_getAllParams();
 
-        if ($data['email'] && (!isset($data['id']) || !$data['id'])) {
-            $row = $table->fetchRow(array('email = ?' => $data['email']));
-            if ($row) {
-                $isValidEmail = false;
-                $messages[] = 'Email existing';
-            }
-        }
-
-        if (!isset($data['id']) || !$data['id']) {
-            $form->getElement('password')->setAllowEmpty(false);
-        }
-
-        if ($form->isValid($data) && $isValidEmail) {
-            if (!$form->image->receive()) {
-                $messages[] = 'Image fail';
-            }
-
+        if ($form->isValid($data)) {
             $data = $form->getValues();
-            if (!$form->image->getValue()) {
-                unset($data['image']);
-            }
-
-            if (!$data['password']) {
-                unset($data['password']);
+            
+            if (!$form->image->receive()) {
+                $model->addMessage('Image fail');
             }
             
-            if (isset($data['id']) && $data['id'] && Zend_Auth::getInstance()->hasIdentity()) {
-                Tri_Security::user($data['id']);
-                
-                $row = $table->find($data['id'])->current();
-                $row->setFromArray($data);
-                $id = $row->save();
-            } else {
-                unset($data['id']);
-                $row = $table->createRow($data);
-                $id = $row->save();
+            if ($model->save($data)) {
+                if (isset($data['id']) && !$data['id']) {
+                    $data['password'] = $this->_getParam('password');
 
-                $session->attempt = 0;
-                $data['password'] = $this->_getParam('password');
-                $this->view->data = $data;
-                
-                $mail = new Zend_Mail(APP_CHARSET);
-                $mail->setBodyHtml($this->view->render('user/welcome.phtml'));
-                $mail->setSubject($this->view->translate('Welcome'));
-                $mail->addTo($data['email'], $data['name']);
-                $mail->send();
+                    $this->view->data = $data;
+
+                    $mail = new Zend_Mail(Tri_Config::get('tri_app_charset'));
+                    $mail->setBodyHtml($this->view->render('user/welcome.phtml'));
+                    $mail->setSubject($this->view->translate('Welcome'));
+                    $mail->addTo($data['email'], $data['name']);
+                    $mail->send();
+                }
+            
+                $this->_helper->_flashMessenger->addMessage('Success');
+                $this->_redirect('admin/user');
             }
-
-            $this->_helper->_flashMessenger->addMessage('Success');
-
-            $this->_redirect('admin/user');
         }
         
-        $messages[] = 'Error';
-        $this->view->messages = $messages;
+        $form->getElement('born')->removeFilter('Date');
+        $form->populate($data);
+        $this->view->messages = $model->getMessages();
         $this->view->form = $form;
         $this->render('form');
     }
