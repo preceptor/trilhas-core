@@ -57,14 +57,14 @@ class Application_Form_User extends Zend_Form
                 ->addValidators($validators['name'])
                 ->addFilters($filters['name'])
                 ->setRequired()
-                ->setAttrib('size', 55);
+                ->setAttrib('class', 'xlarge');
 
         $email = new Zend_Form_Element_Text('email');
         $email->setLabel('Email')
                 ->addValidators($validators['email'])
                 ->addFilters($filters['email'])
                 ->setRequired()
-                ->setAttrib('size', 55);
+                ->setAttrib('class', 'xlarge');
 
         $filters['password'][] = array('Md5', Tri_Config::get('tri_salt'));
         $validators['password'][] = 'PasswordConfirmation';
@@ -88,7 +88,7 @@ class Application_Form_User extends Zend_Form
 
         $born = new Zend_Form_Element_Text('born');
         $born->setLabel('Born')
-             ->setAttrib('class', 'date')
+             ->setAttrib('class', 'date small')
              ->addFilters($filters['born'])
              ->addValidators($validators['born']);
 
@@ -96,7 +96,8 @@ class Application_Form_User extends Zend_Form
         $description = new Zend_Form_Element_Textarea('description');
         $description->setLabel('Description')
                     ->addValidators($validators['description'])
-                    ->addFilters($filters['description']);
+                    ->addFilters($filters['description'])
+                    ->setAttrib('class', 'xxlarge');
 
         $file = new Zend_Form_Element_File('image');
         $file->setLabel('Image')
@@ -119,7 +120,6 @@ class Application_Form_User extends Zend_Form
              ->addElement($born)
              ->addElement($file);
         
-        $this->addElement('submit', 'Save');
+        $this->addElement('submit', 'Save', array('class' => 'btn primary'));
     }
-
 }

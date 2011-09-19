@@ -66,13 +66,13 @@ $.fn.navigation = function(contentJson, options)
 
 			html += '</ul>';
 
-			$('.nav .buttons .treeview div', context).html(html).hide();
+			$('.navigation .buttons .treeview div', context).html(html).hide();
 
-            $('.nav .buttons .treeview .button', context).click(function(){
+            $('.navigation .buttons .treeview .button', context).click(function(){
                 $(this).next().slideToggle('fast');
             });
             
-			$('.nav .buttons .treeview div img', context).click(function(){
+			$('.navigation .buttons .treeview div img', context).click(function(){
 				var $img = $(this);
 
                 $img.parent().children().eq(2).slideToggle('fast');
@@ -85,11 +85,11 @@ $.fn.navigation = function(contentJson, options)
 				return false;
 			});
             
-            $('.nav .buttons .treeview .first ul').hide();
+            $('.navigation .buttons .treeview .first ul').hide();
 
-			$('.nav .buttons .treeview a', context).click(function() {
+			$('.navigation .buttons .treeview a', context).click(function() {
 				current = parseInt(this.id.replace('content_',''));
-				$('.nav .buttons .treeview div', context).hide('fast');
+				$('.navigation .buttons .treeview div', context).hide('fast');
 				update();
 				return false;
 			});
@@ -99,8 +99,8 @@ $.fn.navigation = function(contentJson, options)
 			var $content = $('.text', context),
                 selector = '#' + $content[0].id,
                 applyTransition = transition,
-                $nextButton = $('.nav .buttons a.next', context),
-                $previousButton = $('.nav .buttons a.previous', context);
+                $nextButton = $('.navigation .buttons a.next', context),
+                $previousButton = $('.navigation .buttons a.previous', context);
                 
                 
             $previousButton.show();
@@ -143,7 +143,7 @@ $.fn.navigation = function(contentJson, options)
 		},
 
 		updateBreadCrumb = function(){
-			var $bread = $('.nav .bread span', context),
+			var $bread = $('.navigation .bread span', context),
 				itens = getParents(),
 				item = null,
 				i = 0,
@@ -185,9 +185,9 @@ $.fn.navigation = function(contentJson, options)
 		};
 
 	return this.each(function(){
-		var $breadImg = $('.nav .bread img',this),
-			$nextButton = $('.nav .buttons a.next',this),
-			$previousButton = $('.nav .buttons a.previous',this);
+		var $breadImg = $('.navigation .bread img',this),
+			$nextButton = $('.navigation .buttons a.next',this),
+			$previousButton = $('.navigation .buttons a.previous',this);
 			
 		content    = $.parseJSON(contentJson) || ['No content'];
 		current    = options.current || 0;
@@ -210,7 +210,7 @@ $.fn.navigation = function(contentJson, options)
 		createTreeview();
 
 		$breadImg.click(function(){
-            var $tree = $('.nav .bread .treeview',context);
+            var $tree = $('.navigation .bread .treeview',context);
             if ($tree.css('display') == 'none') {
                 $tree.show();
             } else {

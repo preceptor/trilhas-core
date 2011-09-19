@@ -135,6 +135,6 @@ class Admin_Form_Classroom extends Zend_Form
              ->addElement($registerType)
              ->addElement($amount)
              ->addElement($status)
-             ->addElement('submit', 'Save');
+             ->addElement('submit', 'Save', array('class' => 'btn primary'));
    }
 }

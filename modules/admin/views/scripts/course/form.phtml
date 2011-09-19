@@ -1,6 +1,6 @@
 <?php $locale = strtolower(str_replace('_', '-', $this->locale))?>
 <div class="right">
-     <a href="admin/course"><?php echo $this->translate('back')?></a>
+    <a href="admin/course" class="btn"><?php echo $this->translate('back')?></a>
 </div>
 <?php echo $this->form ?>
 <script type="text/javascript">
@@ -22,16 +22,11 @@
                 ['Maximize', 'ShowBlocks','-','About']
             ],language: '<?php echo $locale?>'
         }, 
-        editorInfo = CKEDITOR.appendTo('information-element', config, $information.val());
+        editorInfo = CKEDITOR.appendTo('course-information-text-element', config, $information.val());
    
     $information.hide();
 
     $("form").submit(function() {
-        var $this = $(this);
         $information.val(editorInfo.getData());
 	});
-
-    $('#category').other();
-
-    $('input[type=button], input[type=submit]').button();
 </script>

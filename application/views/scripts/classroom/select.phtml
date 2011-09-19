@@ -1,6 +1,6 @@
 <?php if (count($this->data)): ?>
     <h2>Curso: <?php echo $this->course->name?></h2>
-    <table class="datatable">
+    <table class="zebra-striped">
         <tr>
             <th><?php echo $this->translate('Name')?></th>
             <th><?php echo $this->translate('Begin')?></th>
@@ -29,5 +29,5 @@
     <p><?php echo $this->translate('No register')?></p>
 <?php endif;?>
 <script type="text/javascript">
-    $('input[type=button], input[type=submit]').button();
+    
 </script>

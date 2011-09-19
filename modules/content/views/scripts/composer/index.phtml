@@ -1,5 +1,5 @@
 <div id="composer-content-main">
-    <div class="nav">
+    <div class="navigation">
         <div class="bread">
             <span></span>
         </div>
@@ -40,7 +40,7 @@
     $('#composer-content-main').navigation('<?php echo str_replace("\'", "'", $this->contents)?>' ,
                                            {current: initCurrent, url:'content/composer/form/id/',transition:'none'});
 
-    $('input[type=button], input[type=submit]').button();
+    
 
     $("#composer-content-main").parents(".main").find('.close').click(function(){
         window.location.reload();

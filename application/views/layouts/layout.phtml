@@ -11,7 +11,7 @@
                              ->prependStylesheet('css/style.css')
                              ->prependStylesheet('css/jquery-ui.css')
                              ->prependStylesheet('css/utils.css')
-                             ->prependStylesheet('css/grid.css');
+                             ->prependStylesheet('css/bootstrap.css');
 
             if ($locale != 'en') { 
                 $this->headScript()->prependFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js')
@@ -26,7 +26,6 @@
                                ->prependFile('js/navigation.js')
                                ->prependFile('js/menu.js')
                                ->prependFile('js/jquery/jquery.min.js');
-            
             
             echo $this->headMeta();
             echo $this->headLink();
@@ -55,11 +54,11 @@
         <?php echo $this->widget('fix_header')?>
         <div id="loading"><?php echo $this->translate('Loading')?></div>
         <div class="row header">
-            <div class="column">
+            <div class="columns">
                 <h1>Trilhas</h1>
             </div>
         </div>
-        <div class="main">
+        <div class="container">
             <?php if ($this->messages):?>
                 <div class="message">
                     <ul>
@@ -71,16 +70,12 @@
                 <br />
             <?php endif;?>
             <?php echo $this->layout()->content?>
-        </div>
-        <div class="row">
-            <div class="column grid_16">
-                <div class="footer">
-                    <a href="http://www.preceptoread.com.br">
-                        <img border="0" src="img/logo.png" alt="Logo Preceptor" />
-                    </a>
-                    <div class="info">
-                        <?php echo Tri_Config::get('tri_title')?>
-                    </div>
+            <div class="footer">
+                <a href="http://www.preceptoread.com.br">
+                    <img border="0" src="img/logo.png" alt="Logo Preceptor" />
+                </a>
+                <div class="info">
+                    <?php echo Tri_Config::get('tri_title')?>
                 </div>
             </div>
         </div>
@@ -89,11 +84,8 @@
             $("#loading").bind("ajaxSend", function(){
                 $(this).show();
             }).bind("ajaxComplete", function(){
-                $('input[type=button], input[type=submit]').button();
                 $(this).hide();
             });
-
-            $('input[type=button], input[type=submit]').button();
         </script>
     </body>
 </html>

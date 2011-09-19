@@ -6,7 +6,7 @@
 <div>
     <h3><?php echo $this->translate('Time restriction')?></h3>
 	<?php if(count($this->dataTime)):?>
-		<table class="datatable">
+		<table class="zebra-striped">
 			<tr>
                 <th width="350"><?php echo $this->translate("Content")?></th>
                 <th><?php echo $this->translate("Begin")?></th>
@@ -33,7 +33,7 @@
 <div>
     <h3><?php echo $this->translate('Panel restriction')?></h3>
 	<?php if(count($this->dataPanel)):?>
-		<table class="datatable">
+		<table class="zebra-striped">
 			<tr>
                 <th width="350"><?php echo $this->translate("Content")?></th>
                 <th><?php echo $this->translate("Note")?></th>
@@ -55,5 +55,5 @@
 	<?php endif;?>
 </div>
 <script>
-    $('input[type=button], input[type=submit]').button();
+    
 </script>

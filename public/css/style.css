@@ -20,33 +20,71 @@
  * @copyright  Copyright (C) 2005-2010  Preceptor Educação a Distância Ltda. <http://www.preceptoead.com.br>
  * @license    http://www.gnu.org/licenses/  GNU GPL
 */
-*{font-family: 'Lucida Grande', Arial, Helvetica, sans-serif;}
-html, body{font-size: 12px; margin: 0; padding: 0;}
-a{color: #0052A3; text-decoration: none;}
-a:hover{text-decoration: underline;}
-img{border: none;}
-h1{font-size: 18px;}
-h2{font-size: 16px;}
-h3{font-size: 14px;}
-
-input[type=button], input[type=submit]{padding: 0.3em 0.6em; font-weight: normal; font-family: 'Lucida Grande', Arial, Helvetica, sans-serif;}
-
+body{color: #333;}
+label {
+  float: none;
+  width: auto;
+  text-align: left;
+}
 #loading{display:none; position: absolute; background: #B6DBE8; padding: 5px; left: 50%; margin-left: -35px; width: 70px; text-align: center; font-size: 12px; z-index: 100; top:3px;}
 
 .header{margin-top: 5px; background: #fff;}
 .header h1{display: none;}
 
-.main{background: #fff; padding-top: 1px;}
-
+.main{background: #fff;}
+ 
 div.box{margin-bottom: 5px; border: 1px solid #CCC;}
-div.box div.header {background: url(../img/title-white.jpg) repeat-x; height: 19px; padding: 2px 10px 8px; overflow: hidden;}
-div.box div.blue{background: url(../img/title-blue.jpg); margin-top: 0; padding-top: 5px; height: 16px; color: white;}
-div.box div.header h3{line-height: 20px; margin: 0; font-size: 15px; font-weight: normal;}
-div.box div.content{background: url(../img/content.jpg) repeat-x white; padding: 20px 15px; overflow: hidden;}
+div.box div.header {
+    border-bottom: 1px solid #ccc;
+    background-color: #ECECEC;
+    background-repeat: no-repeat;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(70%, #ECECEC), to(#ECECEC));
+    background-image: -webkit-linear-gradient(#ffffff, #ECECEC 70%, #ECECEC);
+    background-image: -moz-linear-gradient(top, #ffffff, #ECECEC 70%, #ECECEC);
+    background-image: -ms-linear-gradient(#ffffff, #ECECEC 70%, #ECECEC);
+    background-image: -o-linear-gradient(#ffffff, #ECECEC 70%, #ECECEC);
+    background-image: linear-gradient(#ffffff, #ECECEC 70%, #ECECEC);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ECECEC', GradientType=0);
+    height: 20px; 
+    padding: 2px 10px 8px; 
+    overflow: hidden;
+}
+div.box div.blue{
+    border-bottom: 1px solid #1F374E;
+    background-color: #477091;
+    background-repeat: no-repeat;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7593AD), color-stop(70%, #477091), to(#477091));
+    background-image: -webkit-linear-gradient(#7593AD, #477091 70%, #477091);
+    background-image: -moz-linear-gradient(top, #7593AD, #477091 70%, #477091);
+    background-image: -ms-linear-gradient(#7593AD, #477091 70%, #477091);
+    background-image: -o-linear-gradient(#7593AD, #477091 70%, #477091);
+    background-image: linear-gradient(#7593AD, #477091 70%, #477091);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7593AD', endColorstr='#477091', GradientType=0);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    margin-top: 0; 
+    padding-top: 5px;  
+}
+div.box div.header h3{line-height: 23px; margin: 0; font-size: 15px; font-weight: normal;}
+div.box div.header.blue h3{color: white;}
+div.box div.content{
+    border-top: 1px solid white;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6e6e6), color-stop(40px, #ffffff), to(#ffffff));
+    background-image: -webkit-linear-gradient(#e6e6e6, #ffffff 40px, #ffffff);
+    background-image: -moz-linear-gradient(top, #e6e6e6, #ffffff 40px, #ffffff);
+    background-image: -ms-linear-gradient(#e6e6e6, #ffffff 40px, #ffffff);
+    background-image: -o-linear-gradient(#e6e6e6, #ffffff 40px, #ffffff);
+    background-image: linear-gradient(#e6e6e6, #ffffff 40px, #ffffff);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6e6e6', endColorstr='#ffffff', GradientType=0);
+    padding: 20px 15px; 
+    overflow: hidden;
+}
 
 .logo .content{padding: 10px 0;}
 
-.login #email, .login #password{width: 180px;}
+.login form{padding-left: 0;}
+.login #email, .login #password, .login #captcha-input{width: 180px;}
 .login .content{padding: 0px 15px 10px;}
 
 .courses a{text-decoration: none; color: #4480BC;}
@@ -66,12 +104,11 @@ div.box div.content{background: url(../img/content.jpg) repeat-x white; padding:
 
 .menu ul{margin: 0; padding-top: 10px;}
 .menu .content{padding: 10px 0 0 10px;}
-.menu .content h3{font-size: 15px; font-weight: normal; margin:0 0 0 10px; padding: 0; color: #4480BC;}
+.menu .content h3{line-height: 15px; font-size: 15px; font-weight: normal; margin:0 0 0 10px; padding: 0; color: #4480BC;}
 .menu .content ul{margin: 2px 0 10px;  padding: 5px 0;}
 .menu .content ul li{list-style: none; padding: 2px 0; margin-left: 15px;}
 .menu .content ul li a{text-decoration: none; color: #333;}
 .menu .content ul li a:hover{text-decoration: underline;}
-
 
 .footer{border: 1px solid #ccc; margin: 5px 0; padding: 10px;}
 .footer a{float: left; }
@@ -93,14 +130,6 @@ div.box div.content{background: url(../img/content.jpg) repeat-x white; padding:
 .calendar li{margin: 0 0 3px 0; padding: 0}
 .calendar .date{float: left; text-align: center; width: 23px; padding: 0 5px; border: 1px solid #ddd; margin: 0 5px 15px 0;}
 
-.zend_form dt{margin-top: 5px;}
-.zend_form dd{margin: 0;}
-
-.datatable{width: 99%; border-collapse: collapse;}
-.datatable tr{border-bottom: 1px solid #eee;}
-.datatable th{text-align: left;padding: 5px;}
-.datatable td{padding: 5px;}
-
 .message{padding: 10px; background: #FFF1A8; margin-bottom: 5px; border: 1px solid #FAD42E;}
 .message span{float: left; margin-right: 5px;;}
 .message ul{margin: 0; padding: 0; list-style: none;}
@@ -108,16 +137,15 @@ div.box div.content{background: url(../img/content.jpg) repeat-x white; padding:
 .message-reply{text-align:right; font-size:80%; color:#BBB; margin-bottom:10px;}
 
 .forum .name{color: #ccc;}
-.forum .datatable tr{border: none;}
-.forum .datatable .margin{margin: 0; padding: 0;}
-.forum .datatable .image img{border: 1px solid #ccc;}
-.forum .datatable .description{border: none;}
-.forum .datatable .space{line-height: 1px; border-top: 1px solid #eee;}
+.forum table tr, .forum table td{border: none;}
+.forum table .margin{margin: 0; padding: 0;}
+.forum table .image img{border: 1px solid #ccc;}
+.forum table .space td{line-height: 1px; padding: 0; border-top: 1px solid #eee;}
 .forum .highlight{background: #F9F9F9;}
 .forum .highlight .name{color: #aaa;}
-.forum .datatable .current{background: #F4F4F4;}
-.forum .datatable .current .name{color: #aaa;}
-.forum .datatable .edit{font-size: 10px;}
+.forum table .current{background: #F4F4F4;}
+.forum table .current .name{color: #aaa;}
+.forum table .edit{font-size: 10px;}
 .forum dl{margin: 0;}
 .forum .partial-reply{border: 1px solid #ddd; margin-top: 2px;}
 
@@ -132,12 +160,12 @@ div.box div.content{background: url(../img/content.jpg) repeat-x white; padding:
 
 .magnifier{float: left; margin: 4px 8px 0 0;}
 
-.nav .buttons{margin: 5px 0; border: 1px dotted #ddd; border-left: none; border-right: none; padding: 5px 0; clear: both;}
-.nav .buttons .treeview{float: left;}
-.nav .buttons .treeview div li{margin: 5px 0;}
-.nav .buttons .treeview img{cursor: pointer;}
-.nav .buttons .prevnext{float: right; text-align: right;}
-.nav .buttons .treeview a{padding: 5px; margin: 0;}
+.navigation .buttons{margin: 5px 0; border: 1px dotted #ddd; border-left: none; border-right: none; padding: 5px 0; clear: both;}
+.navigation .buttons .treeview{float: left;}
+.navigation .buttons .treeview div li{margin: 5px 0;}
+.navigation .buttons .treeview img{cursor: pointer;}
+.navigation .buttons .prevnext{float: right; text-align: right;}
+.navigation .buttons .treeview a{padding: 5px; margin: 0;}
 
 .panel .item{float: left; padding-right: 10px;}
 .panel .note input{border: 1px solid; padding: 5px; margin-top: 3px; width: 50px;}
@@ -178,10 +206,15 @@ div.box div.content{background: url(../img/content.jpg) repeat-x white; padding:
 .icon-info{background-position: -16px -144px;}
 .icon-user{background-position: -146px -97px;}
 
-.zend_form .errors{color: red;}
+.zend_form .errors{margin-top:10px;}
+.zend_form .errors li{color: red;}
+.zend_form dt{margin-top: 5px;}
+.zend_form dd{margin: 0;}
+.zend_form dd input,
+.zend_form dd select,
+.zend_form dd textarea{margin: 0 5px 5px 0;}
 
-.main .grid_4{margin: 0 10px 0 10px;}
-.main .grid_12{margin: 0; width: 710px;}
+.container .span12{margin: 0 0 0 10px; width: 710px;}
 
 table.messages tr:hover{background: #eee;}
 table.messages div{cursor: pointer;}
@@ -214,46 +247,5 @@ table.messages div{cursor: pointer;}
 .passwordStrengthBar div.weak{background-color: orange;}
 .passwordStrengthBar div.useless{background-color: red;}
 
-.button{
-    border: 0 none;
-    color: #FFFFFF;
-    font-size: 13px;
-    font-weight: bold;
-    padding: 5px 10px;
-    cursor: pointer;
-    display: inline;
-    background: #777 url('../img/button.png') repeat-x bottom;
-    
-	border: none;
-	color: #fff;
-	
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	text-shadow: 1px 1px #666;    
-	text-decoration: none;
-}
-.button:hover {
-	background-position: 0 center;
-	text-decoration:none;
- }
- 
-.button:active {
-	background-position: 0 top;
-	position: relative;
-	top: 1px;
-	padding: 6px 10px 4px;
- }
-
-.button.default {background-color: #C07E1D; }
-.button.red { background-color: #e50000; }
-.button.purple { background-color: #9400bf; }
-.button.green { background-color: #58aa00; }
-.button.orange { background-color: #ff9c00; }
-.button.blue { background-color: #2c6da0; }
-.button.black { background-color: #333; }
-.button.white { background-color: #fff; color: #000; text-shadow: 1px 1px #fff; }
-.button.small { font-size: 75%; padding: 3px 7px; }
-.button.small:active { padding: 4px 7px 2px; background-position: 0 top; }
-.button.large { font-size: 125%; padding: 7px 12px; }
-.button.large:active { padding: 8px 12px 6px; background-position: 0 top; }
+/* Overwrite bootstrap */
+.form-stacked label {font-weight: normal;}

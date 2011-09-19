@@ -1,13 +1,16 @@
+<div class="right">
+    <a href="admin/classroom/list-user/id/<?php echo $this->id?>"  class="btn"><?php echo $this->translate('back')?></a>
+</div>
 <div class="search">
     <form action="admin/classroom/search-user" method="get">
         <input type="text" name="query" />
         <input type="hidden" name="id" value="<?php echo $this->id?>" />
-        <input type="submit" value="<?php echo $this->translate('Search')?>" />
+        <input type="submit" class="btn" value="<?php echo $this->translate('Search')?>" />
     </form>
 </div>
 <br />
 <?php if (count($this->data)): ?>
-    <table class="datatable">
+    <table class="zebra-striped">
         <tr>
             <th><?php echo $this->translate('Name')?></th>
             <th><?php echo $this->translate('Email')?></th>

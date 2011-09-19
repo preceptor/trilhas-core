@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="column grid_4">
+    <div class="columns span4">
         <?php echo $this->widget('menu_index_top');?>
         <div class="box logo">
             <div class="content center">
@@ -8,7 +8,7 @@
         </div>
         <div class="box login">
             <div class="header blue">
-                <?php echo $this->translate('Access')?>
+                <h3><?php echo $this->translate('Access')?></h3>
             </div>
             <div class="content">
                 <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
@@ -29,10 +29,7 @@
         </div>
         <?php echo $this->widget('menu_index_bottom');?>
     </div>
-    <div class="column grid_12">
+    <div class="columns span12">
         <?php echo $this->widget('main_index');?>
     </div>
-    <script type="text/javascript">
-        $('input[type=button], input[type=submit]').button();
-    </script>
 </div>

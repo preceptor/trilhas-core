@@ -1,10 +1,11 @@
 <div class="right">
-    <a href="admin/classroom/matriculate/id/<?php echo $this->id?>"><?php echo $this->translate('New')?></a>
+    <a href="admin/classroom/matriculate/id/<?php echo $this->id?>"  class="btn primary"><?php echo $this->translate('register')?></a>
+    <a href="admin/classroom/" class="btn"><?php echo $this->translate('back')?></a>
 </div>
 <h3><?php echo $this->classroom->cname?> - <?php echo $this->classroom->name?></h3>
 <br />
 <?php if (count($this->data)): ?>
-    <table class="datatable">
+    <table class="zebra-striped">
         <tr>
             <th><?php echo $this->translate('Name')?></th>
             <th><?php echo $this->translate('Email')?></th>

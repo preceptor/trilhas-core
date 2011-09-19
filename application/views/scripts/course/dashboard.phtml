@@ -4,7 +4,7 @@
     </div>
     <div class="content courses">
         <?php if (count($this->data)) :?>
-            <table class="datatable">
+            <table class="zebra-striped">
                 <tr>
                     <th></th>
                     <th><?php echo $this->translate('Begin')?></th>
@@ -36,7 +36,7 @@
         <?php endif;?>
         <?php if (count($this->finalized)) :?>
             <h3><?php echo $this->translate('Finalized')?></h3>
-            <table class="datatable">
+            <table class="zebra-striped">
                 <?php foreach ($this->finalized as $finalized): ?>
                     <tr>
                         <td>
@@ -52,7 +52,6 @@
                 <?php endforeach; ?>
             </table>
         <?php endif;?>
-        <br />
         <?php echo $this->ajax("List of available courses", 'course/list/', 1); ?>
     </div>
 </div>

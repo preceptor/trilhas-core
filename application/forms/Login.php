@@ -66,6 +66,6 @@ class Application_Form_Login extends Zend_Form
 		
         $this->addElement($email)
              ->addElement($password);
-        $this->addElement('submit', 'Login');
+        $this->addElement('submit', 'Login', array('class' => 'btn'));
    }
 }

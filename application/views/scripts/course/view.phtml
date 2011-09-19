@@ -1,14 +1,14 @@
 <?php if(isset($this->data)): ?>
 <div class="courses row">
     <div class="item">
-        <div class="column grid_4">
+        <div class="columns span4">
             <img alt="<?php echo $this->data->name?>" src="upload/<?php echo $this->thumbnail($this->data->image, 'medium')?>" />
 
             <?php if ($this->classroom):?>
                 <input class="sign big-button" title="classroom/select/id/<?php echo $this->data->id?>" type="button" value="<?php echo $this->translate('register')?>" />
             <?php endif; ?>
         </div>
-        <div class="column grid_7">
+        <div class="columns span7">
             <h2><?php echo $this->data->name?></h2>
             <p><?php echo nl2br($this->data->description)?></p>
             <div class="clear">&nbsp;</div>

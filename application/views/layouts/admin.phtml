@@ -7,23 +7,24 @@
         <base href="<?php echo $this->serverUrl() . $this->baseUrl() ?>/" />
         <link rel="shortcut icon" href="favicon.ico" />
         <?php 
-            $this->headLink()->appendStylesheet('css/grid.css')
-                             ->appendStylesheet('css/utils.css')
-                             ->appendStylesheet('css/jquery-ui.css')
-                             ->appendStylesheet('css/style.css')
-                             ->appendStylesheet('css/'. Tri_Config::get('tri_theme_style').'.css');
+            $this->headLink()->prependStylesheet('css/'. Tri_Config::get('tri_theme_style').'.css')
+                             ->prependStylesheet('css/style.css')
+                             ->prependStylesheet('css/jquery-ui.css')
+                             ->prependStylesheet('css/utils.css')
+                             ->prependStylesheet('css/bootstrap.css');
 
-            $this->headScript()->appendFile('js/jquery/jquery.min.js')
-                               ->appendFile('js/jquery/jquery-ui.min.js')
-                               ->appendFile('js/jquery/jquery.maskedinput.js')
-                               ->appendFile('js/jquery/jquery.other.js')
-                               ->appendFile('js/ckeditor/ckeditor.js');
-            
             if ($locale != 'en') { 
-                $this->headScript()->appendFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js')
-                                   ->appendFile('js/ckeditor/lang/' . strtolower($locale) . '.js'); 
+                $this->headScript()->prependFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js')
+                                   ->prependFile('js/ckeditor/lang/' . strtolower($locale) . '.js'); 
             }
             
+            $this->headScript()->prependFile('js/jquery/jquery-ui.min.js')
+                               ->prependFile('js/jquery/jquery.maskedinput.js')
+                               ->prependFile('js/jquery/jquery.other.js')
+                               ->prependFile('js/ckeditor/ckeditor.js')
+                               ->prependFile('js/jquery/jquery.min.js');
+            
+            echo $this->headMeta();
             echo $this->headLink();
             echo $this->headScript();
          ?>
@@ -54,24 +55,19 @@
                 <h1>Trilhas</h1>
             </div>
         </div>
-        <div class="main">
-            <div class="row">
-                <div class="column grid_16">
-                    <?php if ($this->messages):?>
-                        <div class="message">
-                            <span class="icon icon-info"></span>
-                            <ul>
-                                <?php foreach ($this->messages as $message): ?>
-                                    <li><?php echo $this->translate($message)?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                        <br />
-                    <?php endif;?>
+        <div class="container">
+            <?php if ($this->messages):?>
+                <div class="message">
+                    <span class="icon icon-info"></span>
+                    <ul>
+                        <?php foreach ($this->messages as $message): ?>
+                            <li><?php echo $this->translate($message)?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
-            </div>
+            <?php endif;?>
             <div class="row">
-                <div class="column grid_4">
+                <div class="columns span4">
                     <div class="box logo">
                         <div class="content center">
                             <a href="index"><img alt="<?php echo Tri_Config::get('tri_title')?>" src="upload/<?php echo Tri_Config::get('tri_logo')?>" /></a>
@@ -113,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column grid_12">
+                <div class="columns span12">
                     <div class="box">
                         <div class="main">
                             <div class="header">
@@ -126,16 +122,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="column grid_16">
-                    <div class="footer">
-                        <a href="http://www.preceptoread.com.br">
-                            <img border="0" src="img/logo.png" alt="Logo Preceptor" />
-                        </a>
-                        <div class="info">
-                            <?php echo Tri_Config::get('tri_title')?>
-                        </div>
-                    </div>
+            <div class="footer">
+                <a href="http://www.preceptoread.com.br">
+                    <img border="0" src="img/logo.png" alt="Logo Preceptor" />
+                </a>
+                <div class="info">
+                    <?php echo Tri_Config::get('tri_title')?>
                 </div>
             </div>
         </div>
@@ -158,7 +150,7 @@
                     });
                 }
             })();
-            $('input[type=button], input[type=submit]').button();
+            
         </script>
     </body>
 </html>

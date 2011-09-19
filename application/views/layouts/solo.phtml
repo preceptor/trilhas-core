@@ -11,7 +11,7 @@
                              ->prependStylesheet('css/style.css')
                              ->prependStylesheet('css/jquery-ui.css')
                              ->prependStylesheet('css/utils.css')
-                             ->prependStylesheet('css/grid.css');
+                             ->prependStylesheet('css/bootstrap.css');
 
             if ($locale != 'en') { 
                 $this->headScript()->prependFile('js/jquery/ui/i18n/jquery.ui.datepicker-' . $locale . '.js')
@@ -59,39 +59,30 @@
                 <h1>Trilhas</h1>
             </div>
         </div>
-        <div class="main">
-            <div class="row">
-                <div class="column grid_16">
-                    <?php if ($this->messages):?>
-                        <div class="message">
-                            <ul>
-                                <?php foreach ($this->messages as $message): ?>
-                                    <li><?php echo $this->translate($message)?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                        <br />
-                    <?php endif;?>
-                    <div class="box">
-                        <div class="header">
-                            <h3><?php echo $this->translate($this->title)?></h3>
-                        </div>
-                        <div class="content">
-                            <?php echo $this->layout()->content?>
-                        </div>
-                    </div>
+        <div class="container">
+            <?php if ($this->messages):?>
+                <div class="message">
+                    <ul>
+                        <?php foreach ($this->messages as $message): ?>
+                            <li><?php echo $this->translate($message)?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif;?>
+            <div class="box">
+                <div class="header">
+                    <h3><?php echo $this->translate($this->title)?></h3>
+                </div>
+                <div class="content">
+                    <?php echo $this->layout()->content?>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="column grid_16">
-                <div class="footer">
-                    <a href="http://www.preceptoread.com.br">
-                        <img border="0" src="img/logo.png" alt="Logo Preceptor" />
-                    </a>
-                    <div class="info">
-                        <?php echo Tri_Config::get('tri_title')?>
-                    </div>
+            <div class="footer">
+                <a href="http://www.preceptoread.com.br">
+                    <img border="0" src="img/logo.png" alt="Logo Preceptor" />
+                </a>
+                <div class="info">
+                    <?php echo Tri_Config::get('tri_title')?>
                 </div>
             </div>
         </div>
@@ -104,7 +95,7 @@
                 $(this).hide();
             });
 
-            $('input[type=button], input[type=submit]').button();
+            
         </script>
     </body>
 </html>

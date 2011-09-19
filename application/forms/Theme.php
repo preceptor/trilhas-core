@@ -59,13 +59,14 @@ class Application_Form_Theme extends Zend_Form
         
         $css = new Zend_Form_Element_Textarea('custom_css');
         $css->setLabel('Custom css')
-            ->setAttrib('rows', 10);
+            ->setAttrib('rows', 10)
+            ->setAttrib('class', 'xxlarge');
 
         $this->addElement($style)
              ->addElement($logo)
              ->addElement($css);
         
-        $this->addElement('submit', 'Save');
+        $this->addElement('submit', 'Save', array('class' => 'btn primary'));
     }
 
 }

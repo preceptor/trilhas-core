@@ -1,15 +1,15 @@
 <div class="right">
-    <a href="admin/user/form"><?php echo $this->translate('New')?></a>
+    <a href="admin/user/form" class="btn primary"><?php echo $this->translate('New')?></a>
 </div>
 <div class="search">
     <form action="admin/user/index" method="get">
         <input type="text" name="query" value="<?php echo $this->params['query']?>" />
-        <input type="submit" value="<?php echo $this->translate('Search')?>" />
+        <input type="submit" class="btn" value="<?php echo $this->translate('Search')?>" />
     </form>
 </div>
 <br />
 <?php if (count($this->data)): ?>
-    <table class="datatable">
+    <table class="zebra-striped">
         <tr>
             <th><?php echo $this->translate('Name')?></th>
             <th><?php echo $this->translate('Email')?></th>

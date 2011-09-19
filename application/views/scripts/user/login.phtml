@@ -1,5 +1,5 @@
 <div class="row" style="margin-left: 60px;">
-    <div class="column grid_6">
+    <div class="columns span6">
         <h2><?php echo $this->translate('Already have an account?');?></h2>
         <p><?php echo $this->translate('Login here using your email and password.')?></p>
         <br />
@@ -8,7 +8,7 @@
         <a href="forgot/index"><?php echo $this->translate('Forgot password') ?></a>
     </div>
     <?php if (Tri_Config::get('tri_new_user_to_guest')) :?>
-        <div class="column grid_6" style="border-left: 1px dotted #ddd; padding-left: 75px;">
+        <div class="columns span6" style="border-left: 1px dotted #ddd; padding-left: 75px;">
             <h2><?php echo $this->translate('Is this your first time here?');?></h2>
             <p><?php echo $this->translate('Create your new user. It is quick and easy.')?></p>
             <br />

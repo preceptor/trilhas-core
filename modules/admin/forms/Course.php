@@ -57,7 +57,7 @@ class Admin_Form_Course extends Zend_Form
         $name->setLabel('Name')
              ->addValidators($validators['name'])
              ->addFilters($filters['name'])
-             ->setAttrib('size', '55')
+             ->setAttrib('class', 'xlarge')
              ->setRequired();
 
         $responsible = new Zend_Form_Element_Select('responsible');
@@ -70,9 +70,7 @@ class Admin_Form_Course extends Zend_Form
         $description->setLabel('Description')
                     ->addValidators($validators['description'])
                     ->addFilters($filters['description'])
-                    ->setAttrib('id', 'course-description-text')
-                    ->setAttrib('rows', '5')
-                    ->setAttrib('cols', '92')
+                    ->setAttrib('class', 'xxlarge')
                     ->setAllowEmpty(false);
 
         $information = new Zend_Form_Element_Textarea('information');
@@ -87,7 +85,8 @@ class Admin_Form_Course extends Zend_Form
         $hours->setLabel('Hours')
               ->setRequired()
               ->addValidators($validators['hours'])
-              ->addFilters($filters['hours']);
+              ->addFilters($filters['hours'])
+              ->setAttrib('class', 'small');
 
 //        if (!$categories || isset($categories[''])) {
 //            $category = new Zend_Form_Element_Text('category');
@@ -127,6 +126,6 @@ class Admin_Form_Course extends Zend_Form
 //             ->addElement($category)
              ->addElement($file)
              ->addElement($status)
-             ->addElement('submit', 'Save');
+             ->addElement('submit', 'Save', array('class' => 'btn primary'));
    }
 }
