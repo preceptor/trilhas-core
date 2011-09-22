@@ -68,8 +68,7 @@ if ($form->isValid($_POST)) {
 
         $row = $user->createRow($data);
         $uId = $row->save();
-
-        if ($data['course'] == 1) {
+        if ($_POST['course'] == 1) {
             $course = new Zend_Db_Table('course');
             $data = array('user_id'     => $uId,
                           'responsible' => $uId,
@@ -104,6 +103,7 @@ if ($form->isValid($_POST)) {
 
         header("Location: '/../../");
         exit;
+<<<<<<< HEAD
     }
 
     try {
@@ -162,6 +162,8 @@ if ($form->isValid($_POST)) {
     
     } catch (Exception $e) {
     	$messages[] = $e->getMessage();
+=======
+>>>>>>> remove setChecked
     }
     
 } 
