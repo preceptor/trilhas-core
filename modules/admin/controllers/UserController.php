@@ -84,12 +84,17 @@ class Admin_UserController extends Tri_Controller_Action
                     $data['password'] = $this->_getParam('password');
 
                     $this->view->data = $data;
+                    
+                    try {
+                        $mail = new Zend_Mail(Tri_Config::get('tri_app_charset'));
+                        $mail->setBodyHtml($this->view->render('user/welcome.phtml'));
+                        $mail->setSubject($this->view->translate('Welcome'));
+                        $mail->addTo($data['email'], $data['name']);
+                        $mail->send();
+                    } catch (Zend_Mail_Transport_Exception $e) {
+                        //TODO logar ou retornar uma mensagem aqui
+                    }
 
-                    $mail = new Zend_Mail(Tri_Config::get('tri_app_charset'));
-                    $mail->setBodyHtml($this->view->render('user/welcome.phtml'));
-                    $mail->setSubject($this->view->translate('Welcome'));
-                    $mail->addTo($data['email'], $data['name']);
-                    $mail->send();
                 }
             
                 $this->_helper->_flashMessenger->addMessage('Success');
