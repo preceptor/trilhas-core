@@ -46,7 +46,7 @@ class UserController extends Tri_Controller_Action
                 $result = $this->login($username, $password);
 
                 if ($result->isValid()) {
-					$session->attempt = 0;
+                    $session->attempt = 0;
 
                     if ($session->url) {
                         $url = $session->url;
