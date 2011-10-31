@@ -1,5 +1,5 @@
-<div class="courses">
 <?php if (count($this->timeline)) :?>
+<div class="courses">
     <?php foreach ($this->timeline as $timeline): ?>
         <div class="item">
             <img alt="<?php echo $timeline['name'] ?>" src="upload/<?php echo $this->thumbnail($timeline['image'], 'small') ?>" width="40" height="40" />
