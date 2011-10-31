@@ -1,14 +1,13 @@
 <div class="right">
     <?php if($this->isAllowed('form')): ?>	
-        <?php echo $this->ajax("new", 'content/file/form/', 2); ?>
+        <?php echo $this->ajax("new", 'content/file/form/', 3); ?>
     <?php endif; ?>	
     <?php echo $this->ajax("back", 'content/file/index/', 2); ?>
 </div>
 <div class="left">
     <form id="formFindFile" action="#">
-        <span class="ui-icon ui-icon-search magnifier"></span>
         <input type="text" name="q" id="qFile" style="width: 16em" />
-        <input type="submit" value="ok" /> &nbsp;&nbsp;&nbsp;
+        <input class="btn" type="submit" value="ok" /> &nbsp;&nbsp;&nbsp;
     </form>
 </div>
 <div class="clear">&nbsp;</div>
@@ -59,7 +58,7 @@
     });
     
     $('.file-url').click(function(){
-        window.opener.CKEDITOR.tools.callFunction(<?php echo $this->CKEditorFuncNum?>, this.href);
+        window.opener.CKEDITOR.tools.callFunction(<?php echo $this->CKEditorFuncNum ? $this->CKEditorFuncNum : 0?>, this.href);
         window.close();
         return false;
     });
@@ -73,6 +72,4 @@
 		$(this).parents('.content').load('content/file/index/q/' + $('#qFile').val());
         return false;
 	});
-
-    
 </script>

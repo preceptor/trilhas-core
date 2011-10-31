@@ -1,5 +1,5 @@
 <div class="aright">
-    <a href="report/index/index"><?php echo $this->translate('Builder')?></a>
+    <a class="btn primary" href="report/index/index"><?php echo $this->translate('Builder')?></a>
 </div>
 <?php if(count($this->data)):?>
     <table class="zebra-striped">
@@ -19,8 +19,8 @@
                         </a>
                     </td>
                     <td><?php echo date('d/m/Y', strtotime($data->created)); ?></td>
-                    <td>
-                        <a href="report/report/delete/id/<?php echo $data->id; ?>" class="delete"><?php echo $this->translate('Excluir')?></a>
+                    <td class="aright">
+                        <a class="btn" href="report/report/delete/id/<?php echo $data->id; ?>" class="delete"><?php echo $this->translate('Excluir')?></a>
                     </td>
                 </tr>
             <?php endforeach;?>

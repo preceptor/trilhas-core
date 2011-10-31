@@ -1,7 +1,7 @@
 <div>
     <?php
         if ($this->id) {
-            echo $this->ajax('back', 'content/organizer/');
+            echo $this->ajax('back', 'content/organizer/', 2);
             echo '<br /><br />';
         }
     ?>
@@ -17,7 +17,7 @@
                 <?php endforeach; ?>
 			</ul>
 			<br />
-			<input type="submit" value="<?php echo $this->translate("save")?>" />
+            <input class="btn primary" type="submit" value="<?php echo $this->translate("save")?>" />
 		</form>
         
 		<script type="text/javascript" charset="utf-8">
