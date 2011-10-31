@@ -62,4 +62,26 @@ class Tri_Model_Abstract implements Tri_Model_Interface
     {
         return $this->_messages;
     }
+    
+    public function hasMessages()
+    {
+        return (boolean) count($this->_messages);
+    }
+    
+    public function toString()
+    {
+        return $this->__toString();
+    }
+    
+    public function __toString() {
+        $messages = '';
+        
+        if ($this->hasMessages()) {
+            foreach ($this->_messages as $message) {
+                $messages .= $message . "\n";
+            }
+        }
+        
+        return $messages;
+    }
 }

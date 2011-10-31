@@ -92,7 +92,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $autoloader = Zend_Loader_Autoloader::getInstance();
         $autoloader->registerNamespace('ZFDebug');
-
+		$this->bootstrap('frontcontroller');
         $front = $this->getResource('FrontController');
 
         if ($this->hasOption('zfdebug')) {
