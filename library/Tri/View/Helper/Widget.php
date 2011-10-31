@@ -34,11 +34,18 @@ class Tri_View_Helper_Widget extends Zend_View_Helper_Abstract
                                           'status = ?' => 'active'), 'order');
 
         if (count($widgets)) {
+            $front = Zend_Controller_Front::getInstance();
+            $request = new Zend_Controller_Request_Http();
             foreach($widgets as $widget) {
-                $xhtml .= $this->view->action($widget->action,
-                                              $widget->controller,
-                                              $widget->module,
-                                              Zend_Controller_Front::getInstance()->getRequest()->getUserParams());
+                $request->setModuleName($widget->module)
+                        ->setControllerName($widget->controller)
+                        ->setActionName($widget->action);
+                if ($front->getDispatcher()->isDispatchable($request)) {
+                    $xhtml .= $this->view->action($widget->action,
+                                                  $widget->controller,
+                                                  $widget->module,
+                                                  $front->getRequest()->getUserParams());
+                }
             }
         }
 
