@@ -1,21 +1,19 @@
 <?php
-//ini_set('display_errors', 1);
+defined('APPLICATION_INSTALL_PATH')
+    || define('APPLICATION_INSTALL_PATH', realpath(dirname(__FILE__) . '/application'));
+
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../../application'));
 
-set_include_path(APPLICATION_PATH . '/../library');
+defined('APPLICATION_ENV')
+    || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'));
 
-require_once 'Zend/Loader/Autoloader.php';
+set_include_path(APPLICATION_PATH . '//../library');
 
-$autoloader = Zend_Loader_Autoloader::getInstance();
+$config = APPLICATION_INSTALL_PATH . '/configs/application.ini';
 
-$view = new Zend_View();
-$view->addBasePath(realpath(dirname(__FILE__) . '/views/'));
+require_once 'Zend/Application.php';
 
-$layout = new Zend_Layout();
-
-$layout->setView($view);
-$layout->content = $view->render('index.phtml');
-
-echo $layout->render();
-?>
+$application = new Zend_Application(APPLICATION_ENV, $config);
+$application->bootstrap()
+            ->run();
