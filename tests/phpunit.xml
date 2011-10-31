@@ -6,6 +6,8 @@
     <testsuite name="Application" >
         <directory>./library</directory>
         <directory>./application</directory>
+        <directory>./modules</directory>
+        <directory>../plugins/activity/tests</directory>
     </testsuite>
     
     <filter>

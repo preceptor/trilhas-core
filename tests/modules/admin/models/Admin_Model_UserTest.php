@@ -43,7 +43,7 @@ class Admin_Model_UserTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($model->save($dataTest), $this->messageToString($model->getMessages()));
         
         $dataTest = $data;
-        $dataTest['role'] = 'm';
+        $dataTest['sex'] = 'm';
         $this->assertFalse($model->save($dataTest), $this->messageToString($model->getMessages()));
         
         $dataTest = $data;

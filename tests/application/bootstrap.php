@@ -13,15 +13,14 @@ set_include_path(implode(PATH_SEPARATOR, array(
    get_include_path()
 )));
 
-
-/** Zend_Application */
 require_once 'Zend/Application.php';
-require_once 'ControllerTestCase.php';
-// Create application, bootstrap, and run
+
 $application = new Zend_Application(
    APPLICATION_ENV,
    APPLICATION_PATH . '/configs/application.ini'
 );
+
+define('SERVER_URL', "http://localhost/~abdalacerqueira/trilhas/public/");
 
 $application->bootstrap();
 clearstatcache();
