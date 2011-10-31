@@ -29,7 +29,7 @@ div.detail a:hover{ text-decoration: underline; }
 ul.list-filter{ margin: 10px 0; }
 ul.list-filter li{ display:inline; border: 1px solid #ddd; padding: 3px; margin-right: 3px; }
 
-#report h3{ margin: 0; padding: 2px; background: #ccc; }
+#report h3{ margin: 0; padding: 2px; background: #ccc; font-size: 12px; line-height: normal;}
 #report select.fixed{ width: 200px; }
 #report input.value{ width: 100px; }
 

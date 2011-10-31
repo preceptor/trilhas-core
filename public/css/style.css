@@ -87,8 +87,6 @@ div.box div.content{
 .login #email, .login #password, .login #captcha-input{width: 180px;}
 .login .content{padding: 0px 15px 10px;}
 
-.courses a{text-decoration: none; color: #4480BC;}
-.courses a:hover{text-decoration: underline;}
 .courses .search{margin-bottom: 20px;}
 .courses .search a{margin-left: 20px;}
 .courses .item{clear: both; padding-bottom: 10px;}
@@ -249,3 +247,5 @@ table.messages div{cursor: pointer;}
 
 /* Overwrite bootstrap */
 .form-stacked label {font-weight: normal;}
+table, table td + td, table th, table th + th{border: none;}
+table.zebra-striped td{vertical-align: middle;}
