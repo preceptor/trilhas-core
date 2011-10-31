@@ -27,7 +27,11 @@ class Tri_View_Helper_Ajax extends Zend_View_Helper_Abstract
             $xhtml .= $this->view->translate($text);
             $xhtml .= '</a>';
         } else {
-            $xhtml = '<input id="'.$id.'" type="button" ';
+            $primary = null;
+            if ($type == 3) {
+                $primary = 'primary';
+            }
+            $xhtml = '<input class="btn '.$primary.'" id="'.$id.'" type="button" ';
             $xhtml .= ' value="' . $this->view->translate($text) . '"';
             $xhtml .= ' />';
         }
