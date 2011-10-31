@@ -1,0 +1,63 @@
+"Installation";"Instalação"
+"PHP Version";"Versão do PHP"
+"Mysql extension";"Extensão MySQL do PHP"
+"GD extension";"Extensão GD do PHP"
+"Apache mod_rewrite enabled";"Módulo de reescrita de URL (mod_rewrite)"
+"//application//configs is writable";"A pasta /application/configs está com permissão de escrita?"
+"//data is writable";"A pasta /data está com permissão de escrita?"
+"//plugins is writable";"A pasta /plugins está com permissão de escrita?"
+"//themes is writable";"A pasta /themes está com permissão de escrita?"
+"//public//upload is writable";"A pasta /public/upload está com permissão de escrita?"
+"Install";"Instalar"
+"Configuration";"Configuração"
+"YES";"SIM"
+"NO";"NÃO"
+"Please upgrade your PHP version 5.2.4+";"Atualize a sua versão para 5.2.4+"
+"Your PHP installation appears to be missing the MySQL extension which is required by Trilhas";"A extensão MySQL é necessária para o Trilhas e parace não estar instalada."
+"Your PHP installation appears to be missing the GD extension which is required by Trilhas";"A extensão GD é necessária para o Trilhas e parace não estar instalada."
+"Please enable mod_rewrite module in your Apache configuration";"É necessário habilitar o módulo de reecrita de URL (mod_rewrite) do Apache"
+"Requirements";"Requisitos"
+"Database name";"Nome do banco de dados"
+"Database username";"Nome do usuário do banco de dados"
+"Database password";"Senha do usuário do banco de dados"
+"Database host";"Servidor de banco de dados"
+"Administration email";"E-mail do administrador"
+"Administration password";"Senha do Administrador"
+"Administration password confirm";"Confirmação de senha do Administrador"
+"Create a demonstration data?";"Criar dados de demonstração"
+"Save";"Salvar"
+
+"Check pending itens";"Verifique os itens pendentes"
+
+"Password confirmation does not match";"Confirmação de senha incorreta."
+
+"Invalid type given, value should be float, string, or integer";"O tipo especificado é inválido, o valor deve ser float, string, ou inteiro"
+"'%value%' contains characters which are non alphabetic and no digits";"'%value%' contém caracteres que não são alfabéticos e nem dígitos"
+"'%value%' is an empty string";"'%value%' é uma string vazia"
+
+#Zend_Validate_Alpha
+"Invalid type given, value should be a string";"O tipo especificado é inválido, o valor deve ser uma string"
+"'%value%' contains non alphabetic characters";"'%value%' contém caracteres não alfabéticos"
+"'%value%' is an empty string";"'%value%' é uma string vazia"
+
+#Zend_Validate_EmailAddress
+"Invalid type given, value should be a string";"O tipo especificado é inválido, o valor deve ser uma string"
+"'%value%' is no valid email address in the basic format local-part@hostname";"'%value%' não é um endereço de e-mail válido no formato local-part@hostname"
+"'%hostname%' is no valid hostname for email address '%value%'";"'%hostname%' não é um nome de host válido para o endereço de e-mail '%value%'"
+"'%hostname%' does not appear to have a valid MX record for the email address '%value%'";"'%hostname%' não parece ter um registro MX válido para o endereço de e-mail '%value%'"
+"'%hostname%' is not in a routable network segment. The email address '%value%' should not be resolved from public network.";"'%hostname%' não é um segmento de rede roteável. O endereço de e-mail '%value%' não deve ser resolvido a partir de um rede pública."
+"'%localPart%' can not be matched against dot-atom format";"'%localPart%' não corresponde com o formato dot-atom"
+"'%localPart%' can not be matched against quoted-string format";"'%localPart%' não corresponde com o formato quoted-string"
+"'%localPart%' is no valid local part for email address '%value%'";"'%localPart%' não é uma parte local válida para o endereço de e-mail '%value%'"
+"'%value%' exceeds the allowed length";"'%value%' excede o comprimento permitido"
+
+#Zend_Validate_NotEmpty
+"Invalid type given, value should be float, string, array, boolean or integer";"O tipo especificado é inválido, o valor deve ser float, string, matriz, booleano ou inteiro"
+"Value is required and can't be empty";"O valor é obrigatório e não pode estar vazio"
+
+#Zend_Validate_StringLength
+"Invalid type given, value should be a string";"O tipo especificado é inválido, o valor deve ser uma string"
+"'%value%' is less than %min% characters long";"O tamanho de '%value%' é inferior a %min% caracteres"
+"'%value%' is more than %max% characters long";"O tamanho de '%value%' é superior a %max% caracteres"
+
+"The two given tokens do not match";"As senhas digitadas são diferentes"

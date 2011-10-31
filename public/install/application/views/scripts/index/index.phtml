@@ -1,0 +1,92 @@
+<?php if ($this->hasApplicationIni): ?>
+    <p><?php echo 'application.ini ja existente';?></p>
+<?php else: ?>
+    <h1><?php echo $this->translate('Requirements')?></h1>
+    <table class="zebra-striped">
+        <tr>
+            <th><?php echo $this->translate('Item')?></th>
+            <th><?php echo $this->translate('Configuration')?></th>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate("PHP Version"); ?></td>
+            <td>
+                <?php if (version_compare(phpversion(), '5.2.4', '>=')): ?>
+                    <?php echo $this->translate('OK')?>
+                <?php else: ?>
+                    <?php echo $this->translate('Please upgrade your PHP version to 5.2.4+')?>
+                <?php endif ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate("Mysql extension"); ?></td>
+            <td>
+                <?php if(extension_loaded('mysql') && extension_loaded('pdo_mysql')): ?>
+                    <?php echo $this->translate('OK')?>
+                <?php else: ?>
+                    <?php echo $this->translate('Your PHP installation appears to be missing the MySQL extension which is required by Trilhas')?>
+                <?php endif ?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate("GD extension"); ?></td>
+            <td>
+                <?php if(extension_loaded('gd')): ?>
+                    <?php echo $this->translate('OK')?>
+                <?php else: ?>
+                    <?php echo $this->translate('Your PHP installation appears to be missing the GD extension which is required by Trilhas')?>
+                <?php endif ?>    
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate("Apache mod_rewrite enabled"); ?></td>
+            <td>
+                <?php if(in_array('mod_rewrite', apache_get_modules())):?>
+                    <?php echo $this->translate('OK')?>
+                <?php else: ?>    
+                    <?php echo $this->translate('Please enable mod_rewrite module in your Apache configuration')?>
+                <?php endif ?>    
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate("//application//configs is writable"); ?></td>
+            <td>
+                <?php echo $this->translate($this->configIsWritable)?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate("//data is writable"); ?></td>
+            <td>
+                <?php echo $this->translate($this->dataIsWritable)?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate("//plugins is writable"); ?></td>
+            <td>
+                <?php echo $this->translate($this->pluginsIsWritable)?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate("//themes is writable"); ?></td>
+            <td>
+                <?php echo $this->translate($this->themesIsWritable)?>
+            </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->translate("//public//upload is writable"); ?></td>
+            <td>
+                <?php echo $this->translate($this->uploadIsWritable)?>
+            </td>
+        </tr>
+
+    </table>
+    <br />
+    <?php if($this->checked):?>
+        <p class="center"><a href='index/form' class='btn primary large'><?php echo $this->translate('Install')?></a></p>
+    <?php else: ?>
+        <div class="message">
+            <ul>
+                <li><?php echo $this->translate('Check pending itens')?></li>
+            </ul>
+        </div>
+    <?php endif;?>
+<?php endif; ?>
