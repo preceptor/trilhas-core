@@ -50,14 +50,14 @@ class Content_Form_Time extends Zend_Form
 
         $begin = new Zend_Form_Element_Text('begin');
         $begin->setLabel('Begin')
-              ->setAttrib('class', 'date')
+              ->setAttrib('class', 'date small')
               ->addFilters($filters['begin'])
               ->addValidators($validators['begin'])
               ->setAllowEmpty(false);
 
         $end = new Zend_Form_Element_Text('end');
         $end->setLabel('End')
-            ->setAttrib('class', 'date')
+            ->setAttrib('class', 'date small')
             ->addFilters($filters['end']);
 
         $validators['content_id'][] = array('GreaterThan', false, array('min' => 1));
@@ -72,7 +72,7 @@ class Content_Form_Time extends Zend_Form
              ->addElement($begin)
              ->addElement($end)
              ->addElement($content_id)
-             ->addElement('submit', 'Save');
+             ->addElement('submit', 'Save', array('class' => 'btn primary'));
    }
    
    private function toSelectContent($data)

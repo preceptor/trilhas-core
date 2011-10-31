@@ -49,7 +49,7 @@ class Content_Form_Composer extends Zend_Form
         $filters['title'][] = 'StripTags';
         $title = new Zend_Form_Element_Text('title');
         $title->setLabel('Title')
-              ->setAttrib('size', 80)
+              ->setAttrib('class', 'xxlarge')
               ->addValidators($validators['title'])
               ->addFilters($filters['title']);
         
@@ -71,7 +71,7 @@ class Content_Form_Composer extends Zend_Form
              ->addElement($title)
              ->addElement($content_id)
              ->addElement($description)
-             ->addElement('submit', 'Save');
+             ->addElement('submit', 'Save', array('class' => 'btn primary'));
    }
    
    private function toSelectContent($data)

@@ -52,11 +52,13 @@ class Content_Form_Panel extends Zend_Form
 
         $note = new Zend_Form_Element_Text('note');
         $note->setLabel('Note')
-              ->addValidators($validators['note'])
-              ->addFilters($filters['note']);
+             ->setAttrib('class', 'small')   
+             ->addValidators($validators['note'])
+             ->addFilters($filters['note']);
         
         $noteRestriction = new Zend_Form_Element_Text('note_restriction');
         $noteRestriction->setLabel('Free note')
+                        ->setAttrib('class', 'small')
                         ->addValidators($validators['note_restriction'])
                         ->addFilters($filters['note_restriction']);
 
@@ -79,7 +81,7 @@ class Content_Form_Panel extends Zend_Form
              ->addElement($noteRestriction)
              ->addElement($panelId)
              ->addElement($contentId)
-             ->addElement('submit', 'Save');
+             ->addElement('submit', 'Save', array('class' => 'btn primary'));
    }
    
    private function toSelectContent($data)
