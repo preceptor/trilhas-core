@@ -16,8 +16,8 @@ class Content_FileController extends Tri_Controller_Action
         $query   = Zend_Filter::filterStatic($this->_getParam("q"), 'stripTags');
         $folder  = Zend_Filter::filterStatic($this->_getParam("folder"), 'stripTags');
         $message = $this->_hasParam('message');
+        
         $CKEditorFuncNum = Zend_Filter::filterStatic($this->_getParam('CKEditorFuncNum'), 'int');
-
         if ($CKEditorFuncNum) {
             $session->CKEditorFuncNum = $CKEditorFuncNum;
         }

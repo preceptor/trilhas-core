@@ -1,7 +1,7 @@
 <?php foreach($this->data as $data):?>
     <?php $name = $data->getBasename();?>
     <?php if (!$data->isDot() && ! $data->isFile()) :?>
-    <div class="padding dotted grid_5 column margin ohidden" style="height: 57px;">
+    <div class="padding dotted span5 margin ohidden" style="height: 57px;">
             <?php $filename = $data->getPathname(). '/configuration.xml';?>
             <?php if (file_exists($filename)):?>
                 <?php 

@@ -21,7 +21,7 @@
                 <td><a href="admin/classroom/form/id/<?php echo $data->id?>"><?php echo $data->name?></a></td>
                 <td><?php echo isset($data->cname) ? $data->cname : ''?></td>
                 <td><?php echo $this->translate($data->status)?></td>
-                <td><a href="admin/classroom/list-user/id/<?php echo $data->id?>"><?php echo $this->translate('users')?></a></td>
+                <td><a class="btn small" href="admin/classroom/list-user/id/<?php echo $data->id?>"><?php echo $this->translate('users')?></a></td>
             </tr>
         <?php endforeach; ?>
     </table>

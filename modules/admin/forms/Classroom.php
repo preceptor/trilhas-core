@@ -79,6 +79,7 @@ class Admin_Form_Classroom extends Zend_Form
         $filters['name'][] = 'StripTags';
         $name = new Zend_Form_Element_Text('name');
         $name->setLabel('Name')
+             ->setAttrib('class', 'xlarge')
              ->addValidators($validators['name'])
              ->addFilters($filters['name']);
 
@@ -90,18 +91,19 @@ class Admin_Form_Classroom extends Zend_Form
 
         $begin = new Zend_Form_Element_Text('begin');
         $begin->setLabel('Begin')
-              ->setAttrib('class', 'date')
+              ->setAttrib('class', 'date small')
               ->addFilters($filters['begin'])
               ->addValidators($validators['begin'])
               ->setAllowEmpty(false);
 
         $end = new Zend_Form_Element_Text('end');
         $end->setLabel('End')
-            ->setAttrib('class', 'date')
+            ->setAttrib('class', 'date small')
             ->addFilters($filters['end']);
 
         $max = new Zend_Form_Element_Text('max_student');
         $max->setLabel('Max student')
+             ->setAttrib('class', 'small')
              ->addValidators($validators['max_student'])
              ->addFilters($filters['max_student']);
 

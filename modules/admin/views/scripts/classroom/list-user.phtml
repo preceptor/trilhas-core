@@ -1,9 +1,8 @@
-<div class="right">
+<div class="aright">
     <a href="admin/classroom/matriculate/id/<?php echo $this->id?>"  class="btn primary"><?php echo $this->translate('register')?></a>
     <a href="admin/classroom/" class="btn"><?php echo $this->translate('back')?></a>
 </div>
 <h3><?php echo $this->classroom->cname?> - <?php echo $this->classroom->name?></h3>
-<br />
 <?php if (count($this->data)): ?>
     <table class="zebra-striped">
         <tr>
@@ -15,7 +14,7 @@
             <tr>
                 <td><?php echo $data->name?></td>
                 <td><?php echo $data->email?></td>
-                <td><a class="delete" href="admin/classroom/delete/userId/<?php echo $data->id?>/id/<?php echo $this->id?>"><?php echo $this->translate('delete')?></a></td>
+                <td><a class="delete btn small" href="admin/classroom/delete/userId/<?php echo $data->id?>/id/<?php echo $this->id?>"><?php echo $this->translate('delete')?></a></td>
             </tr>
         <?php endforeach; ?>
     </table>

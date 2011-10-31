@@ -37,8 +37,8 @@ class Admin_PluginController extends Tri_Controller_Action
     {
         $iterator = new DirectoryIterator($this->pluginsPath);
         $this->view->data = $iterator;
-        $this->view->activated = Tri_Config::get('tri_plugins', true);
-        $this->view->installed = Tri_Config::get('tri_plugins_installed', true);
+        $this->view->activated = (array) Tri_Config::get('tri_plugins', true);
+        $this->view->installed = (array) Tri_Config::get('tri_plugins_installed', true);
     }
 
     public function activateAction()

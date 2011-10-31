@@ -1,16 +1,15 @@
-<fieldset>
-    <legend><?php echo $this->translate('new')?></legend>
-    <form action="admin/acl/add" method="post">
-        <?php
-            echo $this->formLabel('url', $this->translate('url'));
-            echo $this->formText('url');
-            echo "&nbsp;&nbsp;";
-            echo $this->formLabel('role', $this->translate('role'));
-            echo $this->formText('role');
-        ?>
-        <?php echo $this->formSubmit('save', $this->translate('Save'));?>
-    </form>
-</fieldset>
+<form action="admin/acl/add" method="post">
+    <?php
+        echo $this->formLabel('url', $this->translate('URL'));
+        echo "&nbsp;&nbsp;";
+        echo $this->formText('url');
+        echo "&nbsp;&nbsp;";
+        echo $this->formLabel('role', $this->translate('role'));
+        echo "&nbsp;&nbsp;";
+        echo $this->formText('role');
+    ?>
+    <?php echo $this->formSubmit('save', $this->translate('Save'), array('class' => 'btn primary'));?>
+</form>
 <br />
 <form action="admin/acl/save" method="post">
     <?php foreach ($this->data as $module => $controllers):?>
@@ -26,7 +25,7 @@
                                 <tr>
                                     <td><?php echo $this->formLabel($name,"$module/$controller/$action");?></td>
                                     <td><?php echo $this->formText($name, $roles);?></td>
-                                    <td><a href="#"><?php echo $this->translate('delete')?></a></td>
+                                    <td><a class="btn" href="#"><?php echo $this->translate('delete')?></a></td>
                                 </tr>
                         <?php endforeach;?>
                     <?php endforeach;?>
@@ -34,7 +33,7 @@
             </div>
         </div>
     <?php endforeach;?>
-    <?php echo $this->formSubmit('save', $this->translate('Save'));?>
+    <?php echo $this->formSubmit('save', $this->translate('Save'), array('class' => 'btn primary'));?>
 </form>
 <script type="text/javascript">
     $('.toggle').click(function(){
