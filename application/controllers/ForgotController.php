@@ -61,8 +61,7 @@ class ForgotController extends Tri_Controller_Action
     	$data = $this->_getAllParams();
 	 	if ($form->isValid($data)) {
 			$email = $this->_getParam('email');
-			$user = $tableUser->fetchRow(array('email = ?' => $email,
-                                               'institution_id = ?' => INSTITUTION_ID));
+			$user = $tableUser->fetchRow(array('email = ?' => $email));
 			if (!$user->id) {
 				$this->_helper->_flashMessenger->addMessage('user not avaliable');
 				$this->_redirect('forgot/');
