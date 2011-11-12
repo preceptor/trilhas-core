@@ -163,8 +163,9 @@ class UserController extends Tri_Controller_Action
             }
         }
 
-        if (!isset($data['id']) || !$data['id']) {
-            $form->getElement('password')->setAllowEmpty(false);
+        if (isset($data['id']) && $data['id']) {
+            $form->password->setRequired(false);
+            $form->password_confirm->setRequired(false);
         }
 
         if ($form->isValid($data) && $isValidEmail) {
@@ -176,6 +177,9 @@ class UserController extends Tri_Controller_Action
             
             if (!$form->image->getValue()) {
                 unset($data['image']);
+            } else {
+                 $identity = Zend_Auth::getInstance()->getIdentity();
+                 $identity->image = $data['image'];
             }
 
             if (!$data['password']) {
