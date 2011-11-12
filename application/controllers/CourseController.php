@@ -59,7 +59,7 @@ class CourseController extends Tri_Controller_Action
                         ->where('status = ?', 'active')
                         ->order('name');
 
-        $paginator = new Tri_Paginator($select, $page);
+        $paginator = new Tri_Paginator($select, $page, 5);
         $this->view->data = $paginator->getResult();
     }
 
