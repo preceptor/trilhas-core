@@ -76,7 +76,6 @@ div.box div.content{
     background-image: -ms-linear-gradient(#e6e6e6, #ffffff 40px, #ffffff);
     background-image: -o-linear-gradient(#e6e6e6, #ffffff 40px, #ffffff);
     background-image: linear-gradient(#e6e6e6, #ffffff 40px, #ffffff);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6e6e6', endColorstr='#ffffff', GradientType=0);
     padding: 20px 15px; 
     overflow: hidden;
 }
@@ -93,7 +92,7 @@ div.box div.content{
 .courses .item a{font-weight: bold}
 .courses .item h2{margin: 0 0 10px 0; color: #4480BC; font-size: 16px;}
 .courses .item h2 a{margin: 0; color: #4480BC; font-size: 16px; font-weight: bold;}
-.courses .item img{float: left; margin: 0 10px 5px 0; border: 1px solid #ccc;}
+.courses .item img{float: left; margin: 4px 10px 5px 0; border: 1px solid #ccc;}
 .courses .item p{margin-top: 2px;}
 .courses .item span{margin-left: 5px; font-size: 0.8em; color: #ccc;}
 .courses .certificate{float: none; margin: 0;}
