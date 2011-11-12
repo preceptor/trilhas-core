@@ -42,7 +42,7 @@ foreach ($paths as $path) {
     }
 }
 
-if (Zend_Auth::getInstance()->hasIdentity() || !isset($_SERVER['HTTP_USER_AGENT'])) {
+if (Zend_Auth::getInstance()->hasIdentity() || (!isset($_SERVER['HTTP_USER_AGENT'])) || $_SERVER['HTTP_USER_AGENT'] == 'none') {
     $fullpath = APPLICATION_PATH . '/../data/upload/' . $filename;
     if (file_exists($fullpath)) {
         $name = basename($fullpath);
