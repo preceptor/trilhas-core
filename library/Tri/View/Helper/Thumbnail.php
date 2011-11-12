@@ -39,7 +39,8 @@ class Tri_View_Helper_Thumbnail extends Zend_View_Helper_Abstract
     public function thumbnail($path, $type)
     {
         $uploadDir = Tri_Config::get('tri_upload_dir');
-        $thumb = $uploadDir . $path . $type . '.jpg';
+        $thumb     = realpath($uploadDir . '/') . $path . $type . '.jpg';
+        
         if (!file_exists($thumb)) {
             $this->_open($path);
             if ($this->_image == self::NO_IMAGE) {
@@ -121,7 +122,7 @@ class Tri_View_Helper_Thumbnail extends Zend_View_Helper_Abstract
     protected function _open($path)
     {
         $uploadDir = Tri_Config::get('tri_upload_dir');
-        $imagePath = $uploadDir . $path;
+        $imagePath = realpath($uploadDir . '/') . $path;
         
         if (!file_exists($imagePath)) {
             $imagePath = APPLICATION_PATH . '/../data/upload/' . $path;
