@@ -33,6 +33,8 @@ class IndexController extends Tri_Controller_Action
                       'themesIsWritable' => APPLICATION_PATH . '/../themes/',
                       'uploadIsWritable' => APPLICATION_PATH . '/../public/upload/');
         
+        $this->view->checked = true;
+        
         foreach ($dirs as $var => $dir) {
             $this->view->$var  = 'YES';
             if (!is_writable($dir)) {
@@ -41,7 +43,6 @@ class IndexController extends Tri_Controller_Action
             }
         }
         
-        $this->view->checked = true;
         $this->view->hasApplicationIni = file_exists(APPLICATION_PATH . '/configs/application.ini');
     }
     
