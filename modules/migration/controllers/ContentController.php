@@ -76,7 +76,6 @@ class Migration_ContentController extends Tri_Controller_Action
         header("Content-disposition: inline; filename={$name}");
         header("Content-Transfer-Encoding: binary");
         header("Content-type: 'application/zip");
-        header("Connection: close");
         
         ob_clean();
         flush();
