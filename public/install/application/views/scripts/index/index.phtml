@@ -13,6 +13,7 @@
                 <?php if (version_compare(phpversion(), '5.2.4', '>=')): ?>
                     <?php echo $this->translate('OK')?>
                 <?php else: ?>
+                	<?php $this->checked = false;?>
                     <?php echo $this->translate('Please upgrade your PHP version to 5.2.4+')?>
                 <?php endif ?>
             </td>
@@ -23,6 +24,7 @@
                 <?php if(extension_loaded('mysql') && extension_loaded('pdo_mysql')): ?>
                     <?php echo $this->translate('OK')?>
                 <?php else: ?>
+                	<?php $this->checked = false;?>
                     <?php echo $this->translate('Your PHP installation appears to be missing the MySQL extension which is required by Trilhas')?>
                 <?php endif ?>
             </td>
@@ -33,6 +35,7 @@
                 <?php if(extension_loaded('gd')): ?>
                     <?php echo $this->translate('OK')?>
                 <?php else: ?>
+                	<?php $this->checked = false;?>
                     <?php echo $this->translate('Your PHP installation appears to be missing the GD extension which is required by Trilhas')?>
                 <?php endif ?>    
             </td>
@@ -43,6 +46,7 @@
                 <?php if(in_array('mod_rewrite', apache_get_modules())):?>
                     <?php echo $this->translate('OK')?>
                 <?php else: ?>    
+                	<?php $this->checked = false;?>
                     <?php echo $this->translate('Please enable mod_rewrite module in your Apache configuration')?>
                 <?php endif ?>    
             </td>
