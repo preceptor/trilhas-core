@@ -72,6 +72,7 @@ class CourseController extends Tri_Controller_Action
         $this->view->data      = $courses;
         $this->view->finalized = $finalized;
         $this->view->user      = $identity;
+        $this->_helper->layout->setLayout('layout');
     }
 
     public function listAction()
