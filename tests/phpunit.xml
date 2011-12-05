@@ -1,4 +1,4 @@
-<phpunit bootstrap="./application/bootstrap.php" colors="true">
+<phpunit bootstrap="./bootstrap.php" colors="true">
     <php>
         <ini name="memory_limit" value="-1" />
         <ini name="date.timezone" value="America/Sao_Paulo" />

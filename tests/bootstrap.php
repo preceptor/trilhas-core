@@ -2,7 +2,7 @@
 
 // Define path to application directory
 defined('APPLICATION_PATH')
-   || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../../application'));
+   || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
 
 // Define application environment
 define('APPLICATION_ENV', 'testing');
@@ -19,8 +19,6 @@ $application = new Zend_Application(
    APPLICATION_ENV,
    APPLICATION_PATH . '/configs/application.ini'
 );
-
-define('SERVER_URL', "http://localhost/~abdalacerqueira/trilhas/public/");
 
 $application->bootstrap();
 clearstatcache();
