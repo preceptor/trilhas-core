@@ -18,10 +18,6 @@
                     <a href="user/view/id/<?php echo $this->user->id?>"><?php echo $this->translate('View profile')?></a> | 
                     <a href="user/edit"><?php echo $this->translate('Edit profile')?></a>
                 </div>
-                <div class="info">
-                    <?php echo $this->translate('Last access')?> 
-                    <?php echo date('d/m/Y')?>
-                </div>
                 <?php if (Zend_Auth::getInstance()->getIdentity()->role == 'institution'):?>
                     <div class="info">
                         <a href="admin/course">

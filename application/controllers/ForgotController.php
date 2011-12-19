@@ -152,7 +152,7 @@ class ForgotController extends Tri_Controller_Action
 			throw new Exception('User is not object');
 		}
 		$encrypt = new Zend_Filter_Encrypt();
-		$encrypt->setVector(Tri_Config::get('mail_vector'));
+		$encrypt->setVector(Tri_Config::get('tri_mail_vector'));
 		$hash = $encrypt->filter("id/{$user->id}/date/" . date('Y-m-d'));
 		return $this->view->serverUrl(). $this->view->baseUrl() . "/forgot/recovery?key=" . urlencode(base64_encode($hash));
 	}
@@ -172,7 +172,7 @@ class ForgotController extends Tri_Controller_Action
 		$tableUser = new Zend_Db_Table('user');
 		
 		$decrypt = new Zend_Filter_Decrypt();
-		$decrypt->setVector(Tri_Config::get('mail_vector'));
+		$decrypt->setVector(Tri_Config::get('tri_mail_vector'));
 		$decrypted = $decrypt->filter($urlEncrypt);
 		$array = explode('/', $decrypted);
 		$user = $tableUser->fetchRow(array('id =?' => $array[1]));

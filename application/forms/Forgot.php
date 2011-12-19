@@ -49,6 +49,6 @@ class Application_Form_Forgot extends Zend_Form
               ->addFilters($filters['email']);
 
         $this->addElement($email)
-             ->addElement('submit', 'Enviar');
+             ->addElement('submit', 'Enviar', array('class' => 'btn primary'));
    }
 }

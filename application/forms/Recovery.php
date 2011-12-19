@@ -49,7 +49,7 @@ class Application_Form_Recovery extends Zend_Form
                 ->removeDecorator('Label')
                 ->removeDecorator('HtmlTag');
 		
-        $filters['password'][] = 'Md5';
+        $filters['password'][] = array('Md5', Tri_Config::get('tri_salt'));
         $validators['password'][] = 'PasswordConfirmation';
         $password = new Zend_Form_Element_Password('password');
         $password->setLabel('new password')
@@ -58,11 +58,11 @@ class Application_Form_Recovery extends Zend_Form
 
         $passwordConfirmation = new Zend_Form_Element_Password('password_confirm');
         $passwordConfirmation->setLabel('new password confirmation')
-                ->addFilter('Md5');
+                             ->addFilter('Md5', Tri_Config::get('tri_salt'));
 		
         $this->addElement($id)
 			 ->addElement($password)
 			 ->addElement($passwordConfirmation)
-             ->addElement('submit', 'Salvar');
+             ->addElement('submit', 'Salvar', array('class' => 'btn primary'));
    }
 }
