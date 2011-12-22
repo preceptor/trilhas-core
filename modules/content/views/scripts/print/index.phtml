@@ -1,1 +1,21 @@
-<?php echo $this->printRecursive( $this->contents ) ?>
+<p><?php echo $this->translate('Select the content that you wish to print:')?></p>
+<p><a target="_blank" href="content/print/view/"><?php echo $this->translate('Print all'); ?></a><p>
+<?php $level = 0; ?>
+<?php if (count($this->data)):?>
+    <ul>
+        <?php foreach($this->data as $key => $data):?>
+            <?php if ($data['level'] > $level): ?>
+                <ul>
+            <?php endif; ?>
+            <li>
+                <a target="_blank" href="content/print/view/id/<?php echo $data['id']; ?>"><?php echo $data['title']; ?></a>
+             </li>
+            <?php 
+                if (isset($this->data[$key+1]) && $this->data[$key+1]['level'] < $data['level']) {
+                    echo str_repeat("</ul>", $data['level'] - $this->data[$key+1]['level']);
+                }
+            ?>
+            <?php $level = $data['level']; ?>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>

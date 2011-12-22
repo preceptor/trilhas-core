@@ -25,14 +25,23 @@
  */
 class Content_PrintController extends Tri_Controller_Action 
 {
+    public function init()
+    {
+        parent::init();
+        $this->view->title = "Print";
+    }
     public function indexAction() 
     {
-        
+        $session = new Zend_Session_Namespace('data');
+        $this->view->data = Application_Model_Content::fetchAllOrganize($session->course_id);
     }
 
     public function viewAction() 
     {
+        $id      = Zend_Filter::filterStatic($this->_getParam('id'), 'int');
+        $session = new Zend_Session_Namespace('data');
         
+        $this->view->data = Content_Model_Print::fetchOrganizeWithContent($session->course_id, $id);
     }
 }
 

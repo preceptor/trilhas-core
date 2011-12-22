@@ -1,1 +1,11 @@
-<?php echo $this->printLink( $this->contents );?>
+<?php if (count($this->data)):?>
+    <?php foreach($this->data as $data):?>
+        <div style="padding-top: 40px; clear: both;">
+            <p style="border-top: 6px solid #ddd; text-align: right;"><strong><?php echo $data['title']; ?></strong></h3>
+            <p><?php echo $data['description']; ?></p>
+        </div>    
+    <?php endforeach; ?>
+    <script>
+        print();
+    </script>
+<?php endif; ?>

@@ -156,6 +156,8 @@
 "Non-existent page.";"Página não existente."
 "No XML configuration file (configuration.xml)";"Arquivo de configuração não encontrado (configuration.xml)"
 "No user found with provided email.";"Nenhum usuário encontrado com o e-mail fornecido."
+"Select the content that you wish to print:";"Selecione o conteúdo que deseja imprimir:"
+"Print all";"Imprimir todos"
 
 #timeline
 "saved a new file";"adicionou um novo arquivo"
@@ -346,3 +348,4 @@
 "Login here using your email and password.";"Entre utilizando seu e-mail e senha."
 "Create your new user. It is quick and easy.";"Crie o seu novo usuário. É rápido e fácil."
 "Index";"Índice"
+"Print";"Imprimir"
