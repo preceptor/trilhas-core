@@ -16,5 +16,4 @@ if (!file_exists($config)) {
 
 require_once 'Zend/Application.php';
 $application = new Zend_Application(APPLICATION_ENV, $config);
-$application->bootstrap()
-            ->run();
+$application->bootstrap()->run();
