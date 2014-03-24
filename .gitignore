@@ -27,7 +27,7 @@
 
 # Default files
 ####################
-application.ini
+application/configs/application.ini
 .htaccess
 
 # OS generated files #
